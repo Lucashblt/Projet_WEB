@@ -1,0 +1,48 @@
+body{
+    background-image: url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80);
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+}
+.modal {
+    position: absolute;
+    top: 18%;
+    left: 35%;
+    width: 30%;
+    background-color: #fff;
+    z-index: 3;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #00000033;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    position: relative;
+}
+.modal input {
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal button {
+    background-color: lightslategray;
+    color: white;
+    padding: 12px 14px;
+    margin: 5px;
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
