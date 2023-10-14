@@ -27,7 +27,7 @@ if($_POST) {
 }*/
 ?>
     <div class="form-container">
-        <h1>Bienvenue sur WOOLIFY</h1>
+        <h1>WOOLIFY</h1>
         <form action="home.php" method="post" onsubmit="return CheckLoginForm()">
             <div class="modal">
                 <div class="modal-content">
