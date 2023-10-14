@@ -54,7 +54,7 @@ if($_POST) {
 				alert("Les noms mots de passe de moins de 4 lettres ne sont pas autorisés!")
 				return false;
 			}
-			else if(password == confirm_password){
+			else if(password !== confirm_password){
 				alert("Le mot de passe doit etre le même")
 				return false;
 			}
