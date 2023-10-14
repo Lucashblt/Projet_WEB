@@ -49,8 +49,9 @@ if($_POST) {
     function CheckLoginForm(){
 		var password = document.getElementById("password").value;
 		var confirm_password = document.getElementById("confirm_password").value;
-		var age = document.getElementById("date_naissance").value;
-		var today = new Date();
+		var birthdate = new Date(document.getElementById("date_naissance").value);
+          	var today = new Date();
+           	var age = today.getFullYear() - birthdate.getFullYear();
 		var email = document.getElementById("email").value;
 		var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 	
