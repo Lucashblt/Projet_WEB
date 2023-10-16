@@ -49,29 +49,16 @@ if($_POST) {
     function CheckLoginForm(){
 			var password = document.getElementById("password").value;
 			var confirm_password = document.getElementById("confirm_password").value;
-            var birthdate = new Date(document.getElementById("date_naissance").value);
-            var today = new Date();
-            var age = today.getFullYear() - birthdate.getFullYear();
-            var email = document.getElementById("email").value;
-            
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 			if(password.length < 6){
 				alert("Les noms mots de passe de moins de 4 lettres ne sont pas autorisés!")
 				return false;
 			}
-			else if(password !== confirm_password){
+			else if(password == confirm_password){
 				alert("Le mot de passe doit etre le même")
 				return false;
 			}
-			else if (age < 16) {
-                alert("Vous devez avoir au moins 16 ans pour vous inscrire.");
-                return false;
-            }
-            else if (!email.match(emailPattern)) {
-                alert("Veuillez entrer une adresse email valide.");
-                return false;
-            }else{
+			else {
 				return true;
 			}
 		}
