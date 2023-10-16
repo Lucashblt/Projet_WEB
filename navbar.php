@@ -47,12 +47,9 @@
     const modal = document.querySelector(".modal")
     const closeModalButton = document.querySelector(".close-modal")
 
-    
-
     menuHamburger.addEventListener('click',()=>{
         navLinks.classList.toggle('mobile-menu')
     });
-
 
     document.querySelector(".MonCompte").addEventListener('mouseenter', () => {
         loginModal.style.display = "block";
@@ -63,7 +60,6 @@
     }
     });
 
-    
     openModalButton.addEventListener('click', () => {
         modal.style.display = "block"
     })
