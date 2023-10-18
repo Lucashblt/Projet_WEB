@@ -113,7 +113,7 @@ button span{
     text-align: center;
 }
 
-button::hover{
+button:hover{
     transform: scale(1.06);
 }
 hr{
