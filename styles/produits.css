@@ -77,14 +77,19 @@ h2 {
     display: flex;
     gap: 0.375em;
     font-size: 0.9em;
+    cursor: pointer;
 }
 
-.tags span {
+.tag{
     padding: 0.35em 0.65em;
     color: #fff;
     border: 1.5px solid rgba(255 255 255 / 0.4);
     border-radius: 4px;
     border-radius: 50px;
+}
+.selected {
+    background-color: #f5f5f5; 
+    color: #000; 
 }
 
 p {

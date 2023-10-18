@@ -28,8 +28,8 @@
                 </select>
                 <label for="color">Couleur : </label>
                 <div class="tags">
-                    <span class="tag">White</span>
-                    <span class="tag">Black</span>
+                    <span class="tag" id="white">White</span>
+                    <span class="tag" id="black">Black</span>
                 </div>
                 <label for="quantity">Quantité :</label>
                 <input type="number" name="quantity" id="quantity" min="1" value="1">
@@ -41,5 +41,28 @@
     <?php
         include('footer.html');
     ?>
+    <script>
+        // Sélectionnez les balises span pour les couleurs
+        const whiteTag = document.getElementById("white");
+        const blackTag = document.getElementById("black");
+
+        // Écouteur d'événement pour les balises span
+        whiteTag.addEventListener("click", () => {
+            // Désélectionnez toutes les balises
+            whiteTag.classList.add("selected");
+            blackTag.classList.remove("selected");
+
+            // Mettez à jour la sélection de couleur ici (par exemple, affectez la valeur "White" à une variable)
+        });
+
+        blackTag.addEventListener("click", () => {
+            // Désélectionnez toutes les balises
+            whiteTag.classList.remove("selected");
+            blackTag.classList.add("selected");
+
+            // Mettez à jour la sélection de couleur ici (par exemple, affectez la valeur "Black" à une variable)
+        });
+    </script>
+
 </body>
 </html>
