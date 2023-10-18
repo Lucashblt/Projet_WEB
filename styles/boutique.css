@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+.number {
+    text-align: center;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    font-size: 1.2em;
+}
+
+.bar {
+    display: inline-block;
+    width: auto;
+    overflow: hidden;
+   
+}
+
+.bar:before, .bar:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.black, .hover-black:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    margin: 2px;
+}
