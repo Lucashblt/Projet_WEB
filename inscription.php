@@ -26,10 +26,12 @@ if($_POST) {
     header('Location: home.php');
 }*/
 ?>
+<?php
+        include('navbar.php');
+?>
     <div class="form-container">
-        <h1>WOOLIFY</h1>
         <form action="home.php" method="post" onsubmit="return CheckLoginForm()">
-            <div class="modal">
+            <div class="modal2">
                 <div class="modal-content">
                     <input type="text" id="nom" name="nom" placeholder="Nom" required>
                     <input type="text" id="prenom" name="prenom" placeholder="Prenom" required>
@@ -43,7 +45,11 @@ if($_POST) {
             </div>
         </form>
     </div>
-
+    <div class="footer">
+        <?php 
+            include('footer.html'); 
+        ?>
+    </div>
     <script> 
 
     function CheckLoginForm(){

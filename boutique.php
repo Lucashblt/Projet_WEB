@@ -11,32 +11,43 @@
         include('navbar.php');
     ?>
     <div class="filtres">
-        <form action="boutique.php" method="post">
-            <label for="categorie">Catégorie</label>
-            <select name="categorie" id="categorie">
-                <option value="toutes">Toutes les catégories</option>
-                <option value="vetements">Vêtements</option>
-                <option value="chaussures">Chaussures</option>
-                <option value="accessoires">Accessoires</option>
-            </select>
-            <label for="typeProduits">Type de produtits</label>
-            <select name="typeProduits" id="typeProduits">
-                <option value="tous">Toutes les produits</option>
-            </select>
-            <label for="taille">Taille</label>
-            <select name="taille" id="taille">
-                <option value="aucune">Aucune Taille</option>
-            </select>
-            <label for="prix">Prix</label>
-            <select name="prix" id="prix">
-                <option value="tous">Tous les prix</option>
-                <option value="moins20">Moins de 20 €</option>
-                <option value="20-50">20 € - 50 €</option>
-                <option value="50-100">50 € - 100€</option> 
-                <option value="plus100">100+ €</option>
-            </select>
-            <button type="submit" name="submit"><span>Filtrer & Trier</span></button>
-        </form>
+        <button class="filter-button">Filtrer</button>
+        <div class="filter-options">
+            <form action="boutique.php" method="post">
+                <div class="filter-group">
+                    <label for="categorie">Catégorie</label>
+                    <select name="categorie" id="categorie">
+                        <option value="toutes">Toutes les catégories</option>
+                        <option value="vetements">Vêtements</option>
+                        <option value="chaussures">Chaussures</option>
+                        <option value="accessoires">Accessoires</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="typeProduits">Type de produits</label>
+                    <select name="typeProduits" id="typeProduits">
+                        <option value="tous">Toutes les produits</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="taille">Taille</label>
+                    <select name="taille" id="taille">
+                        <option value="aucune">Aucune Taille</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="prix">Prix</label>
+                    <select name="prix" id="prix">
+                        <option value="tous">Tous les prix</option>
+                        <option value="moins20">Moins de 20 €</option>
+                        <option value="20-50">20 € - 50 €</option>
+                        <option value="50-100">50 € - 100€</option>
+                        <option value="plus100">100+ €</option>
+                    </select>
+                </div>
+                <button class="button-submit" type="submit" name="submit"><span>Filtrer & Trier</span></button>
+            </form>
+        </div>
     </div>
     <!-- trier par ...... -->
     <div class="products">
@@ -91,6 +102,18 @@
     ?>
     </div>
     <script>
+        // JavaScript pour activer l'affichage des options de filtrage
+        const filterButton = document.querySelector('.filter-button');
+        const filterOptions = document.querySelector('.filter-options');
+
+        filterButton.addEventListener('click', () => {
+            if (filterOptions.style.display === "none" || filterOptions.style.display === "") {
+                filterOptions.style.display = "block";
+            } else {
+                filterOptions.style.display = "none";
+            }
+        });
+
         // Sélectionnez les éléments de menu déroulant
         const categorieSelect = document.getElementById("categorie");
         const typeProduitsSelect = document.getElementById("typeProduits");

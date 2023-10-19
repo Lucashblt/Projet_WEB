@@ -54,6 +54,8 @@ body .dribbble img {
     --sand-light: #EDD9A9;
   }
   .order {
+    position: relative;
+    z-index: 1;
     appearance: none;
     border: 0;
     background: var(--dark);

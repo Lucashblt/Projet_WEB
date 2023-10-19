@@ -1,48 +1,63 @@
+*{
+    margin : 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
 body{
+    font-family: Georgia, serif;
     background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
-    background-size: 100vw 100vh;
+    background-size: cover;
     background-repeat: no-repeat;
-}
-h1{
-    text-align: center;
-    color: white;
-    font-size: 50px;
-}
-.modal {
-    position: absolute;
-    top: 18%;
-    left: 35%;
-    width: 30%;
-    background-color: #fff;
-    z-index: 3;
-    border-radius: 6px;
-    box-shadow: 0 0 8px #00000033;
-    text-align: center;
+    background-attachment: fixed;
+    background-position: center center;
+    min-height: 100vh;
 }
 
-.modal-content {
+.form-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 550px;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative; 
+    color: #000; 
+}
+
+.modal2{
     background-color: #fff;
     padding: 20px;
-    border-radius: 6px;
+    border-radius: 16px;
     text-align: center;
     position: relative;
 }
-.modal input {
-    width: 80%;
-    margin: 10px 0;
+
+.modal2 input {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 10px 0;
+    box-sizing: border-box; 
 }
 
-.modal button {
+.modal2 button {
     background-color: lightslategray;
     color: white;
     padding: 12px 14px;
-    margin: 5px;
+    margin: 10px 0; 
     border: 0;
     border-radius: 50px;
     cursor: pointer;
     text-transform: uppercase;
+    width: 100%; 
 }
+
+@media screen and (max-width: 850px) {
+    .form-container {
+        width: 80%;
+        max-width: 400px; 
+    }
+}
+
 

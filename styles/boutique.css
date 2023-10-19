@@ -8,27 +8,18 @@
 body {
     font-family: Georgia, serif;
     min-height: 100vh;
-    min-width: none;
     background: #f5f5f5;
 }
 
 .filtres {
     font-family: Georgia, serif;
-    padding: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    padding-top: 15px;
     background-color: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    
-}
-
-.filtres form {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
 .filtres label {
@@ -36,39 +27,93 @@ body {
     font-weight: bold;
     font-size: 1em;
     color: #333;
-    
 }
 
 .filtres select {
-    width: auto;
+    width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 3px;
     background-color: #fff;
     color: #333;
-    font-size: 0.9em;  
-    margin-right: 20px;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+
 }
 
-.filtres button{ 
+.filtres button {
     cursor: pointer;
     font-weight: bold;
     font-size: 1em;
-    align-items: center;
     border: 0;
     padding: 8px 15px;
     background-color: #b0b0b0;
     color: #f7f7f7;
     border-radius: 50px;
-    transition: 0.2s ease-out; 
-}   
-.filtres button span{
-    font-family:  Georgia, serif;    
+    transition: 0.2s ease-out;
+}
+.filtres button span {
+    font-family: Georgia, serif;
     width: 100%;
     text-align: center;
 }
-button:hover{
-    transform: scale(1.2);
+
+
+
+@media screen and (max-width: 850px) {
+    .filtres form {
+        flex-direction: column;
+    }
+
+    .filtres label, .filtres select {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .filtres button {
+        width: 80%;
+    }
+}
+/*filtrage button*/
+.filter-button {
+    width: 40%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 8px 15px;
+    background-color: #b0b0b0;
+    color: #f7f7f7;
+    border-radius: 50px;
+    transition: 0.2s ease-out;
+}
+
+
+/* Styles pour les options de filtrage (initialement masquées) */
+.filter-options {
+    display: none;
+    padding: 25px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+/* Styles pour les étiquettes et les sélecteurs dans les options de filtrage */
+.filter-options label {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #333;
+}
+
+.filter-options select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #333;
+    font-size: 0.9em;
+    margin-right: 20px;
 }
 
 /*Produits*/
