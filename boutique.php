@@ -40,17 +40,19 @@
     </div>
     <!-- trier par ...... -->
     <div class="products">
-        <div class="card">
-            <div class="poster"><img src="https://img.freepik.com/free-photo/men-s-apparel-hoodie-rear-view_53876-97228.jpg?w=360&t=st=1697035828~exp=1697036428~hmac=83f3871a04b294558c4708ee01250a26909b335f768df5b39d68850672781629" alt="Location Unknown"></div>
-            <div class="details">
-                <h1>Dream And Reality</h1>
-                <div class="tags">
-                    <span class="tag">White</span>
-                    <span class="tag">Black</span>
+        <a href="produits.php" >
+            <div class="card">
+                <div class="poster"><img src="https://img.freepik.com/free-photo/men-s-apparel-hoodie-rear-view_53876-97228.jpg?w=360&t=st=1697035828~exp=1697036428~hmac=83f3871a04b294558c4708ee01250a26909b335f768df5b39d68850672781629" alt="Location Unknown"></div>
+                <div class="details">
+                    <h1>Dream And Reality</h1>
+                    <div class="tags">
+                        <span class="tag">White</span>
+                        <span class="tag">Black</span>
+                    </div>
+                    <h2>50€</h2>
                 </div>
-                <h2>50€</h2>
             </div>
-        </div>
+        </a>
         <div class="card">
             <div class="poster"><img src="https://images.unsplash.com/photo-1560547126-ccd9d56db8af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80" alt="Location Unknown"></div>
             <div class="details">

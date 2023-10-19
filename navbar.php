@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="#">Panier</a></li>
+                <li><a href="panier.php">Panier</a></li>
                 <li class="MonCompte"><a href="#">Mon Compte</a>
                     <div class="login">
                         <button class="open-modal"><span>se connecter</span></button>
