@@ -212,15 +212,20 @@ hr{
 }
 @media screen and (max-width: 850px) {
     .navbar{
-        padding: 0;
+        padding: 50px;
+    }
+    .navbar a{
+        color: rgba(17, 17, 17, 0.95);
     }
     .navbar .logo{
+        color : white;
         position: absolute;
         top: 35px;
         left: 40px;
     }
     .navbar .menu-hamburger{
         display: block;
+        z-index: 5;
     }
     .nav-links{
         top: 0;
@@ -248,6 +253,7 @@ hr{
     .navbar .nav-links ul li{
         margin: 25px 0;
         font-size: 1.4em;
+        
     }
     .navbar .nav-links ul li a:hover{
         color: rgba(11, 56, 237, 0.8);
