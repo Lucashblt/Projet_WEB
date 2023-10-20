@@ -37,7 +37,54 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div class="left-side Avis">
+            <div class="avis-item">
+                <div class="avis-header">
+                    <ul>
+                        <li>
+                            <span class="user">Utilisateur 1</span>
+                        </li>
+                        <li>
+                            <span class="notes">
+                                <span class="etoiles">★★★★☆</span>
+                                <span class="note">4.0</span>
+                            </span>
+                            <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orci blandit.Nulla dapibus felis eu orci blandit.</p>
+                        </li>
+                        <li>
+                            <span class="user">Utilisateur 2</span>
+                        </li>
+                        <li>
+                            <span class="notes">
+                                <span class="etoiles">★★★★☆</span>
+                                <span class="note">4.0</span>
+                            </span>
+                            <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orcNulla dapibus felis eu orci blandit.i blandit.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-side avis-form">
+            <h3>Laissez un avis</h3>
+            <form>
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" id="username" name="username" required>
+                <label for="rating">Note :</label>
+                <div class="rating star-rating" id="rating">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                </div>
+                <label for="comment">Commentaire :</label>
+                <textarea id="comment" name="comment" rows="5" required></textarea>
+                <button type="submit">Soumettre l'avis</button>
+            </form>
+        </div>
+    </div>    
     <?php
         include('footer.html');
     ?>
@@ -62,7 +109,27 @@
 
             // Mettez à jour la sélection de couleur ici (par exemple, affectez la valeur "Black" à une variable)
         });
-    </script>
 
+        // Etoiles formulaire avis
+        const stars = document.querySelectorAll('.star-rating .star');
+        const rating = document.querySelector('#rating');
+
+        stars.forEach((star) => {
+            star.addEventListener('click', (event) => {
+                const clickedStar = event.target;
+                const value = clickedStar.getAttribute('data-value');
+                stars.forEach((s) => {
+                    if (s.getAttribute('data-value') <= value) {
+                        s.textContent = '★';
+                        s.classList.add('selected');
+                    } else {
+                        s.textContent = '☆';
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+
+    </script>
 </body>
 </html>

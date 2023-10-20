@@ -70,14 +70,30 @@
     });
 
     const loginModal = document.querySelector(".login");
+    const MonCompte = loginModal.previousElementSibling;
     //hover sur MonCompte
-    document.querySelector(".MonCompte").addEventListener('mouseenter', () => {
+    let IsOnLogin = false;
+    MonCompte.addEventListener('mouseenter', () => {
         loginModal.style.display = "block";
     });
     // Fermer la fenêtre modale lorsque la souris quitte MonCompte
-    document.querySelector(".login").addEventListener('mouseleave', () => {
-        loginModal.style.display = "none";
+    MonCompte.addEventListener('mouseleave', () => {
+        if (IsOnLogin === false) {
+            loginModal.style.display = "none";
+        }
+        IsOnLogin = false;
     });
+    loginModal.addEventListener('mouseenter', () => {
+        IsOnLogin = true;
+    });
+    
+    loginModal.addEventListener('mouseleave', () => {
+        IsOnLogin = false;
+        if (IsOnLogin == false) {
+            loginModal.style.display = "none";
+        }
+    });
+
 
     const openModalButton = document.querySelector(".open-modal")
     const modal = document.querySelector(".modal")
@@ -92,14 +108,11 @@
     
     // Sélectionnez tous les éléments de classe "dropdown-submenu"
     const submenus = document.querySelectorAll('.dropdown-submenu');
-
     // Ajoutez des gestionnaires d'événements pour chaque sous-menu
     submenus.forEach(submenu => {
         const parentItem = submenu.previousElementSibling; // Lien parent
-
         // Variable pour suivre si la souris est sur le sous-menu
         let isOnSubmenu = false;
-
         // Lorsque la souris entre dans le lien parent
         parentItem.addEventListener('mouseenter', () => {
             submenu.style.display = 'block';
@@ -120,12 +133,7 @@
             isOnSubmenu = false;
             submenu.style.display = 'none';
         });
-        /* // faire en sorte que lorsqu'il quitte le parentitem ou le submenu, le submenu disparaisse
-        // Lorsque la souris quitte le sous-menu
-        parentItem.addEventListener('mouseleave', () => {
-            submenu.style.display = 'none';
-        });
-        */
+
     });
 
     // Sélectionnez tous les éléments de classe "dropdown"

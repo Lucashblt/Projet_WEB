@@ -10,6 +10,9 @@
     <?php
         include('navbar.php');
     ?>
+        <div class="Acceuil">
+            
+        </div>
         <div class="products">
             <!-- 3 random products -->
             <a href="produits.php" >

@@ -49,7 +49,6 @@
             </form>
         </div>
     </div>
-    <!-- trier par ...... -->
     <div class="products">
         <a href="produits.php" >
             <div class="card">
