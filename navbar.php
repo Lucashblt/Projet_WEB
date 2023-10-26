@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">WOOLIFY</a>
+        <a href="home.php" class="logo">WOOLIFY</a>
         <div class="nav-links">
             <ul>
                 <li><a href="home.php">Accueil</a></li>
@@ -37,8 +37,9 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="panier.php">Panier</a></li>
+                <li><a href="panier.php">Contact</a></li>
                 <li class="MonCompte"><a href="#">Mon Compte</a>
+                    <!-- div class login si n'on connecte sinon div delogin -->
                     <div class="login">
                         <button class="open-modal"><span>se connecter</span></button>
                         <hr>
@@ -77,6 +78,7 @@
         loginModal.style.display = "block";
     });
     // Fermer la fenêtre modale lorsque la souris quitte MonCompte
+    /*
     MonCompte.addEventListener('mouseleave', () => {
         if (IsOnLogin === false) {
             loginModal.style.display = "none";
@@ -86,7 +88,7 @@
     loginModal.addEventListener('mouseenter', () => {
         IsOnLogin = true;
     });
-    
+    */
     loginModal.addEventListener('mouseleave', () => {
         IsOnLogin = false;
         if (IsOnLogin == false) {

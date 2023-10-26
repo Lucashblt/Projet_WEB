@@ -10,8 +10,10 @@
     <?php
         include('navbar.php');
     ?>
-        <div class="Acceuil">
-            
+        <div class="acceuil"> 
+            <h1> Bienvenue sur Woolify nomUser</h1>
+            <br>
+            <button  onclick="window.location.href ='boutique.php'"><span> J'en profite </span></button>
         </div>
         <div class="products">
             <!-- 3 random products -->
