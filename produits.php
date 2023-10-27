@@ -33,6 +33,7 @@
                 </div>
                 <label for="quantity">Quantité :</label>
                 <input type="number" name="quantity" id="quantity" min="1" value="1">
+                <button class="buy-now">Commender maintenant</button>
                 <button class="add-to-cart">Ajouter au panier</button>
             </div>
         </div>
@@ -69,8 +70,6 @@
         <div class="right-side avis-form">
             <h3>Laissez un avis</h3>
             <form>
-                <label for="username">Nom d'utilisateur :</label>
-                <input type="text" id="username" name="username" required>
                 <label for="rating">Note :</label>
                 <div class="rating star-rating" id="rating">
                     <span class="star" data-value="1">☆</span>

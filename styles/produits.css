@@ -108,6 +108,23 @@ select, input {
     margin: 5px 0;
 }
 
+.buy-now {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+}
+
+.buy-now:hover, .add-to-cart:hover {
+    background-color: #000;
+    color: #fff;
+}
+
 .add-to-cart {
     background-color: #fff;
     color: #000;
@@ -119,10 +136,6 @@ select, input {
     transition: 0.2s ease-out;
 }
 
-.add-to-cart:hover {
-    background-color: #000;
-    color: #fff;
-}
 
 
 /*Avis*/
@@ -190,6 +203,7 @@ select, input {
 
 .avis h3, .avis-form h3 {
     font-size: 1.2em;
+    padding-bottom: 10px;
 }
 
 .avis p {
