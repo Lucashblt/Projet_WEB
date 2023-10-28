@@ -1,3 +1,8 @@
+<?php
+//Initialise la constante ROOT et $SQLconn pour la BDD
+include("./initialize.php"); 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +37,11 @@
                     <span class="tag" id="black">Black</span>
                 </div>
                 <label for="quantity">Quantité :</label>
-                <input type="number" name="quantity" id="quantity" min="1" value="1">
+                <div class="quantity-input">
+                    <button class="quantity-btn minus"><span>-</span></button>
+                    <input type="number" name="quantity" id="quantity" min="1" max="9" value="1">
+                    <button class="quantity-btn plus"><span>+</span></button>
+                </div>
                 <button class="buy-now">Commender maintenant</button>
                 <button class="add-to-cart">Ajouter au panier</button>
             </div>
@@ -89,6 +98,7 @@
     ?>
     <script>
         // Sélectionnez les balises span pour les couleurs
+        //----------------------------------------------------------------------------
         const whiteTag = document.getElementById("white");
         const blackTag = document.getElementById("black");
 
@@ -108,8 +118,40 @@
 
             // Mettez à jour la sélection de couleur ici (par exemple, affectez la valeur "Black" à une variable)
         });
+        //----------------------------------------------------------------------------
+
+        //Gestion quantite
+        //----------------------------------------------------------------------------
+        // Sélection des éléments
+        const quantityInput = document.getElementById("quantity");
+        const plusBtn = document.querySelector(".plus");
+        const minusBtn = document.querySelector(".minus");
+
+        // Gestion de l'incrémentation de la quantité
+        plusBtn.addEventListener("click", () => {
+            if (quantityInput.value < 9) {
+                quantityInput.value++;
+            }
+        });
+
+        // Gestion de la décrémentation de la quantité
+        minusBtn.addEventListener("click", () => {
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+            }
+        });
+
+        // Empêcher la saisie de caractères non numériques
+        quantityInput.addEventListener("input", () => {
+            if (!/^\d*$/.test(quantityInput.value)) {
+                quantityInput.value = quantityInput.value.replace(/[^\d]/g, "");
+            }
+        });
+
+        //----------------------------------------------------------------------------
 
         // Etoiles formulaire avis
+        //----------------------------------------------------------------------------
         const stars = document.querySelectorAll('.star-rating .star');
         const rating = document.querySelector('#rating');
 
@@ -128,7 +170,7 @@
                 });
             });
         });
-
+        //----------------------------------------------------------------------------
     </script>
 </body>
 </html>

@@ -1,3 +1,12 @@
+<?php
+   //Initialise la constante ROOT et $SQLconn pour la BDD
+    include("./initialize.php");
+
+    //Sur cette page, on doit lancer la fonction qui s'occupe de gérer la
+    //réception d'un formulaire de création de compte
+    $newAccountStatus = $SQLconn->Process_NewAccount_Form();  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,34 +17,24 @@
 </head>
 <body> 
 <?php
-/*
-$bdd = new PDO("", "", "");
-$req = $bdd->prepare("INSERT INTO utilisateur(nom,prenom,username,email,date_de_naissance,mot_de_passe) VALUES (?,?,?,?,?,?);");
-
-if($_POST) {
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $date_naissance = $_POST['date_de_naissance'];
-    $password = $_POST['mot_de_passe'];
-
-
-    $req->execute([$nom, $prenom, $username, $email, $date_naissance, $password]);
-
-    header('Location: home.php');
-}*/
+    include('navbar.php');
+    //On utilise le retour de Process_NewAccount_Form(), un tableau associatif, pour afficher 
+    //un message de réussite ou d'erreur, selon le cas.
+    if($newAccountStatus["success"]){
+        echo '<h3 class="successMessage">Nouveau compte crée avec succès!</h3>';
+    }
+    elseif ($newAccountStatus["attempted"]){
+        echo '<h3 class="errorMessage">'.$newAccountStatus["error"].'</h3>';
+    }
 ?>
-<?php
-        include('navbar.php');
-?>
+    
     <div class="form-container">
-        <form action="home.php" method="post" onsubmit="return CheckLoginForm()">
+        <form action="inscription.php" method="post" onsubmit="return CheckLoginForm()">
             <div class="modal2">
                 <div class="modal-content">
                     <input type="text" id="nom" name="nom" placeholder="Nom" required>
                     <input type="text" id="prenom" name="prenom" placeholder="Prenom" required>
-                    <input type="text" id="username" name="username" placeholder="Pseudo" required>
+                    <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required>
                     <input type="text" id="email" name="email" placeholder="E-mail" required>
                     <input type="date" id="date_naissance" name="date_naissance" placeholder="Date de naissane" required>
                     <input type="password" id="password" name="password" placeholder="Mot de passe" required>
@@ -48,39 +47,43 @@ if($_POST) {
     <div class="footer">
         <?php 
             include('footer.html'); 
+            //Déconnection de la BDD en fin de page (plus propre)
+            $SQLconn->DisconnectDatabase();
         ?>
     </div>
     <script> 
+        //----------------------------------------------------------------------------
+        //Fonction pour vérifier que le formulaire d'inscription est correctement rempli
+        function CheckLoginForm(){
+            var password = document.getElementById("password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+            var birthdate = new Date(document.getElementById("date_naissance").value);
+            var today = new Date();
+            var age = today.getFullYear() - birthdate.getFullYear();
+            var email = document.getElementById("email").value;
+            
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    function CheckLoginForm(){
-        var password = document.getElementById("password").value;
-        var confirm_password = document.getElementById("confirm_password").value;
-        var birthdate = new Date(document.getElementById("date_naissance").value);
-        var today = new Date();
-        var age = today.getFullYear() - birthdate.getFullYear();
-        var email = document.getElementById("email").value;
-        
-        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-        if(password.length < 6){
-            alert("Les noms mots de passe de moins de 4 lettres ne sont pas autorisés!")
-            return false;
+            if (!email.match(emailPattern)) {
+                alert("Veuillez entrer une adresse email valide.");
+                return false
+            }
+            else if(password.length < 6){
+                alert("Les mots de passe de moins de 6 lettres ne sont pas autorisés!")
+                return false;
+            }
+            else if(password !== confirm_password){
+                alert("Le mot de passe doit etre le même")
+                return false;
+            }
+            else if (age < 18) {
+                alert("Vous devez avoir au moins 18 ans pour vous inscrire.");
+                return false;
+            }else{
+                return true;
+            }
         }
-        else if(password !== confirm_password){
-            alert("Le mot de passe doit etre le même")
-            return false;
-        }
-        else if (age < 16) {
-            alert("Vous devez avoir au moins 16 ans pour vous inscrire.");
-            return false;
-        }
-        else if (!email.match(emailPattern)) {
-            alert("Veuillez entrer une adresse email valide.");
-            return false;
-        }else{
-            return true;
-        }
-	}
+        //----------------------------------------------------------------------------
     </script>
 </body>
 </html>

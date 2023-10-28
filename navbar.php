@@ -7,6 +7,7 @@
     <title>navbar</title>
 </head>
 <body>
+
     <nav class="navbar">
         <a href="home.php" class="logo">WOOLIFY</a>
         <div class="nav-links">
@@ -55,27 +56,61 @@
         <div class="modal">
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
-                <input type="text" placeholder="E-mail">
-                <input type="password" placeholder="Mot de passe">
-                <button><span>Connexion</span></button>
+                <input type="text" id="email" name="email" placeholder="E-mail" required>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <button type="submit"><span>Connexion</span></button>
             </div>
         </div>
     </form>
+<?php
+	//If we reach here with an attempted login, it means it failed
+	//So we display the error for the user to see
+	if ( $SQLconn->loginStatus->loginAttempted ){
+		echo '<h3 class="errorMessage">'.$SQLconn->loginStatus->errorText.'</h3>';
+	}
+?>
 </body>
 <script>
+    //----------------------------------------------------------------------------
+    //menu hamburger
     const menuHamburger = document.querySelector(".menu-hamburger")
     const navLinks = document.querySelector(".nav-links")
     //menu hamburger
     menuHamburger.addEventListener('click',()=>{
         navLinks.classList.toggle('mobile-menu')
     });
+    //----------------------------------------------------------------------------
 
+    //----------------------------------------------------------------------------
+    //fenetre modale login pour se connecter et s'inscrire
     const loginModal = document.querySelector(".login");
     const MonCompte = loginModal.previousElementSibling;
     //hover sur MonCompte
     let IsOnLogin = false;
+    let timeoutId;
+
     MonCompte.addEventListener('mouseenter', () => {
         loginModal.style.display = "block";
+        timeoutId = setTimeout(() => {
+            if (!IsOnLogin) {
+                loginModal.style.display = "none";
+            }
+        }, 2000);
+    });
+    
+    MonCompte.addEventListener('mouseleave', () => {
+        clearTimeout(timeoutId);
+    })
+
+    loginModal.addEventListener('mouseenter', () => {
+        IsOnLogin = true;
+    });
+
+    loginModal.addEventListener('mouseleave', () => {
+        IsOnLogin = false;
+        if (!IsOnLogin) {
+            loginModal.style.display = "none";
+        }
     });
     // Fermer la fenêtre modale lorsque la souris quitte MonCompte
     /*
@@ -88,15 +123,17 @@
     loginModal.addEventListener('mouseenter', () => {
         IsOnLogin = true;
     });
-    */
+    
     loginModal.addEventListener('mouseleave', () => {
         IsOnLogin = false;
         if (IsOnLogin == false) {
             loginModal.style.display = "none";
         }
     });
-
-
+*/
+    //----------------------------------------------------------------------------
+    //fenetre openmodal pour se connecter
+    //----------------------------------------------------------------------------
     const openModalButton = document.querySelector(".open-modal")
     const modal = document.querySelector(".modal")
     const closeModalButton = document.querySelector(".close-modal")
@@ -107,7 +144,10 @@
     closeModalButton.addEventListener('click', () => {
         modal.style.display = "none"
     })
-    
+    //----------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------------
+    //dropdown menu
     // Sélectionnez tous les éléments de classe "dropdown-submenu"
     const submenus = document.querySelectorAll('.dropdown-submenu');
     // Ajoutez des gestionnaires d'événements pour chaque sous-menu
@@ -156,8 +196,8 @@
                 submenu.style.display = 'none';
             }
         });
-    });
-    
+    });    
+    //----------------------------------------------------------------------------
 </script>
 </html>
 

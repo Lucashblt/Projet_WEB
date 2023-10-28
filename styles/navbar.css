@@ -7,6 +7,15 @@
 body{
     font-family: Georgia, serif;
 }
+
+.errorMessage{
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    color: white;
+	background-color: red;
+}
+
 .navbar{
     padding: 30px;
     display: flex;
