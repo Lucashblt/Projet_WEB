@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-28T15:13:27.698Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 OPR/102.0.0.0" etag="fXzvr3dtNnsoPvR3Oehg" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-28T15:29:04.204Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 OPR/102.0.0.0" etag="0DYcYFRJqidy8-_gMvwp" version="22.0.8" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1187" dy="1807" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -7,7 +7,7 @@
         <mxCell id="WARdkBpTIBHFgrGH82ov-0" value="Utilisateur" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="60" y="50" width="180" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="WARdkBpTIBHFgrGH82ov-1" value="idUtilisateur&lt;br&gt;nom&lt;br&gt;prenom&lt;br&gt;pseudo&lt;br&gt;password&lt;br&gt;email&lt;br&gt;dateNaissance&lt;br&gt;role&lt;br&gt;adresse1&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;adresse2&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;CodePostal&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;ville&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Pays" style="whiteSpace=wrap;html=1;" vertex="1" parent="WARdkBpTIBHFgrGH82ov-0">
+        <mxCell id="WARdkBpTIBHFgrGH82ov-1" value="idUtilisateur&lt;br&gt;nom&lt;br&gt;prenom&lt;br&gt;pseudo&lt;br&gt;password&lt;br&gt;email&lt;br&gt;dateNaissance&lt;br&gt;role&lt;br&gt;adresse1&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;CodePostal&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;ville&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Pays" style="whiteSpace=wrap;html=1;" vertex="1" parent="WARdkBpTIBHFgrGH82ov-0">
           <mxGeometry x="30" y="30" width="120" height="190" as="geometry" />
         </mxCell>
         <mxCell id="WARdkBpTIBHFgrGH82ov-3" value="Produit" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
@@ -40,7 +40,7 @@
         <mxCell id="WARdkBpTIBHFgrGH82ov-12" value="idType&lt;br&gt;idCategorie&lt;br&gt;nom" style="whiteSpace=wrap;html=1;" vertex="1" parent="WARdkBpTIBHFgrGH82ov-11">
           <mxGeometry x="25" y="30" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="WARdkBpTIBHFgrGH82ov-13" value="DeclinaisonProduit" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="WARdkBpTIBHFgrGH82ov-13" value="TailleProduit" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="590" y="260" width="170" height="90" as="geometry" />
         </mxCell>
         <mxCell id="WARdkBpTIBHFgrGH82ov-14" value="idTaille&lt;br&gt;idCategorie&lt;br&gt;taille" style="whiteSpace=wrap;html=1;" vertex="1" parent="WARdkBpTIBHFgrGH82ov-13">
@@ -214,12 +214,6 @@
               <mxPoint x="560" y="160" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="WARdkBpTIBHFgrGH82ov-44" value="TailleType" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="827" y="210" width="170" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="WARdkBpTIBHFgrGH82ov-45" value="idTaille&lt;br&gt;idType&lt;br&gt;taille" style="whiteSpace=wrap;html=1;" vertex="1" parent="WARdkBpTIBHFgrGH82ov-44">
-          <mxGeometry x="25" y="30" width="120" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
