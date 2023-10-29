@@ -20,7 +20,6 @@ include("./initialize.php");
                 <?php 
                     $queryPseudo = "SELECT pseudo FROM utilisateur WHERE email = '" . $SQLconn->loginStatus->userEmail . "'";
                     $result = $SQLconn->conn->query($queryPseudo);
-                    
                     if ($result && $result->num_rows > 0) {
                         $row = $result->fetch_assoc();
                         $pseudo = $row["pseudo"];
@@ -70,7 +69,6 @@ include("./initialize.php");
                     <h2>70€</h2>
                 </div>
             </div>
-            
         </div>
         <div class="Quality">
             <div class="column">

@@ -32,17 +32,19 @@
         <form action="inscription.php" method="post" onsubmit="return CheckLoginForm()">
             <div class="modal2">
                 <div class="modal-content">
+                    <h3>Information Personnelle</h3>
                     <input type="text" id="nom" name="nom" placeholder="Nom" required>
                     <input type="text" id="prenom" name="prenom" placeholder="Prenom" required>
                     <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required>
                     <input type="text" id="email" name="email" placeholder="E-mail" required>
                     <input type="date" id="date_naissance" name="date_naissance" placeholder="Date de naissane" required>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer Mot de passe" required>
+                    <h3>Adresse de livraison</h3>
                     <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
                     <input type="text" id="CP" name="CP" placeholder="Code Postale" required>
                     <input type="text" id="ville" name="ville" placeholder="Ville" required>
                     <input type="text" id="pays" name="pays" placeholder="Pays" required>
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer Mot de passe" required>
                     <button type="submit"><span>Inscription</span></button>
                 </div>
             </div>

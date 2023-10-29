@@ -91,7 +91,6 @@
                 <h2>70€</h2>
             </div>
         </div>
-        
     </div>
 
     <div class="number">
