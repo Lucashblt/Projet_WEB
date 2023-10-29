@@ -43,7 +43,7 @@ class SQLconn{
         $creationSuccessful = false;
         $error = NULL;
         //Données reçues via formulaire
-        if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) && isset($_POST["password"]) && isset($_POST["confirm_password"]) && isset($_POST["email"]) && isset($_POST["date_naissance"] )){
+        if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) && isset($_POST["password"]) && isset($_POST["confirm_password"]) && isset($_POST["email"]) && isset($_POST["date_naissance"]) && isset($_POST["CP"]) && isset($_POST["ville"]) && isset($_POST["pays"]) && isset($_POST["adresse"])){
             $creationAttempted = true;
             
             $userNom = $this->SecurizeString_ForSQL($_POST["nom"]);
@@ -51,7 +51,11 @@ class SQLconn{
             $userPseudo = $this->SecurizeString_ForSQL($_POST["pseudo"]);
             $password = md5($_POST["password"]);
             $userEmail = $this->SecurizeString_ForSQL($_POST["email"]);
-            $userDateNaissance = $this->SecurizeString_ForSQL($_POST["date_naissance"]);           
+            $userDateNaissance = $this->SecurizeString_ForSQL($_POST["date_naissance"]); 
+            $userCP = $this->SecurizeString_ForSQL($_POST["CP"]);
+            $userVille = $this->SecurizeString_ForSQL($_POST["ville"]);
+            $userPays = $this->SecurizeString_ForSQL($_POST["pays"]);
+            $userAdresse = $this->SecurizeString_ForSQL($_POST["adresse"]);          
             
             //Verifier s l'email n'est pas deja utilise si oui afficher un message d'erreur sinon insert le nouvel utilisateur 
             $chekEmailQuery = "SELECT * FROM utilisateur WHERE email = '".$userEmail."'";
@@ -61,8 +65,8 @@ class SQLconn{
                 $error = "Cette adresse email est déjà utilisée.";
             }else{
                 //insertion des information du nouvelle utilisateur
-                $insertQuery = "INSERT INTO utilisateur(idUtilisateur, nom, prenom, pseudo, password, email, dateNaissance, role)
-                VALUES (NULL,  '$userNom', '$userPrenom',  '$userPseudo', '$password', '$userEmail', '$userDateNaissance', default)";
+                $insertQuery = "INSERT INTO utilisateur(idUtilisateur, nom, prenom, pseudo, password, email, dateNaissance, role, adresse, codePostal, ville, pays)
+                VALUES (NULL,  '$userNom', '$userPrenom',  '$userPseudo', '$password', '$userEmail', '$userDateNaissance', default, '$userAdresse', '$userCP', '$userVille', '$userPays')";
                 $result = $this->conn->query($insertQuery);
 
                 if( mysqli_affected_rows($this->conn) == 0 )
