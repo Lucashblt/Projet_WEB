@@ -20,7 +20,7 @@
     <div class="filtres">
         <button class="filter-button">Filtrer</button>
         <div class="filter-options">
-            <form action="boutique.php" method="post">
+            <form action="CatalogueProduit.php" method="post">
                 <div class="filter-group">
                     <label for="categorie">Catégorie</label>
                     <select name="categorie" id="categorie">
