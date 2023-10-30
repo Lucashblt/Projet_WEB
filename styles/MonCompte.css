@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: Georgia, serif;
+}
+body {
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    min-width: none;
+    background: #f5f5f5;
+}
+
+/* Style de la page de compte */
+.account {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style de la section d'informations de l'utilisateur */
+.account-info {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.account-info h2 {
+    font-size: 20px;
+}
+
+.account-info label {
+    font-weight: bold;
+}
+
+.account-info input[type="text"],
+.account-info input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.account-info button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Style de la section des commandes précédentes */
+.previous-orders {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.previous-orders h2 {
+    font-size: 20px;
+}
+
+.previous-orders button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Style de la liste des commandes */
+#orders-list {
+    list-style: none;
+    padding: 0;
+}
+
+#orders-list li {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
