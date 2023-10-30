@@ -47,6 +47,8 @@ class LoginStatus{
             }
         }
     }
+    
+      
     // Méthode pour stocker un login réussi dans un cookie pour 24h
     //-------------------------------------------------------------------------------------
     function CreateLoginCookie($userEmail, $encryptedPasswd){

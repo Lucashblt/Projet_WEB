@@ -1,7 +1,10 @@
 <?php
-//Initialise la constante ROOT et $SQLconn pour la BDD
-include("./initialize.php"); 
-
+    //Initialise la constante ROOT et $SQLconn pour la BDD
+    include("./initialize.php"); 
+    // Initialise le path du produit
+    $category = "boutique"; // You should set this dynamically
+    $productType = "typeproduit"; // You should set this dynamically
+    $productName = "pageactuel"; // You should set this dynamically
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +18,12 @@ include("./initialize.php");
     <?php
         include('navbar.php');
     ?>
+    <div class="product-path">
+        <a href="boutique.php">Boutique</a> &gt;
+        <a href="CatalogueProduit.php?type=<?php echo $productType; ?>"><?php echo $productType; ?></a> &gt;
+        <?php echo $productName; ?>
+    </div>
+
     <div class="products">
         <div class="card">
             <div class="poster">
@@ -36,14 +45,20 @@ include("./initialize.php");
                     <span class="tag" id="white">White</span>
                     <span class="tag" id="black">Black</span>
                 </div>
-                <label for="quantity">Quantité :</label>
-                <div class="quantity-input">
-                    <button class="quantity-btn minus"><span>-</span></button>
-                    <input type="number" name="quantity" id="quantity" min="1" max="9" value="1">
-                    <button class="quantity-btn plus"><span>+</span></button>
-                </div>
-                <button class="buy-now">Commender maintenant</button>
-                <button class="add-to-cart">Ajouter au panier</button>
+                <?php if($loggedIn) { ?>
+                    <label for="quantity">Quantité :</label>
+                    <div class="quantity-input">
+                        <button class="quantity-btn minus"><span>-</span></button>
+                        <input type="number" name="quantity" id="quantity" min="1" max="9" value="1">
+                        <button class="quantity-btn plus"><span>+</span></button>
+                    </div>
+                    <button class="buy-now">Commender maintenant</button>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                <?php }else{ ?>
+                    <p>Vous devez être connecté pour ajouter au panier.</p>
+                <?php 
+                     }                   
+                ?>
             </div>
         </div>
     </div>

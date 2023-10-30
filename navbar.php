@@ -1,3 +1,11 @@
+<?php
+    // Check if the user is logged in
+    if ($SQLconn->loginStatus->loginSuccessful) {
+        $loggedIn = true;
+    } else {
+        $loggedIn = false;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +15,6 @@
     <title>navbar</title>
 </head>
 <body>
-
     <nav class="navbar">
         <a href="home.php" class="logo">WOOLIFY</a>
         <div class="nav-links">
@@ -39,26 +46,46 @@
                     </div>
                 </li>
                 <li><a href="panier.php">Contact</a></li>
-                <li class="MonCompte"><a href="#">Mon Compte</a>
-                    <!-- div class login si n'on connecte sinon div delogin -->
-                    <div class="login">
-                        <button class="open-modal"><span>se connecter</span></button>
-                        <hr>
-                        <p>Vous n'avez pas encore de compte ?</p>
-                        <button onclick="window.location.href ='inscription.php'"><span>s'inscrire</span></button>
-                    </div>
-                </li>
+                <?php
+                    // Si l'utilisateur est connecté (par exemple, le cookie de connexion est défini)
+                    if ($loggedIn) {
+                        echo '<li class="MonCompte"><a href="#">Mon Compte</a>
+                                <!-- div panier et déconnexion -->
+                                <div class="login">
+                                    <button onclick="window.location.href = \'panier.php\'"><span>Mon Panier</span></button>
+                                    <hr>
+                                    <p>Vous nous quittez ?</p>
+                                    <form action="./logout.php" method="POST"> 
+                                        <input type="hidden" value="logout" name="logout"></input>
+                                        <button type="submit"><span>Se déconnecter</span></button>
+                                    </form>
+                                </div>
+                            </li>';
+                    } else {
+                        echo '<li class="MonCompte"><a href="#">Mon Compte</a>
+                                <!-- div login si non connecté -->
+                                <div class="login">
+                                    <button class="open-modal"><span>Se connecter</span></button>
+                                    <hr>
+                                    <p>Vous n\'avez pas encore de compte ?</p>
+                                    <button onclick="window.location.href = \'inscription.php\'"><span>S\'inscrire</span></button>
+                                </div>
+                            </li>';
+                    }
+                ?>
             </ul>
         </div>
         <img src="./img/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
     </nav>
-    <form action="home.php" method="post">
+    <form action="#" method="post">
         <div class="modal">
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
                 <input type="text" id="email" name="email" placeholder="E-mail" required>
                 <input type="password" id="password" name="password" placeholder="Mot de passe" required>
                 <button type="submit"><span>Connexion</span></button>
+                <hr>
+                <p>Vous n'avez pas de compte ? <a href="inscription.php">Inscrivez-vous</a></p>
             </div>
         </div>
     </form>
