@@ -12,18 +12,38 @@
     <?php
         include('navbar.php');
     ?>
-    <div class="account">
-        <div class="account-info">
-            <h2>Informations de l'utilisateur</h2>
-            <form>
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" value="Nom de l'utilisateur" disabled>
-                <label for="email">Adresse Email :</label>
-                <input type="email" id="email" name="email" value="email@utilisateur.com" disabled>
-                <button id="edit-info-btn">Modifier</button>
-                <button id="save-info-btn" style="display: none;">Enregistrer</button>
-            </form>
-        </div>
+    <div class="form-container">
+        <form action="#" method="post">
+            <div class="modal2">
+                <div class="modal-content">
+                    <h3>Information Personnelle</h3>
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" value="Nom" disabled>
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" value="Prénom" disabled>
+                    <label for="pseudo">Pseudo :</label>
+                    <input type="text" id="pseudo" name="pseudo" value="Pseudo" disabled>
+                    <label for="email">E-Mail :</label>
+                    <input type="text" id="email" name="email" value="Email" disabled>
+                    <label for="date_naissance">Date de naissance :</label>
+                    <input type="date" id="date_naissance" name="date_naissance" value="Date de naissance" disabled>
+                    <label for="mdp">Mot de passe :</label>
+                    <input type="password" id="mdp" name="mdp" value="Mot de passe" disabled>
+                    <h3>Adresse de livraison</h3>
+                    <label for="adresse">Adresse :</label>
+                    <input type="text" id="adresse" name="adresse" value="Adresse" disabled>
+                    <label for="cp">Code Postale :</label>
+                    <input type="text" id="cp" name="cp" value="Code Postale" disabled>
+                    <label for="ville">Ville :</label>
+                    <input type="text" id="ville" name="ville" value="Ville" disabled>
+                    <label for="pays">Pays :</label>
+                    <input type="text" id="pays" name="pays" value="Pays" disabled>
+                    <button id="edit-info-btn">Modifier</button>
+                    <button id="save-info-btn" style="display: none;">Enregistrer</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
         <div class="previous-orders">
             <h2>Commandes Précédentes</h2>
