@@ -43,14 +43,14 @@ class SQLconn{
         $creationSuccessful = false;
         $error = NULL;
         //Données reçues via formulaire
-        if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) && isset($_POST["password"]) && isset($_POST["confirm_password"]) && isset($_POST["email"]) && isset($_POST["date_naissance"]) && isset($_POST["CP"]) && isset($_POST["ville"]) && isset($_POST["pays"]) && isset($_POST["adresse"])){
+        if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) && isset($_POST["mdp"]) && isset($_POST["confirm_password"]) && isset($_POST["mel"]) && isset($_POST["date_naissance"]) && isset($_POST["CP"]) && isset($_POST["ville"]) && isset($_POST["pays"]) && isset($_POST["adresse"])){
             $creationAttempted = true;
             
             $userNom = $this->SecurizeString_ForSQL($_POST["nom"]);
             $userPrenom = $this->SecurizeString_ForSQL($_POST["prenom"]);
             $userPseudo = $this->SecurizeString_ForSQL($_POST["pseudo"]);
-            $password = md5($_POST["password"]);
-            $userEmail = $this->SecurizeString_ForSQL($_POST["email"]);
+            $password = md5($_POST["mdp"]);
+            $userEmail = $this->SecurizeString_ForSQL($_POST["mel"]);
             $userDateNaissance = $this->SecurizeString_ForSQL($_POST["date_naissance"]); 
             $userCP = $this->SecurizeString_ForSQL($_POST["CP"]);
             $userVille = $this->SecurizeString_ForSQL($_POST["ville"]);

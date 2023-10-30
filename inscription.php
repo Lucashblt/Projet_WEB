@@ -36,13 +36,13 @@
                     <input type="text" id="nom" name="nom" placeholder="Nom" required>
                     <input type="text" id="prenom" name="prenom" placeholder="Prenom" required>
                     <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required>
-                    <input type="text" id="email" name="email" placeholder="E-mail" required>
+                    <input type="text" id="mel" name="mel" placeholder="E-mail" required>
                     <input type="date" id="date_naissance" name="date_naissance" placeholder="Date de naissane" required>
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
                     <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer Mot de passe" required>
                     <h3>Adresse de livraison</h3>
                     <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
-                    <input type="text" id="CP" name="CP" placeholder="Code Postale" required>
+                    <input type="text" id="CP" name="CP" placeholder="Code Postal" required>
                     <input type="text" id="ville" name="ville" placeholder="Ville" required>
                     <input type="text" id="pays" name="pays" placeholder="Pays" required>
                     <button type="submit"><span>Inscription</span></button>
@@ -61,18 +61,19 @@
         //----------------------------------------------------------------------------
         //Fonction pour vérifier que le formulaire d'inscription est correctement rempli
         function CheckLoginForm(){
-            var password = document.getElementById("password").value;
+            var password = document.getElementById("mdp").value;
             var confirm_password = document.getElementById("confirm_password").value;
             var birthdate = new Date(document.getElementById("date_naissance").value);
             var today = new Date();
             var age = today.getFullYear() - birthdate.getFullYear();
-            var email = document.getElementById("email").value;
-            
+            var email = document.getElementById("mel").value;
+            alert(password);
+
             var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             if (!email.match(emailPattern)) {
                 alert("Veuillez entrer une adresse email valide.");
-                return false
+                return false;
             }
             else if(password.length < 6){
                 alert("Les mots de passe de moins de 6 lettres ne sont pas autorisés!")
