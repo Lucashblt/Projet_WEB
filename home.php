@@ -19,6 +19,7 @@
         <div class="acceuil">
             <h1> Bienvenue sur Woolify 
                 <?php 
+                    //affiche le pseudo de l'utilisateur connecté
                     $queryPseudo = "SELECT pseudo FROM utilisateur WHERE email = '" . $SQLconn->loginStatus->userEmail . "'";
                     $result = $SQLconn->conn->query($queryPseudo);
                     if ($result && $result->num_rows > 0) {
