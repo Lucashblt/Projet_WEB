@@ -49,7 +49,7 @@
                 <?php
                     // Si l'utilisateur est connecté (par exemple, le cookie de connexion est défini)
                     if ($loggedIn) {
-                        echo '<li class="MonCompte"><a href="#">Mon Compte</a>
+                        echo '<li class="MonCompte"><a href="MonCompte.php">Mon Compte</a>
                                 <!-- div panier et déconnexion -->
                                 <div class="login">
                                     <button onclick="window.location.href = \'panier.php\'"><span>Mon Panier</span></button>
