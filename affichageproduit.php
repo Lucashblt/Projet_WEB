@@ -21,6 +21,30 @@
         return $cardHtml;
     }
 
+    function getAllProducts($categories) {
+        global $SQLconn; // Utilisez la connexion SQL
+    
+        // Requête SQL pour récupérer toutes les informations des produits
+        $query = "SELECT p.nom AS productName, p.photoProduit AS productImage, GROUP_CONCAT(DISTINCT cp.nom ORDER BY cp.nom ASC) AS colors, pp.prixNet AS productPrice
+                FROM produit p
+                INNER JOIN declinaisonproduit dp ON p.idProduit=dp.idProduit
+                LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
+                LEFT JOIN prixproduit pp ON dp.idDeclinaison = pp.idDeclinaison
+                LEFT JOIN categorie c ON p.idCategorie=c.idCategorie
+                WHERE c.nom= '$categories'
+                GROUP BY p.nom, p.photoProduit, pp.prixNet
+                ORDER BY RAND()
+                LIMIT 3";
+    
+        // Exécutez la requête SQL
+        $result = $SQLconn->query($query);
+    
+        // Récupérez les résultats dans un tableau associatif
+        $products = $result->fetch_all(MYSQLI_ASSOC);
+    
+        return $products;
+    }
+
     function getAllCategoriesWithImagesAndTypes() {
         global $SQLconn; // Utilisez la connexion SQL
 

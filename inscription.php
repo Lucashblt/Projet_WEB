@@ -59,6 +59,10 @@
     </div>
     <script> 
         //----------------------------------------------------------------------------
+        function checkEmail(email) {
+             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+             return re.test(email);
+         }
         //Fonction pour vérifier que le formulaire d'inscription est correctement rempli
         function CheckLoginForm(){
             var password = document.getElementById("mdp").value;
@@ -67,11 +71,9 @@
             var today = new Date();
             var age = today.getFullYear() - birthdate.getFullYear();
             var email = document.getElementById("mel").value;
-            alert(password);
 
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-            if (!email.match(emailPattern)) {
+            if (checkEmail(email) == false) {
                 alert("Veuillez entrer une adresse email valide.");
                 return false;
             }

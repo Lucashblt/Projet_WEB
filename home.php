@@ -34,9 +34,18 @@
         </div>
         <div class="products">
             <?php
-                echo createProductCard("Selfie", "./img/imgBDD/vetement1.jpg", ["Blanc", "Noir"], "50€");
-                echo createProductCard("#Wolf", "./img/imgBDD/vetement2.jpg", ["Blue", "White", "Green"], "60€");
-                echo createProductCard("Pull The North Face", "./img/imgBDD/vetement3.png", ["Violet"], "70€");
+                $categories="Vetements";
+                $allProducts = getAllProducts($categories);
+                foreach ($allProducts as $productData) {
+                    $productName = $productData['productName'];
+                    $productImage = $productData['productImage'];
+                    $colors = explode(',', $productData['colors']);
+                    $productPrice = $productData['productPrice'];
+        
+                    echo '<a href="CatalogueProduit.php">';
+                    echo createProductCard($productName, $productImage, $colors, $productPrice);
+                    echo '</a>';
+                }
             ?>
         </div>
         <div class="Quality">
@@ -59,9 +68,18 @@
 
         <div class="products">
             <?php
-                echo createProductCard("Nike x Carhart", "./img/imgBDD/chaussure1.jpg", ["Marron"], "150€");
-                echo createProductCard("Nike Air", "./img/imgBDD/chaussure2.jpg", ["Blanc", "Jaune"], "100€");
-                echo createProductCard("Timberland", "./img/imgBDD/chaussure3.jpg", ["Marron"], "180€")
+                $categories="Chaussures";
+                $allProducts = getAllProducts($categories);
+                foreach ($allProducts as $productData) {
+                    $productName = $productData['productName'];
+                    $productImage = $productData['productImage'];
+                    $colors = explode(',', $productData['colors']);
+                    $productPrice = $productData['productPrice'];
+        
+                    echo '<a href="CatalogueProduit.php">';
+                    echo createProductCard($productName, $productImage, $colors, $productPrice);
+                    echo '</a>';
+                }
             ?>
         </div>
 

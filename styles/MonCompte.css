@@ -15,23 +15,82 @@ body{
     background-position: center center;
     min-height: 100vh;
 }
-/* Style de la page de compte */
 
+.container {
+    display: flex;
+    background: rgba(255, 255, 255, 0.45);
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+    background: rgba(17, 17, 17, 0.95);
+    color: #fff;
+    flex: 1;
+    padding: 20px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(17, 17, 17, 0.95); 
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; 
+    display: block;
+    text-align: center;
+}
+
+.menu a.active {
+    background: #000; 
+}
+
+.menu a:hover {
+    background: #575757; 
+}
+
+.content {
+    flex: 4;
+}
+
+.form-container, .previous-orders {
+    display: none;
+}
+
+h3 {
+    font-size: 1.2em;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Style de la page de compte */
 .form-container {
     margin: 0 auto;
     padding: 20px;
-    max-width: 550px;
-    
     box-sizing: border-box;
     position: relative; 
     color: #000; 
 }
 
+
 .modal2{
     background-color: #fff;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     border-radius: 16px;
-    
     position: relative;
 }
 
@@ -56,6 +115,11 @@ body{
     width: 100%; 
 }
 
+.modal-content2 {
+    padding: 20px;
+    border-radius: 6px;
+}
+
 @media screen and (max-width: 850px) {
     .form-container {
         width: 80%;
@@ -68,10 +132,11 @@ body{
 
 /* Style de la section des commandes précédentes */
 .previous-orders {
-    margin-top: 20px;
+    margin: 20px;
+    padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    padding: 20px;
+
     border-radius: 5px;
 }
 
