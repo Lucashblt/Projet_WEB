@@ -1,7 +1,8 @@
 <?php
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
-    include("./affichageproduit.php") 
+    include("./affichageproduit.php");
+    include("./avis.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,14 +36,15 @@
         <div class="products">
             <?php
                 $categories="Vetements";
-                $allProducts = getAllProducts($categories);
+                $allProducts = getAllProducts($categories, 3);
                 foreach ($allProducts as $productData) {
+                    $productID = $productData['idProduit'];
                     $productName = $productData['productName'];
                     $productImage = $productData['productImage'];
                     $colors = explode(',', $productData['colors']);
                     $productPrice = $productData['productPrice'];
-        
-                    echo '<a href="CatalogueProduit.php">';
+
+                    echo '<a href="produits.php?idProduit=' . urlencode($productID) . '">';
                     echo createProductCard($productName, $productImage, $colors, $productPrice);
                     echo '</a>';
                 }
@@ -69,14 +71,15 @@
         <div class="products">
             <?php
                 $categories="Chaussures";
-                $allProducts = getAllProducts($categories);
+                $allProducts = getAllProducts($categories, 3);
                 foreach ($allProducts as $productData) {
+                    $productID = $productData['idProduit'];
                     $productName = $productData['productName'];
                     $productImage = $productData['productImage'];
                     $colors = explode(',', $productData['colors']);
                     $productPrice = $productData['productPrice'];
         
-                    echo '<a href="CatalogueProduit.php">';
+                    echo '<a href="produits.php?idProduit=' . urlencode($productID) . '">';
                     echo createProductCard($productName, $productImage, $colors, $productPrice);
                     echo '</a>';
                 }
@@ -84,6 +87,29 @@
         </div>
 
         <div class="Avis">
+            <?php
+                $avis=getAvis();
+                foreach ($avis as $avisItem) {
+                    $note = $avisItem['noteAvis'];
+                    $commentaire = $avisItem['Avis'];
+                    $nomUtilisateur = $avisItem['nomUtilisateur'];
+                    $nomProduit = $avisItem['nomProduit'];
+                               
+                    // Affichage de chaque avis
+                    echo '<div class="avis-item">';
+                    echo '<div class="avis-header">';
+                    echo '<span class="user">' . $nomUtilisateur . '</span>';
+                    echo '<span class="rating">';
+                    echo '<span class="stars">' . generateStars($note) . '</span>';
+                    echo '<span class="note">' . $note . '.0</span>';
+                    echo '</span>';
+                    echo '</div>';
+                    echo '<p class="commentaire">' . $commentaire . '
+                    <br><i>Avis laissé pour le produit ' . $nomProduit . '</i></p>';
+                    echo '</div>';
+                }
+            ?>
+            <!--
             <div class="avis-item">
                 <div class="avis-header">
                     <span class="user">Utilisateur 1</span>
@@ -92,7 +118,8 @@
                         <span class="note">3.0</span>
                     </span>
                 </div>
-                <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orci blandit.<br><i>Avis laissé pour le produit XYZ</i></p>
+                <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orci blandit.
+                    <br><i>Avis laissé pour le produit XYZ</i></p>
             </div>
             <div class="avis-item">
                 <div class="avis-header">
@@ -102,12 +129,16 @@
                         <span class="note">5.0</span>
                     </span>
                 </div>
-                <p class="commentaire">Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat.<br><i>Avis laissé pour le produit XYZ</i></p>
+                <p class="commentaire">Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat.
+                    <br><i>Avis laissé pour le produit XYZ</i></p>
             </div>
+            -->
         </div>
         <div class="footer">
         <?php
             include('footer.html');
+
+            $SQLconn->DisconnectDatabase();
         ?>
         </div>
     </body>

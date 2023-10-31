@@ -1,8 +1,10 @@
 <?php
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
+    include("./affichageproduit.php");
 
-    include("./affichageproduit.php")
+    // Obtenez toutes les catégories avec images et types
+    $allCategoriesWithImagesAndTypes = getAllCategoriesWithImagesAndTypes();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +22,18 @@
     <h3>Catalogue</h3>
     <div class="products">
         <?php
-            foreach ($allCategoriesWithImagesAndTypes as $categoryData) {
-                $categoryName = $categoryData['category'];
-                $imageSrc = $categoryData['image'];
-                $types = explode(',', $categoryData['types']);
+            if (empty($allCategoriesWithImagesAndTypes)) {
+                echo '<h3 class="errorMessage">Aucun produit ne correspond à votre recherche</h3>';
+            } else {
+                foreach ($allCategoriesWithImagesAndTypes as $categoryData) {
+                    $categoryName = $categoryData['category'];
+                    $imageSrc = $categoryData['image'];
+                    $types = explode(',', $categoryData['types']);
 
-                echo '<a href="CatalogueProduit.php">';
-                echo createProductCard($categoryName, $imageSrc, $types, "");
-                echo '</a>';
+                    echo '<a href="CatalogueProduit.php?categorie=' . urlencode($categoryName) . '">';
+                    echo createProductCard($categoryName, $imageSrc, $types, "");
+                    echo '</a>';
+                }
             }
         ?>
     </div>

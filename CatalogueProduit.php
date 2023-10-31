@@ -2,7 +2,7 @@
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
 
-    include("./affichageproduit.php")
+    include("./affichageproduit.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +17,7 @@
     <?php
         include('navbar.php');
     ?>
+    <!--
     <div class="filtres">
         <button class="filter-button">Filtrer</button>
         <div class="filter-options">
@@ -56,15 +57,27 @@
             </form>
         </div>
     </div>
+    -->
     <div class="products">
-        <a href="produits.php" >
-            <?php
-                echo createProductCard("Dream And Reality", "./img/imgBDD/produit1.jpg", ["White", "Black"], "50€");
-            ?>
-        </a>
         <?php
-            echo createProductCard("#Wolf", "https://images.unsplash.com/photo-1560547126-ccd9d56db8af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80", ["Blue", "White", "Green"], "60€");
-            echo createProductCard("Sweatshirt en lain", "https://img.freepik.com/free-photo/close-up-portrait-man-shirt-mockup_23-2149260967.jpg?w=360&t=st=1697036188~exp=1697036788~hmac=527d0d3eb9219978178f8820f6da2c869d4d54ad52ccc9496d05b6ca545744b5", ["Grey", "Red", "Black"], "70€");
+            // Récupérez la catégorie à partir de l'URL
+            $categories = $_GET['categorie'];
+            $allProducts = getAllProducts($categories, 12);
+            if (empty($allProducts)) {
+                echo '<h3 class="errorMessage">Aucun produit ne correspond à votre recherche</h3>';
+            } else {
+                foreach ($allProducts as $productData) {
+                    $productID = $productData['idProduit'];
+                    $productName = $productData['productName'];
+                    $productImage = $productData['productImage'];
+                    $colors = explode(',', $productData['colors']);
+                    $productPrice = $productData['productPrice'];
+        
+                    echo '<a href="produits.php?idProduit=' . urlencode($productID) . '">';
+                    echo createProductCard($productName, $productImage, $colors, $productPrice);
+                    echo '</a>';
+                }
+            }
         ?>
     </div>
 

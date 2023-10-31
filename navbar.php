@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="panier.php">Contact</a></li>
+                <li><a href="contact.php">Contact</a></li>
                 <?php
                     // Si l'utilisateur est connecté (par exemple, le cookie de connexion est défini)
                     if ($loggedIn) {
