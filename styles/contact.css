@@ -4,10 +4,138 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-}
-body {
     font-family: Georgia, serif;
+}
+
+body{
+    background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
     min-height: 100vh;
-    min-width: none;
-    background: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    background: #fff;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+    background: #333;
+    color: #fff;
+    flex: 1;
+    padding: 20px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: block;
+    text-align: center;
+}
+
+.menu a.active {
+    background: #000;
+}
+
+.menu a:hover {
+    background: #575757;
+}
+
+.content {
+    flex: 4;
+    padding: 20px;
+}
+
+.contact-info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.contact-info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-info h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.faq {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.faq h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.faq ul {
+    list-style: none;
+}
+
+.faq ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.faq ul li strong {
+    font-weight: bold;
+}
+
+.customer-service {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.customer-service h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.customer-service ul {
+    list-style: none;
+}
+
+.customer-service ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.customer-service ul li strong {
+    font-weight: bold;
 }
