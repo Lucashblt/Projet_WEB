@@ -24,24 +24,16 @@
                     <div class="dropdown">
                         <a href="boutique.php">Boutique</a>
                         <div class="dropdown-content">
-                            <a href="#">Vêtements</a>
-                            <div class="menu_Vetements dropdown-submenu">
-                                <a href="#">Vestes</a>
-                                <a href="#">T-shirts</a>
-                                <a href="#">Pulls</a>
-                            </div>
-                            <a href="#">Chaussures</a>
-                            <div class="menu_Chaussures dropdown-submenu">
-                                <a href="#">Baskets</a>
-                                <a href="#">Running</a>
-                                <a href="#">Tong</a>
-                                <a href="#">Claquettes</a>
-                            </div>
-                            <a href="#">Accessoires</a>
-                            <div class="menu_Accessoires dropdown-submenu">
-                                <a href="#">Sac à dos</a>
-                                <a href="#">Lunettes</a>
-                            </div>
+                            <?php
+                                $query = "SELECT nom FROM categorie";
+                                $result = $SQLconn->conn->query($query);
+                                if ($result && $result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $nom = $row["nom"];
+                                        echo '<a href="CatalogueProduit.php?categorie=' . urlencode($nom) . '">' . $nom . '</a>';
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                 </li>
@@ -174,56 +166,6 @@
     //----------------------------------------------------------------------------
 
     //----------------------------------------------------------------------------
-    //dropdown menu
-    // Sélectionnez tous les éléments de classe "dropdown-submenu"
-    const submenus = document.querySelectorAll('.dropdown-submenu');
-    // Ajoutez des gestionnaires d'événements pour chaque sous-menu
-    submenus.forEach(submenu => {
-        const parentItem = submenu.previousElementSibling; // Lien parent
-        // Variable pour suivre si la souris est sur le sous-menu
-        let isOnSubmenu = false;
-        // Lorsque la souris entre dans le lien parent
-        parentItem.addEventListener('mouseenter', () => {
-            submenu.style.display = 'block';
-        });
-        // Lorsque la souris entre dans le sous-menu
-        submenu.addEventListener('mouseenter', () => {
-            submenu.style.display = 'block';
-            isOnSubmenu = true;
-        });
-        // Lorsque la souris quitte à la fois le lien parent et le sous-menu
-        parentItem.addEventListener('mouseleave', () => {
-            if (!isOnSubmenu) {
-                submenu.style.display = 'none';
-            }
-        });
-
-        submenu.addEventListener('mouseleave', () => {
-            isOnSubmenu = false;
-            submenu.style.display = 'none';
-        });
-
-    });
-
-    // Sélectionnez tous les éléments de classe "dropdown"
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    // Ajoutez des gestionnaires d'événements pour chaque menu principal
-    dropdowns.forEach(dropdown => {
-        
-        const submenu2 = dropdown.querySelector('.dropdown-submenu');
-        // Fermez tous les sous-menus par défaut
-        if (submenu2) {
-            submenu2.style.display = 'none';
-        }
-        // Lorsque la souris quitte le menu principal
-        dropdown.addEventListener('mouseleave', () => {
-            const submenu = dropdown.querySelector('.dropdown-submenu');
-            if (submenu) {
-                submenu.style.display = 'none';
-            }
-        });
-    });    
     //----------------------------------------------------------------------------
 </script>
 </html>

@@ -70,7 +70,7 @@
                 <label for="color">Couleur : </label>
                 <div class="tags">
                     <?php foreach ($color as $c) { ?>
-                        <span class="tag" id="<?php echo $c; ?>"><?php echo $c; ?></span>
+                        <span class="tag" data-color="<?php echo $c; ?>"><?php echo $c; ?></span>
                     <?php } ?>
                 </div>
                 <?php if($loggedIn) { ?>
@@ -93,57 +93,41 @@
     <div class="container">
         <div class="left-side Avis">
             <?php
-                foreach ($voirAvis as $avisItem){
-                    $note = $avisItem['noteAvis'];
-                    $commentaire = $avisItem['Avis'];
-                    $nomUtilisateur = $avisItem['nomUtilisateur'];
-
+                if (empty($voirAvis)) {
                     echo '<div class="avis-item">';
                     echo '<div class="avis-header">';
                     echo '<ul>';
                     echo '<li>';
-                    echo '<span class="user">' . $nomUtilisateur . '</span>';
-                    echo '</li>';
-                    echo '<li>';
-                    echo '<span class="notes">';
-                    echo '<span class="etoiles">' . generateStars($note) . '</span>';
-                    echo '<span class="note">' . $note . '.0</span>';
-                    echo '</span>';
-                    echo '<p class="commentaire">' . $commentaire . '</p>';
+                    echo '<span class="user">Aucun avis pour ce produit</span>';
                     echo '</li>';
                     echo '</ul>';
                     echo '</div>';
                     echo '</div>';
-                }
+                } else {
+                    foreach ($voirAvis as $avisItem){
+                        $note = $avisItem['noteAvis'];
+                        $commentaire = $avisItem['Avis'];
+                        $nomUtilisateur = $avisItem['nomUtilisateur'];
+    
+                        echo '<div class="avis-item">';
+                        echo '<div class="avis-header">';
+                        echo '<ul>';
+                        echo '<li>';
+                        echo '<span class="user">' . $nomUtilisateur . '</span>';
+                        echo '</li>';
+                        echo '<li>';
+                        echo '<span class="notes">';
+                        echo '<span class="etoiles">' . generateStars($note) . '</span>';
+                        echo '<span class="note">' . $note . '.0</span>';
+                        echo '</span>';
+                        echo '<p class="commentaire">' . $commentaire . '</p>';
+                        echo '</li>';
+                        echo '</ul>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                }                
             ?>
-            <!--
-            <div class="avis-item">
-                <div class="avis-header">
-                    <ul>
-                        <li>
-                            <span class="user">Utilisateur 1</span>
-                        </li>
-                        <li>
-                            <span class="notes">
-                                <span class="etoiles">★★★★☆</span>
-                                <span class="note">4.0</span>
-                            </span>
-                            <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orci blandit.Nulla dapibus felis eu orci blandit.</p>
-                        </li>
-                        <li>
-                            <span class="user">Utilisateur 2</span>
-                        </li>
-                        <li>
-                            <span class="notes">
-                                <span class="etoiles">★★★★☆</span>
-                                <span class="note">4.0</span>
-                            </span>
-                            <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orcNulla dapibus felis eu orci blandit.i blandit.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            -->
         </div>
         <div class="right-side avis-form">
             <h3>Laissez un avis</h3>
@@ -167,31 +151,6 @@
         include('footer.html');
     ?>
     <script>
-        // Sélectionnez les balises span pour les couleurs
-        //----------------------------------------------------------------------------
-        /*
-        const whiteTag = document.getElementById("white");
-        const blackTag = document.getElementById("black");
-
-        // Écouteur d'événement pour les balises span
-        whiteTag.addEventListener("click", () => {
-            // Désélectionnez toutes les balises
-            whiteTag.classList.add("selected");
-            blackTag.classList.remove("selected");
-
-            // Mettez à jour la sélection de couleur ici (par exemple, affectez la valeur "White" à une variable)
-        });
-
-        blackTag.addEventListener("click", () => {
-            // Désélectionnez toutes les balises
-            whiteTag.classList.remove("selected");
-            blackTag.classList.add("selected");
-
-            // Mettez à jour la sélection de couleur ici (par exemple, affectez la valeur "Black" à une variable)
-        });
-        */
-        //----------------------------------------------------------------------------
-
         //Gestion quantite
         //----------------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', function() {
@@ -222,6 +181,23 @@
             }
         });
        
+        //----------------------------------------------------------------------------
+        
+        
+        //----------------------------------------------------------------------------
+        // Sélectionnez tous les tags par leur classe
+        const tags = document.querySelectorAll(".tag");
+
+        // Écouteur d'événements pour le clic sur un tag
+        tags.forEach(tag => {
+            tag.addEventListener("click", (event) => {
+                // Récupérez la couleur à partir de l'attribut data-color
+                const selectedColor = event.currentTarget.getAttribute("data-color");
+
+                // Faites ce que vous voulez avec la couleur sélectionnée (par exemple, affichez-la)
+                alert("Vous avez choisi la couleur : " + selectedColor);
+            });
+        });
         //----------------------------------------------------------------------------
 
         // Etoiles formulaire avis

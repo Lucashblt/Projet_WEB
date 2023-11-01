@@ -36,7 +36,7 @@
         <div class="products">
             <?php
                 $categories="Vetements";
-                $allProducts = getAllProducts($categories, 3);
+                $allProducts = getAllProducts($categories, 3, 0);
                 foreach ($allProducts as $productData) {
                     $productID = $productData['idProduit'];
                     $productName = $productData['productName'];
@@ -71,7 +71,7 @@
         <div class="products">
             <?php
                 $categories="Chaussures";
-                $allProducts = getAllProducts($categories, 3);
+                $allProducts = getAllProducts($categories, 3, 0);
                 foreach ($allProducts as $productData) {
                     $productID = $productData['idProduit'];
                     $productName = $productData['productName'];

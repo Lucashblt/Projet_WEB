@@ -3,6 +3,9 @@
     include("./initialize.php");
 
     include("./affichageproduit.php");
+
+    //recupere la categorie
+    $categories = $_GET['categorie'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,8 +64,7 @@
     <div class="products">
         <?php
             // Récupérez la catégorie à partir de l'URL
-            $categories = $_GET['categorie'];
-            $allProducts = getAllProducts($categories, 12);
+            $allProducts = getAllProducts($categories, 12, 0);
             if (empty($allProducts)) {
                 echo '<h3 class="errorMessage">Aucun produit ne correspond à votre recherche</h3>';
             } else {
@@ -81,18 +83,18 @@
         ?>
     </div>
 
-    <div class="number">
-        <div class="bar">
-            <!-- Les numéros de page seront ajoutés ici via JavaScript -->
-        </div>
-    </div>
+    <div class="load-more">
+    <button id="load-more-button"><span> Afficher plus de produit </span></button>
+</div>
     <div class="footer">
     <?php
         include('footer.html');
     ?>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         //----------------------------------------------------------------------------
+        /*
         // JavaScript pour activer l'affichage des options de filtrage
         const filterButton = document.querySelector('.filter-button');
         const filterOptions = document.querySelector('.filter-options');
@@ -170,69 +172,30 @@
 
         // Appel initial pour mettre à jour les options
         mettreAJourOptions();
+        */
         //----------------------------------------------------------------------------
 
         //----------------------------------------------------------------------------
-        // Numero de page
-        // Sélectionnez l'élément avec la classe "bar"
-        const bar = document.querySelector('.bar');
-
-        const totalPages = 10; // Nombre total de pages
-        const pagesToShow = 5; // Nombre de numéros de page à afficher simultanément
-        let currentPage = 1; // Page actuelle
-
-        function updatePageNumbers() {
-            bar.innerHTML = "";
-
-            // Calculez les numéros de page à afficher en fonction de la page actuelle
-            const startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
-            const endPage = Math.min(startPage + pagesToShow - 1, totalPages);
-
-            for (let i = startPage; i <= endPage; i++) {
-                const pageButton = document.createElement("a");
-                pageButton.textContent = i;
-                pageButton.className = "button hover-black";
-                pageButton.href = "#";
-                if (i === currentPage) {
-                    pageButton.className = "button black";
-                    pageButton.style.backgroundColor = "#000";
-                    pageButton.style.color = "#fff";
-                    pageButton.href = "";
-                }
-                pageButton.addEventListener("click", () => {
-                    if (i !== currentPage) {
-                        currentPage = i;
-                        updatePageNumbers();
+        // Afficher plus de produit
+        $(document).ready(function () {
+            // Compteur pour suivre le nombre de produits chargés
+            var currentCount = 12;
+            var categorie = "<?php echo $categories; ?>";
+            // Bouton "Load More"
+            $("#load-more-button").click(function () {
+                // Faites un appel AJAX pour récupérer plus de produits
+                $.ajax({
+                    url: "getMoreProducts.php?categorie=" + categorie, // Le fichier PHP pour récupérer les produits supplémentaires
+                    type: "POST",
+                    data: { count: currentCount }, // Envoyez le nombre actuel de produits chargés
+                    success: function (response) {
+                        // Ajoutez les produits supplémentaires à la page
+                        $(".products").append(response);
+                        currentCount += 12; // Mettez à jour le compteur
                     }
                 });
-                bar.appendChild(pageButton);
-            }
-            //page precedente
-            if (currentPage > 1) {
-                const prevButton = document.createElement("a");
-                prevButton.innerHTML = "&laquo;";
-                prevButton.className = "button hover-black";
-                prevButton.href = "#";
-                prevButton.addEventListener("click", () => {
-                    currentPage--;
-                    updatePageNumbers();
-                });
-                bar.insertBefore(prevButton, bar.firstChild);
-            }
-            // page suivante
-            if (currentPage < totalPages) {
-                const nextButton = document.createElement("a");
-                nextButton.innerHTML = "&raquo;";
-                nextButton.className = "button hover-black";
-                nextButton.href = "#";
-                nextButton.addEventListener("click", () => {
-                    currentPage++;
-                    updatePageNumbers();
-                });
-                bar.appendChild(nextButton);
-            }
-        }
-        updatePageNumbers(); // Appel initial pour afficher les numéros de page
+            });
+        });
         //----------------------------------------------------------------------------
     </script>
 </body>
