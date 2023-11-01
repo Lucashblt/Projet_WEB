@@ -12,43 +12,58 @@
   <?php
       include('navbar.php');
   ?>
-  
-  <table>
-      <tr>
-          <th>Produit</th>
-          <th>Prix unitaire</th>
-          <th>Quantité</th>
-          <th>Prix total</th>
-      </tr>
-      <?php
-          // Supposons que vous ayez un tableau de produits dans le panier
-          $panier = array(
-              array("Nom du Produit 1", 19.99, 2),
-              array("Nom du Produit 2", 29.99, 1),
-              array("Nom du Produit 3", 9.99, 3)
-          );
 
-          $total = 0;
+<table>
+  <tr>
+      <th>Produit</th>
+      <th>Quantité</th>
+      <th>Prix</th>
+  </tr>
+  <?php
+      $panier = array(
+          array("Nom du Produit 1", "Couleur 1", 19.99, 2),
+          array("Nom du Produit 2", "Couleur 2", 29.99, 1),
+          array("Nom du Produit 3", "Couleur 3", 9.99, 3)
+      );
 
-          foreach ($panier as $item) {
-              $nomProduit = $item[0];
-              $prixUnitaire = $item[1];
-              $quantite = $item[2];
-              $prixTotal = $prixUnitaire * $quantite;
-              $total += $prixTotal;
-      ?>
-      <tr>
-          <td><?php echo $nomProduit; ?></td>
-          <td><?php echo $prixUnitaire; ?> €</td>
-          <td><?php echo $quantite; ?></td>
-          <td><?php echo $prixTotal; ?> €</td>
-      </tr>
-      <?php
-          }
-      ?>
-  </table>
+      $total = 0;
 
-  <p>Total du Panier : <?php echo $total; ?> €</p>
+      foreach ($panier as $item) {
+          $nomProduit = $item[0];
+          $couleurProduit = $item[1];
+          $prixUnitaire = $item[2];
+          $quantite = $item[3];
+          $prixTotal = $prixUnitaire * $quantite;
+          $total += $prixTotal;
+  ?>
+  <tr>
+      <td>
+          <div class="product-cell">
+              <img class="product-image" src="img/produit.png" alt="Image du Produit">
+              <div>
+                  <div class="product-name"><?php echo $nomProduit; ?></div>
+                  <div class="product-color"><?php echo $couleurProduit; ?></div>
+              </div>
+          </div>
+      </td>
+      <td>
+        <label for="quantity"></label>
+        <div class="quantity-input">
+            <button class="quantity-btn minus" id="minusBtn"><span>-</span></button>
+            <input type="number" name="quantity" id="quantity" min="1" max="9" value="<?php echo $quantite; ?>" onkeyup="onlyNumber();">
+            <button class="quantity-btn plus" id="plusBtn"><span>+</span></button>
+        </div>
+      </td>
+      <td><?php echo $prixTotal; ?> €</td>
+  </tr>
+  <?php
+      }
+  ?>
+</table>
+
+<p>Total du Panier : <?php echo $total; ?> €</p>
+
+
   <div class="container">
     <button class="order">
       <span class="default">Complete Order</span>
@@ -88,6 +103,39 @@
         }, 10000);
     }
     });
+    //----------------------------------------------------------------------------
+
+
+    //Gestion quantite
+    //----------------------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', function() {
+          // Sélection des éléments
+        const plusBtn = document.getElementById("plusBtn");
+        const minusBtn = document.getElementById("minusBtn");
+        const champ = document.getElementById('quantity');
+
+        // Gestion de l'incrémentation de la quantité
+        plusBtn.addEventListener("click", () => {
+            if (champ.value < 9) {
+                champ.value++;
+            }
+        });
+
+        // Gestion de la décrémentation de la quantité
+        minusBtn.addEventListener("click", () => {
+            if (champ.value > 1) {
+                champ.value--;
+            }
+        });
+
+        function onlyNumber() {
+            //var champ = document.getElementById('quantity');
+            while (champ.value.match(/[^0-9]/) || champ.value.length > 1) {
+                champ.value = champ.value.replace(/[^0-9]/, '').substring(0, 1);
+            }
+        }
+    });
+    
     //----------------------------------------------------------------------------
   </script>
 </body>
