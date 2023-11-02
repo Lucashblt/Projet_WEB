@@ -59,8 +59,12 @@ body {
     object-fit: cover;
     transition: 0.3s;
 }
-
+.products form{
+    width: 55%;
+    height: 100%;
+}
 .product-info {
+    height: 100%;
     flex: 1;
     padding: 1em;
     font-size: 1.2em;
@@ -91,6 +95,9 @@ h2 {
     margin-bottom: 8px;
 }
 
+
+
+  
 .tags {
     padding-top: 10px;
     display: flex;
@@ -112,8 +119,8 @@ h2 {
 }
 
 .selected {
-    background-color: #f5f5f5; 
-    color: #000; 
+    color: #000;
+    background-color: #fff;
 }
 
 p {
@@ -310,3 +317,9 @@ textarea {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+.footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }

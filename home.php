@@ -27,7 +27,9 @@
                         $row = $result->fetch_assoc();
                         $pseudo = $row["pseudo"];
                         echo $pseudo;
+
                     }
+
                     ?>
             </h1>
             <br>

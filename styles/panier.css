@@ -17,7 +17,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+  background-image: url('../img/background_inscription.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -42,7 +42,13 @@ body .dribbble img {
 }
 
 
-
+.errorMessage{
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  background-color: red;
+}
 
 table {
   width: 80%;
@@ -75,9 +81,10 @@ th {
 }
 
 .product-image {
-  width: 60px;
-  height: 60px;
+  max-height: 150px;
+  max-width: 300px;
   margin-right: 10px;
+  border : 1px solid black;
 }
 
 .product-name {
@@ -109,11 +116,18 @@ th {
   margin: 5px 0;
 }
 
-
-.footer{
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+.viderpanier button {
+  background-color: rgba(17, 17, 17, 0.95);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.viderpanier button:hover {
+  background-color: rgba(17, 17, 17, 0.95);
+  color: #fff;
 }
 
 

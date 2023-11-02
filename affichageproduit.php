@@ -11,10 +11,17 @@
         foreach ($tags as $tag) {
             $cardHtml .= '<span class="tag">' . $tag . '</span>';
         }
-        
+
+        // affiche le prix pour les produits et  rien pour les categories
+        if ($price == NULL) {
+            $prix = '<h2></h2>';
+        } else {
+            $prix = '<h2>' . $price . ' €</h2>';
+        }
         $cardHtml .= '
                     </div>
-                    <h2>' . $price . ' €</h2>
+
+                    <h2>' . $prix . '</h2>
                 </div>
             </div>';
             
@@ -52,7 +59,7 @@
                 FROM produit p
                 INNER JOIN declinaisonproduit dp ON p.idProduit=dp.idProduit
                 LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
-                LEFT JOIN prixproduit pp ON dp.idDeclinaison = pp.idDeclinaison
+                LEFT JOIN prixproduit pp ON p.idProduit = pp.idProduit
                 LEFT JOIN categorie c ON p.idCategorie=c.idCategorie
                 WHERE c.nom= '$categories'
                 GROUP BY p.nom, p.photoProduit, pp.prixNet";
@@ -93,7 +100,7 @@
             $row = $result->fetch_assoc();
             return $row['categoryName'];
         } else {
-            echo "Aucune categorie n'est associé à ce produit";
+            return 0;
         }
     }
 
@@ -101,19 +108,21 @@
         global $SQLconn; // Utilisez la connexion SQL
         
         // Requête SQL pour récupérer toutes les informations des produits
-        $query = "SELECT p.nom AS productName,
-                p.photoProduit AS productImage,
-                p.description AS productDescription, 
-                GROUP_CONCAT(DISTINCT cp.nom) AS colors, 
-                pp.prixNet AS productPrice,
-                GROUP_CONCAT(DISTINCT tap.taille) AS sizes
-                FROM produit p
-                INNER JOIN declinaisonproduit dp ON p.idProduit = dp.idProduit
-                LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
-                LEFT JOIN prixproduit pp ON dp.idDeclinaison = pp.idDeclinaison
-                LEFT JOIN typeproduit tp ON p.idCategorie = tp.idCategorie
-                INNER JOIN tailleproduit tap ON tp.idType=tap.idType
-                WHERE p.idProduit = $idProduit";
+
+        $query = "SELECT  p.nom AS productName,
+            p.photoProduit AS productImage,
+            p.description AS productDescription, 
+            GROUP_CONCAT( DISTINCT cp.nom)  AS colors, 
+            pp.prixNet AS productPrice,
+            GROUP_CONCAT( DISTINCT tap.taille ) AS sizes
+            FROM produit p
+            INNER JOIN declinaisonproduit dp ON p.idProduit = dp.idProduit
+            LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
+            LEFT JOIN prixproduit pp ON p.idProduit = pp.idProduit
+            LEFT JOIN typeproduit tp ON p.idCategorie = tp.idCategorie
+            INNER JOIN tailleproduit tap ON tp.idType=tap.idType
+            WHERE p.idProduit = $idProduit";
+
 
         // Exécutez la requête SQL
         $result = $SQLconn->query($query);
@@ -121,7 +130,7 @@
             $products = $result->fetch_all(MYSQLI_ASSOC);
             return $products;
         }else{
-            return array();
+            return 0;
         }
     }
 ?>

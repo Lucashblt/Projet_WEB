@@ -31,9 +31,9 @@ class LoginStatus{
 
         //Si un login a été tenté, on interroge la BDD
         if ( $this->loginAttempted ){
-            $query = "SELECT * FROM utilisateur WHERE email = '".$this->userEmail."' AND password ='".$password."'";
-            $result = $SQLconn->conn->query($query);
 
+            $query = "SELECT * FROM utilisateur WHERE email = '".$this->userEmail."' AND mdp ='".$password."'";
+            $result = $SQLconn->conn->query($query);
             if ( $result->num_rows != 0 ){
                 $row = $result->fetch_assoc();
                 $this->userID = $row["idUtilisateur"];

@@ -1,6 +1,9 @@
 <?php
     include("./initialize.php");
     
+    ini_set('display_errors', 1); 
+    error_reporting(E_ALL); 
+
     // Vérifier si l'utilisateur est connecté
     if (!$SQLconn->loginStatus->loginSuccessful) {
         // Rediriger vers la page d'acceuil s'il n'est pas connecté
@@ -8,6 +11,9 @@
         exit;
     }
 
+    //update le compte de l'utilisateur
+    $update = $SQLconn->updateAccount();
+    
     $query = "SELECT * FROM utilisateur WHERE email = '" . $SQLconn->loginStatus->userEmail . "'";
     $result = $SQLconn->conn->query($query);
     if ($result && $result->num_rows > 0) {
@@ -16,6 +22,8 @@
         // Gérer le cas où aucune information d'utilisateur n'est trouvée
         echo "Aucune information d'utilisateur trouvée.";
     }
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +35,12 @@
 <body>
     <?php
         include('navbar.php');
+        if($update["success"]){
+            echo '<h3 class="successMessage">Mise à jour avec succès</h3>';
+        }
+        elseif ($update["attempted"]){
+            echo '<h3 class="errorMessage">'.$newAccountStatus["error"].'</h3>';
+        }
     ?>
     <div class="container">
         <div class="menu">
@@ -39,8 +53,10 @@
             <div class="form-container" id="personal-info">
                 <div class="modal2">
                     <div class="modal-content2">
-                        <form action="" onsubmit="return false;" method="post">
+                    <p>
+                        <form action="MonCompte.php" method="post">
                             <h3>Information Personnelle</h3>
+                            <input type="hidden" name="idUtilisateur" value="<?php echo $user['idUtilisateur']; ?>">
                             <label for="nom">Nom :</label>
                             <input type="text" id="nom" name="nom" value="<?php echo $user['nom']; ?>" disabled>
                             <label for="prenom">Prénom :</label>
@@ -52,7 +68,7 @@
                             <label for="date_naissance">Date de naissance :</label>
                             <input type="date" id="date_naissance" name="date_naissance" value="<?php echo $user['dateNaissance']; ?>" disabled>
                             <label for="mdp">Mot de passe :</label>
-                            <input type="password" id="mdp" name="mdp" value="<?php echo $user['password']; ?>" disabled>
+                            <!--<input type="password" id="mdp" name="mdp" value="<?php echo $user['password']; ?>" disabled> -->
                             <h3>Adresse de livraison</h3>
                             <label for="adresse">Adresse :</label>
                             <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>" disabled>
@@ -62,9 +78,10 @@
                             <input type="text" id="ville" name="ville" value="<?php echo $user['ville']; ?>" disabled>
                             <label for="pays">Pays :</label>
                             <input type="text" id="pays" name="pays" value="<?php echo $user['pays']; ?>" disabled>
-                            <button id="edit-info-btn">Modifier</button>
-                            <button id="save-info-btn" style="display: none;" onclick="return CheckLoginForm();">Enregistrer</button>
+                            <button id="save-info-btn" style="display: none;" type="submit" >Enregistrer</button>
+
                         </form>
+                        <button id="edit-info-btn">Modifier</button>
                     </div>
                 </div>
             </div>
@@ -80,44 +97,6 @@
 
     <?php
         include('footer.html');
-        if (isset($_POST['save-info-btn'])) {
-            $nom = $SQLconn->SecurizeString_ForSQL($updatedInfo['nom']);
-            $prenom = $SQLconn->SecurizeString_ForSQL($updatedInfo['prenom']);
-            $pseudo = $SQLconn->SecurizeString_ForSQL($updatedInfo['pseudo']);
-            $email = $SQLconn->SecurizeString_ForSQL($updatedInfo['mel']);
-            $dateNaissance = $SQLconn->SecurizeString_ForSQL($updatedInfo['date_naissance']);
-            $mdp = $SQLconn->SecurizeString_ForSQL($updatedInfo['mdp']);
-            $adresse = $SQLconn->SecurizeString_ForSQL($updatedInfo['adresse']);
-            $codePostal = $SQLconn->SecurizeString_ForSQL($updatedInfo['cp']);
-            $ville = $SQLconn->SecurizeString_ForSQL($updatedInfo['ville']);
-            $pays = $SQLconn->SecurizeString_ForSQL($updatedInfo['pays']);
-
-            //Verifier s l'email n'est pas deja utilise si oui afficher un message d'erreur sinon insert le nouvel utilisateur 
-            $chekEmailQuery = "SELECT * FROM utilisateur WHERE email = '".$userEmail."'";
-            $emailCheckResult  = $this->conn->query($chekEmailQuery);
-
-            if ( $emailCheckResult->num_rows != 0 ){
-                $error = "Cette adresse email est déjà utilisée.";
-            }else{
-                $updateQuery = "UPDATE utilisateur SET nom=?, prenom=?, pseudo=?, email=?, dateNaissance=?, mdp=?, adresse=?, codePostal=?, ville=?, pays=? WHERE idUtilisateur= ?";
-
-                // Prepare statement
-                $stmt = $SQLconn->conn->prepare($updateQuery);
-                
-                
-                // Liez les valeurs aux paramètres de la requête
-                $stmt->bind_param("sssssssssi", $nom, $prenom, $pseudo, $email, $dateNaissance, $mdp, $adresse, $codePostal, $ville, $pays, $user['idUtilisateur']);
-                
-                if ($stmt->execute()) {
-                    echo "Les informations de l'utilisateur ont été mises à jour avec succès.";
-                } else {
-                    echo "Erreur lors de la mise à jour des informations de l'utilisateur : " . $stmt->error;
-                }
-                // Fermez la déclaration préparée
-                $stmt->close();
-                
-            }
-        }
     ?>
     <script>
         //----------------------------------------------------------------------------
@@ -174,21 +153,6 @@
             saveInfoButton.style.display = 'block';
         });
 
-        // Écouteur d'événement pour enregistrer les modifications des informations
-        saveInfoButton.addEventListener('click', () => {
-            const updatedInfo = {};
-
-            inputs.forEach(input => {
-                const name = input.getAttribute('name');
-                updatedInfo[name] = input.value;
-                input.setAttribute('disabled', true);
-            });
-
-            // Envoyer les modifications au backend pour mise à jour dans la base de données
-            editInfoButton.style.display = 'block';
-            saveInfoButton.style.display = 'none';
-        });
-
         // Écouteur d'événement pour afficher les commandes précédentes
         showOrdersButton.addEventListener('click', () => {
             // Récupérer les commandes précédentes de l'utilisateur depuis le backend et afficher la liste
@@ -220,7 +184,6 @@
                 alert("Les mots de passe de moins de 6 lettres ne sont pas autorisés!")
                 return false;
             }else{
-                // update dans la bdd
                 //retour a l'etat initiale du form
                 inputs.forEach(input => {
                     input.setAttribute('disabled', true);

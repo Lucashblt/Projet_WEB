@@ -1,7 +1,12 @@
 <?php
+    include_once("functionpanier.php");
+
     // Check if the user is logged in
     if ($SQLconn->loginStatus->loginSuccessful) {
         $loggedIn = true;
+        demarrer_session();
+        actualiser_session();
+        createCart();
     } else {
         $loggedIn = false;
     }
@@ -12,7 +17,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/navbar.css">
-    <title>navbar</title>
 </head>
 <body>
     <nav class="navbar">

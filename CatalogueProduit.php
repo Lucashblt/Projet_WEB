@@ -84,8 +84,10 @@
     </div>
 
     <div class="load-more">
-    <button id="load-more-button"><span> Afficher plus de produit </span></button>
-</div>
+        <button id="load-more-button">
+            <span> Afficher plus de produit </span>
+        </button>
+    </div>
     <div class="footer">
     <?php
         include('footer.html');
@@ -181,18 +183,28 @@
             // Compteur pour suivre le nombre de produits chargés
             var currentCount = 12;
             var categorie = "<?php echo $categories; ?>";
+
             // Bouton "Load More"
             $("#load-more-button").click(function () {
                 // Faites un appel AJAX pour récupérer plus de produits
                 $.ajax({
                     url: "getMoreProducts.php?categorie=" + categorie, // Le fichier PHP pour récupérer les produits supplémentaires
                     type: "POST",
-                    data: { count: currentCount }, // Envoyez le nombre actuel de produits chargés
+                    //envoye le nombre actuel d'article afficher
+                    data: { count: currentCount}, 
                     success: function (response) {
-                        // Ajoutez les produits supplémentaires à la page
-                        $(".products").append(response);
-                        currentCount += 12; // Mettez à jour le compteur
-                    }
+                        if (response.trim() === "") {
+                            // Aucun produit supplémentaire n'a été trouvé, affichez le message d'erreur
+                            $("#load-more-button").attr("disabled", "disabled");
+                            //alert("Aucun produit supplémentaire n'est disponible");
+
+                            $("#load-more-button").text("Aucun produit supplémentaire n'est disponible");
+                        }else {
+                                // Ajoutez les produits supplémentaires à la page
+                                $(".products").append(response);
+                                currentCount += 12; // Mettez à jour le compteur
+                        }   
+                    },
                 });
             });
         });
