@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 29 oct. 2023 à 12:50
+-- Généré le : ven. 03 nov. 2023 à 09:13
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -35,6 +35,15 @@ CREATE TABLE `avis` (
   `note` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`idAvis`, `idUtilisateur`, `idProduit`, `avis`, `note`) VALUES
+(7, 9, 3, 'Très belle chaussure et très comfortable', 5),
+(8, 9, 4, 'Chaussure très chaud et très résistante parfait pour l&#039;hiver', 4),
+(9, 10, 1, 'Pas très confortable malheureusement vu le prix mis sur ces chaussure', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +55,15 @@ CREATE TABLE `categorie` (
   `nom` varchar(100) NOT NULL,
   `photo` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `categorie`
+--
+
+INSERT INTO `categorie` (`idCategorie`, `nom`, `photo`) VALUES
+(1, 'Vêtements', './img/imgBDD/categorie_vetements.jpg'),
+(2, 'Chaussures', './img/imgBDD/categorie_chaussures.jpg'),
+(3, 'Accessoires', './img/imgBDD/categorie_accessoires.jpg');
 
 -- --------------------------------------------------------
 
@@ -86,6 +104,23 @@ CREATE TABLE `couleurproduit` (
   `nom` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `couleurproduit`
+--
+
+INSERT INTO `couleurproduit` (`idCouleur`, `nom`) VALUES
+(1, 'Marron'),
+(2, 'Bleu'),
+(3, 'Blanc'),
+(4, 'Noir'),
+(5, 'Orange'),
+(6, 'Rose'),
+(7, 'Vert'),
+(8, 'Violet'),
+(9, 'Jaune'),
+(10, 'Rouge'),
+(11, 'Gris');
+
 -- --------------------------------------------------------
 
 --
@@ -96,9 +131,144 @@ CREATE TABLE `declinaisonproduit` (
   `idDeclinaison` int(11) NOT NULL,
   `idProduit` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
-  `idCouleur` int(11) NOT NULL,
-  `idPrix` int(11) NOT NULL
+  `idCouleur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `declinaisonproduit`
+--
+
+INSERT INTO `declinaisonproduit` (`idDeclinaison`, `idProduit`, `idTaille`, `idCouleur`) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 1),
+(3, 1, 3, 1),
+(4, 1, 4, 1),
+(5, 1, 5, 1),
+(6, 1, 6, 1),
+(7, 1, 7, 1),
+(8, 1, 8, 1),
+(9, 1, 9, 1),
+(10, 1, 10, 1),
+(11, 1, 11, 1),
+(12, 1, 12, 1),
+(13, 1, 13, 1),
+(16, 3, 1, 3),
+(17, 3, 2, 3),
+(18, 3, 3, 3),
+(19, 3, 4, 3),
+(20, 3, 5, 3),
+(21, 3, 6, 3),
+(22, 3, 7, 3),
+(23, 3, 8, 3),
+(24, 3, 9, 3),
+(25, 3, 10, 3),
+(26, 3, 11, 3),
+(27, 3, 12, 3),
+(28, 3, 13, 3),
+(31, 4, 67, 1),
+(32, 4, 68, 1),
+(33, 4, 69, 1),
+(34, 4, 70, 1),
+(35, 4, 71, 1),
+(36, 4, 72, 1),
+(37, 4, 73, 1),
+(38, 4, 74, 1),
+(39, 4, 75, 1),
+(40, 4, 76, 1),
+(41, 4, 77, 1),
+(42, 4, 78, 1),
+(43, 4, 79, 1),
+(44, 8, 16, 3),
+(45, 8, 17, 3),
+(46, 8, 18, 3),
+(47, 8, 19, 3),
+(48, 8, 20, 3),
+(51, 9, 16, 8),
+(52, 9, 17, 8),
+(53, 9, 18, 8),
+(54, 9, 19, 8),
+(55, 9, 20, 8),
+(58, 10, 16, 4),
+(59, 10, 17, 4),
+(60, 10, 18, 4),
+(61, 10, 19, 4),
+(62, 10, 20, 4),
+(65, 11, 1, 3),
+(66, 11, 2, 3),
+(67, 11, 3, 3),
+(68, 11, 4, 3),
+(69, 11, 5, 3),
+(70, 11, 6, 3),
+(71, 11, 7, 3),
+(72, 11, 8, 3),
+(73, 11, 9, 3),
+(74, 11, 10, 3),
+(75, 11, 11, 3),
+(76, 11, 12, 3),
+(77, 11, 13, 3),
+(80, 5, 80, 4),
+(81, 7, 16, 3),
+(82, 7, 17, 3),
+(83, 7, 18, 3),
+(84, 7, 19, 3),
+(85, 7, 20, 3),
+(86, 7, 16, 4),
+(87, 7, 17, 4),
+(88, 7, 18, 4),
+(89, 7, 19, 4),
+(90, 7, 20, 4),
+(91, 12, 1, 2),
+(92, 12, 2, 2),
+(93, 12, 3, 2),
+(94, 12, 4, 2),
+(95, 12, 5, 2),
+(96, 12, 6, 2),
+(97, 12, 7, 2),
+(98, 12, 8, 2),
+(99, 12, 9, 2),
+(100, 12, 10, 2),
+(101, 12, 11, 2),
+(102, 12, 12, 2),
+(103, 12, 13, 2),
+(104, 12, 1, 3),
+(105, 12, 2, 3),
+(106, 12, 3, 3),
+(107, 12, 4, 3),
+(108, 12, 5, 3),
+(109, 12, 6, 3),
+(110, 12, 7, 3),
+(111, 12, 8, 3),
+(112, 12, 9, 3),
+(113, 12, 10, 3),
+(114, 12, 11, 3),
+(115, 12, 12, 3),
+(116, 12, 13, 3),
+(117, 12, 1, 4),
+(118, 12, 2, 4),
+(119, 12, 3, 4),
+(120, 12, 4, 4),
+(121, 12, 5, 4),
+(122, 12, 6, 4),
+(123, 12, 7, 4),
+(124, 12, 8, 4),
+(125, 12, 9, 4),
+(126, 12, 10, 4),
+(127, 12, 11, 4),
+(128, 12, 12, 4),
+(129, 12, 13, 4),
+(130, 12, 1, 10),
+(131, 12, 2, 10),
+(132, 12, 3, 10),
+(133, 12, 4, 10),
+(134, 12, 5, 10),
+(135, 12, 6, 10),
+(136, 12, 7, 10),
+(137, 12, 8, 10),
+(138, 12, 9, 10),
+(139, 12, 10, 10),
+(140, 12, 11, 10),
+(141, 12, 12, 10),
+(142, 12, 13, 10);
 
 -- --------------------------------------------------------
 
@@ -115,6 +285,22 @@ CREATE TABLE `fournisseur` (
   `Pays` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `fournisseur`
+--
+
+INSERT INTO `fournisseur` (`idFournisseur`, `nom`, `adresse`, `codePostale`, `ville`, `Pays`) VALUES
+(1, 'Nike', 'One Bowerman Dr', '97005', 'Beaverton', 'États-Unis'),
+(3, 'Adidas', '1234 Sneaker Street', '12345', 'Herzogenaurach', 'Allemagne'),
+(4, 'Puma', '567 Sportswear Road', '54321', 'Herzogenaurach', 'Allemagne'),
+(5, 'Converse', '789 Chuck Taylor Street', '67890', 'Boston', 'États-Unis'),
+(6, 'Reebok', '101 Classic Avenue', '12345', 'Canton', 'États-Unis'),
+(7, 'Levi\'s', '456 Denim Drive', '98765', 'San Francisco', 'États-Unis'),
+(8, 'New Balance', '321 Athletic Street', '34567', 'Boston', 'États-Unis'),
+(9, 'Timberland', '78 Ech. des Argonautes', '21000', 'Dijon', 'France'),
+(10, 'LEVELS', '49 Featherstone Street', 'EC1Y 8SY', 'LONDON', 'UK'),
+(12, 'The North Face', 'One KB', '50405', 'Washington', 'États-Unis');
+
 -- --------------------------------------------------------
 
 --
@@ -123,13 +309,80 @@ CREATE TABLE `fournisseur` (
 
 CREATE TABLE `prixproduit` (
   `idPrix` int(11) NOT NULL,
-  `idDeclinaison` int(11) NOT NULL,
+  `idProduit` int(11) NOT NULL,
   `dateDebut` date NOT NULL,
-  `dateFin` date NOT NULL,
-  `prixBrut` int(11) NOT NULL,
-  `remise` int(11) NOT NULL,
-  `prixNet` int(11) NOT NULL
+  `dateFin` date NOT NULL DEFAULT '2100-01-01',
+  `prixBrut` float NOT NULL,
+  `remise` int(11) DEFAULT 0,
+  `prixNet` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `prixproduit`
+--
+
+INSERT INTO `prixproduit` (`idPrix`, `idProduit`, `dateDebut`, `dateFin`, `prixBrut`, `remise`, `prixNet`) VALUES
+(91, 1, '2023-11-02', '2100-01-01', 150, 0, 150),
+(92, 3, '2023-11-02', '2100-01-01', 100, 0, 100),
+(93, 4, '2023-11-02', '2100-01-01', 220, 0, 220),
+(94, 5, '2023-11-02', '2100-01-01', 60, 0, 60),
+(95, 7, '2023-11-02', '2100-01-01', 50, 0, 50),
+(96, 8, '2023-11-02', '2100-01-01', 60, 0, 60),
+(97, 9, '2023-11-02', '2100-01-01', 60, 0, 60),
+(98, 10, '2023-11-02', '2100-01-01', 60, 0, 60),
+(99, 11, '2023-11-02', '2100-01-01', 150, 0, 150),
+(100, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(101, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(102, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(103, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(104, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(105, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(106, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(107, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(108, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(109, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(110, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(111, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(112, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(113, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(114, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(115, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(116, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(117, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(118, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(119, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(120, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(121, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(122, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(123, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(124, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(125, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(126, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(127, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(128, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(129, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(130, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(131, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(132, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(133, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(134, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(135, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(136, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(137, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(138, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(139, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(140, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(141, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(142, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(143, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(144, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(145, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(146, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(147, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(148, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(149, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(150, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
+(151, 12, '2023-11-03', '2100-01-01', 120, 0, 120);
 
 -- --------------------------------------------------------
 
@@ -147,6 +400,22 @@ CREATE TABLE `produit` (
   `photoProduit` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`idProduit`, `idCategorie`, `idFournisseur`, `idType`, `nom`, `description`, `photoProduit`) VALUES
+(1, 2, 1, 3, 'Nike x Carhartt', 'Pour la première fois, Carhartt WIP et Nike ont uni leurs forces, créant une collection de chaussures qui combine l’esthétique unique des deux marques ', './img/imgBDD/chaussure1.jpg'),
+(3, 2, 1, 3, 'Nike Air', 'Nike Air est notre innovation emblématique qui utilise l\'air pressurisé dans une membrane souple et résistante pour offrir un amorti en toute légèreté.', './img/imgBDD/chaussure2.jpg'),
+(4, 2, 9, 9, 'Timberland', 'Inspirées par le style de vie urbain, nos collections Timberland sont parfaites pour n\'importe quelle occasion cet automne et cet hiver. Conçue pour être polyvalente et durable, notre collection de chaussures gardera vos pieds confortables à chaque pas.', './img/imgBDD/chaussure3.jpg'),
+(5, 3, 10, 6, 'Sac à dos LEVELS', ' Sac à dos 40lt avec compartiment principal et intermédiaires séparés. Grande poche devant avec attaches. Bretelles et panneau arrière rembourrés. Base résistante et imperméable plus une housse de pluie.', './img/imgBDD/accesoire1.jpg'),
+(7, 1, 5, 2, 'Selfie', 'Pulls Selfie parfait pour l\'automne ', './img/imgBDD/vetement1.jpg'),
+(8, 1, 6, 2, '#Wolf', 'Pulls au design original chaud et doux pour toutes les saisons ', './img/imgBDD/vetement2.jpg'),
+(9, 1, 12, 2, 'The North Face', 'Pulls au design original chaud et doux pour l\'hiver ', './img/imgBDD/vetement3.png'),
+(10, 1, 4, 2, 'Toronto Canada 1994', 'Pulls parfait pour toutes les saisons', './img/imgBDD/vetement4.jpg'),
+(11, 2, 3, 3, 'Adidas Forum low blanc et bleu', 'Plus qu\'une chaussure, c\'est un message. La chaussure adidas Forum a fait son apparition en 1984 et s\'est faite remarquer sur les parquets et dans le monde de la musique. Cette chaussure classique ravive l\'attitude des 80\'s, l\'énergie explosive des parquets et l\'iconique design avec une bride en X à la cheville, dans une version basse conçue pour la rue.', './img/imgBDD/chaussure4.jpg'),
+(12, 2, 4, 3, 'Puma Suede', 'Plus qu\'une chaussure, c\'est un message.', './img/imgBDD/chaussure5.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -156,8 +425,82 @@ CREATE TABLE `produit` (
 CREATE TABLE `tailleproduit` (
   `idTaille` int(11) NOT NULL,
   `idType` int(11) NOT NULL,
-  `taille` varchar(5) NOT NULL
+  `taille` varchar(5) DEFAULT '-'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `tailleproduit`
+--
+
+INSERT INTO `tailleproduit` (`idTaille`, `idType`, `taille`) VALUES
+(1, 3, '35'),
+(2, 3, '36'),
+(3, 3, '37'),
+(4, 3, '38'),
+(5, 3, '39'),
+(6, 3, '40'),
+(7, 3, '41'),
+(8, 3, '42'),
+(9, 3, '43'),
+(10, 3, '44'),
+(11, 3, '45'),
+(12, 3, '46'),
+(13, 3, '47'),
+(16, 2, 'S'),
+(17, 2, 'M'),
+(18, 2, 'L'),
+(19, 2, 'XL'),
+(20, 2, 'XXL'),
+(23, 1, 'S'),
+(24, 1, 'M'),
+(25, 1, 'L'),
+(26, 1, 'XL'),
+(27, 1, 'XXL'),
+(30, 8, 'S'),
+(31, 8, 'M'),
+(32, 8, 'L'),
+(33, 8, 'XL'),
+(34, 8, 'XXL'),
+(37, 4, '35'),
+(38, 4, '36'),
+(39, 4, '37'),
+(40, 4, '38'),
+(41, 4, '39'),
+(42, 4, '40'),
+(43, 4, '41'),
+(44, 4, '42'),
+(45, 4, '43'),
+(46, 4, '44'),
+(47, 4, '45'),
+(48, 4, '46'),
+(49, 4, '47'),
+(52, 5, '35'),
+(53, 5, '36'),
+(54, 5, '37'),
+(55, 5, '38'),
+(56, 5, '39'),
+(57, 5, '40'),
+(58, 5, '41'),
+(59, 5, '42'),
+(60, 5, '43'),
+(61, 5, '44'),
+(62, 5, '45'),
+(63, 5, '46'),
+(64, 5, '47'),
+(67, 9, '35'),
+(68, 9, '36'),
+(69, 9, '37'),
+(70, 9, '38'),
+(71, 9, '39'),
+(72, 9, '40'),
+(73, 9, '41'),
+(74, 9, '42'),
+(75, 9, '43'),
+(76, 9, '44'),
+(77, 9, '45'),
+(78, 9, '46'),
+(79, 9, '47'),
+(80, 6, '-');
 
 -- --------------------------------------------------------
 
@@ -171,6 +514,21 @@ CREATE TABLE `typeproduit` (
   `nom` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `typeproduit`
+--
+
+INSERT INTO `typeproduit` (`idType`, `idCategorie`, `nom`) VALUES
+(1, 1, 'Tee-shirt'),
+(2, 1, 'Sweatshirt'),
+(3, 2, 'Sneakers'),
+(4, 2, 'Claquette'),
+(5, 2, 'Tong'),
+(6, 3, 'Sac à dos'),
+(7, 3, 'Casquette'),
+(8, 1, 'Vestes'),
+(9, 2, 'Chaussure de ville');
+
 -- --------------------------------------------------------
 
 --
@@ -182,12 +540,12 @@ CREATE TABLE `utilisateur` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `pseudo` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `mdp` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `dateNaissance` date NOT NULL,
   `role` varchar(50) NOT NULL DEFAULT 'Client',
   `adresse` varchar(255) DEFAULT NULL,
-  `codePostale` varchar(10) DEFAULT NULL,
+  `codePostal` varchar(10) DEFAULT NULL,
   `ville` varchar(100) DEFAULT NULL,
   `pays` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -196,8 +554,10 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `pseudo`, `password`, `email`, `dateNaissance`, `role`, `adresse`, `codePostale`, `ville`, `pays`) VALUES
-(9, 'Hublart', 'Lucas', 'Nosake', '925fcbb99aa0ce4847aa5abbd49d811c', 'hublartlucas@gmail.com', '2003-01-10', 'Client', '19 avenue wilson', '90000', 'Belfort', 'France');
+INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `pseudo`, `mdp`, `email`, `dateNaissance`, `role`, `adresse`, `codePostal`, `ville`, `pays`) VALUES
+(9, 'Hublart', 'Lucas', 'Nosake', '925fcbb99aa0ce4847aa5abbd49d811c', 'hublartlucas@gmail.com', '2003-01-10', 'Client', '19 avenue wilson', '90001', 'Belfort', 'France'),
+(10, 'Hublart2', 'Agnes', 'maman', '4792cb8c4540464597b0b2363426fb4b', 'ahublart@free.fr', '1977-11-01', 'Client', '4 rue Philibert de Mare', '21560', 'Couternon', 'France'),
+(11, 'Hublart', 'Fred', 'papa2', '99dd74473c34d6953df167fa206a60c5', 'fhublart@free.fr', '1976-07-11', 'Client', '4 rue Philibert de Mare', '21560', 'Couternon', 'France');
 
 --
 -- Index pour les tables déchargées
@@ -245,7 +605,6 @@ ALTER TABLE `couleurproduit`
 ALTER TABLE `declinaisonproduit`
   ADD PRIMARY KEY (`idDeclinaison`),
   ADD KEY `fk_declinaisonproduit_couleurproduit` (`idCouleur`),
-  ADD KEY `fk_declinaisonproduit_prixproduit` (`idPrix`),
   ADD KEY `fk_declinaisonproduit_produit` (`idProduit`),
   ADD KEY `id_declinaisonproduit_tailleproduit` (`idTaille`);
 
@@ -260,7 +619,7 @@ ALTER TABLE `fournisseur`
 --
 ALTER TABLE `prixproduit`
   ADD PRIMARY KEY (`idPrix`),
-  ADD KEY `fk_prixproduit_declinaisonproduit` (`idDeclinaison`);
+  ADD KEY `fk_prixproduit_produit` (`idProduit`);
 
 --
 -- Index pour la table `produit`
@@ -300,13 +659,13 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `commandes`
@@ -324,49 +683,49 @@ ALTER TABLE `commandeslignes`
 -- AUTO_INCREMENT pour la table `couleurproduit`
 --
 ALTER TABLE `couleurproduit`
-  MODIFY `idCouleur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCouleur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `declinaisonproduit`
 --
 ALTER TABLE `declinaisonproduit`
-  MODIFY `idDeclinaison` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDeclinaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `idFournisseur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idFournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `prixproduit`
 --
 ALTER TABLE `prixproduit`
-  MODIFY `idPrix` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPrix` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idProduit` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProduit` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `tailleproduit`
 --
 ALTER TABLE `tailleproduit`
-  MODIFY `idTaille` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTaille` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT pour la table `typeproduit`
 --
 ALTER TABLE `typeproduit`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Contraintes pour les tables déchargées
@@ -398,7 +757,6 @@ ALTER TABLE `commandeslignes`
 --
 ALTER TABLE `declinaisonproduit`
   ADD CONSTRAINT `fk_declinaisonproduit_couleurproduit` FOREIGN KEY (`idCouleur`) REFERENCES `couleurproduit` (`idCouleur`),
-  ADD CONSTRAINT `fk_declinaisonproduit_prixproduit` FOREIGN KEY (`idPrix`) REFERENCES `prixproduit` (`idPrix`),
   ADD CONSTRAINT `fk_declinaisonproduit_produit` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`idProduit`),
   ADD CONSTRAINT `id_declinaisonproduit_tailleproduit` FOREIGN KEY (`idTaille`) REFERENCES `tailleproduit` (`idTaille`);
 
@@ -406,7 +764,7 @@ ALTER TABLE `declinaisonproduit`
 -- Contraintes pour la table `prixproduit`
 --
 ALTER TABLE `prixproduit`
-  ADD CONSTRAINT `fk_prixproduit_declinaisonproduit` FOREIGN KEY (`idDeclinaison`) REFERENCES `declinaisonproduit` (`idDeclinaison`);
+  ADD CONSTRAINT `fk_prixproduit_produit` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`idProduit`);
 
 --
 -- Contraintes pour la table `produit`
