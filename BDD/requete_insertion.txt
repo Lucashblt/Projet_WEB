@@ -1,0 +1,76 @@
+-- Insérer la catégorie "Vêtements"
+INSERT INTO categorie (nom, photo) VALUES ('Vêtements', './img/imgBDD/categorie_vetements.jpg');
+
+-- Insérer la catégorie "Chaussures"
+INSERT INTO categorie (nom, photo) VALUES ('Chaussures', './img/imgBDD/categorie_chaussures.jpg');
+
+-- Insérer la catégorie "Accessoires"
+INSERT INTO categorie (nom, photo) VALUES ('Accessoires', './img/imgBDD/categorie_accessoires.jpg');
+
+-- Insérer les types sous la catégorie "Vêtements"
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Vêtements'), 'Tee-shirt');
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Vêtements'), 'Sweatshirt');
+
+-- Insérer les types sous la catégorie "Chaussures"
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Chaussures'), 'Sneakers');
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Chaussures'), 'Claquette');
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Chaussures'), 'Tong');
+
+-- Insérer le type sous la catégorie "Accessoires"
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Accessoires'), 'Sac à dos');
+INSERT INTO typeproduit (idCategorie, nom) VALUES ((SELECT idCategorie FROM categorie WHERE nom = 'Accessoires'), ‘Casquette');
+
+
+-- Inserer les fournisseur 
+INSERT INTO fournisseur(nom, adresse, codePostale, ville, pays) 
+VALUES ('Nike', 'One Bowerman Dr', '97005' , 'Beaverton', 'États-Unis');
+
+-- inserer couleur produit
+
+INSERT INTO couleurproduit (nom)
+VALUES ('Marron');
+
+
+-- Insérer les tailles pour les chaussures
+INSERT INTO tailleproduit (idType, taille) 
+SELECT 
+    (SELECT idType FROM typeproduit WHERE nom = 'Sneakers') AS idType,
+    taille
+FROM (SELECT '35' AS taille
+      UNION SELECT '36'
+      UNION SELECT '37'
+      UNION SELECT '38'
+      UNION SELECT '39'
+      UNION SELECT '40'
+      UNION SELECT '41'
+      UNION SELECT '42'
+      UNION SELECT '43'
+      UNION SELECT '44'
+      UNION SELECT '45'
+      UNION SELECT '46'
+      UNION SELECT '47') AS tailles;
+
+
+-- inserer un produit 
+INSERT INTO produit (nom, description, photoProduit, idCategorie, idType, idFournisseur)
+    VALUES ('Puma Suede', "Plus qu'une chaussure, c'est un message.", './img/imgBDD/chaussure5.jpg', 
+        (SELECT idCategorie FROM categorie WHERE nom = 'Chaussures'), 
+        (SELECT idType FROM typeproduit WHERE nom = 'Sneakers'),
+        (SELECT idFournisseur FROM fournisseur WHERE nom='Puma'));
+
+
+-- Insérer la déclinaison du produit
+INSERT INTO declinaisonproduit(idProduit, idTaille, idCouleur)
+SELECT td_produit.idproduit, td_taille.idtaille, td_couleur.idcouleur
+FROM 
+(SELECT idProduit FROM produit WHERE nom = 'Puma Suede') as td_produit
+  CROSS JOIN      (SELECT idTaille FROM tailleproduit WHERE idType = (SELECT idType FROM typeproduit WHERE nom = 'Sneakers')) as td_taille
+  CROSS JOIN     (SELECT idCouleur FROM couleurproduit WHERE nom = 'Blanc' OR nom='Rouge' OR nom='noir' OR nom='Bleu' ) as td_couleur ;
+
+-- Insérer le prix du produit
+INSERT INTO prixproduit (idProduit, dateDebut, prixBrut, prixNet)
+SELECT idProduit , CURRENT_DATE, 120, 120 
+        from declinaisonproduit 
+        WHERE idProduit = (SELECT idProduit FROM produit WHERE nom = 'Puma Suede');
+
+
