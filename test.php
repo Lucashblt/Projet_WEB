@@ -70,9 +70,9 @@ input::-o-outer-spin-button {
 <form action="test.php" method="post">
 <label for="quantity">Quantité :</label>
                                 <div class="quantity-input">
-                                    <button class="quantity-btn minus" id="minusBtn"><span>-</span></button>
+                                    <div class="quantity-btn minus" id="minusBtn"><span>-</span></div>
                                     <input type="number" name="quantity" id="quantity" min="1" max="9" value="1" onkeyup="onlyNumber();">
-                                    <button class="quantity-btn plus" id="plusBtn"><span>+</span></button>
+                                    <div class="quantity-btn plus" id="plusBtn"><span>+</span></div>
                                 </div>
                                 <button type="submit" name="submit"><span>Ajouter au panier</span></button>
 </form>

@@ -107,9 +107,9 @@
                             <?php if($loggedIn) { ?>
                                 <label for="quantity">Quantité :</label>
                                 <div class="quantity-input">
-                                    <button class="quantity-btn minus" id="minusBtn"><span>-</span></button>
+                                    <div class="quantity-btn minus" id="minusBtn"><span>-</span></div>
                                     <input type="number" name="quantity" id="quantity" min="1" max="9" value="1" onkeyup="onlyNumber();">
-                                    <button class="quantity-btn plus" id="plusBtn"><span>+</span></button>
+                                    <div class="quantity-btn plus" id="plusBtn"><span>+</span></div>
                                 </div>
                                 <button class="buy-now" name="commander_maintenant" type="submit">Commander maintenant</button>
                                 <button class="add-to-cart" name="ajouter_au_panier" type="submit">Ajouter au panier</button>
@@ -117,8 +117,7 @@
                                 <p>Vous devez être connecté pour ajouter au panier.</p>
                             <?php 
                                 }                   
-                            ?>
-                        
+                            ?>                        
                         </div>
                     </form>
                 </div>
@@ -196,7 +195,6 @@
 
             // Gestion de l'incrémentation de la quantité
             plusBtn.addEventListener("click", () => {
-                alert(champ.value);
                 if (champ.value < 9) {
                     champ.value++;
                 }

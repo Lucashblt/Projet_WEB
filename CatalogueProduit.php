@@ -64,7 +64,7 @@
     <div class="products">
         <?php
             // Récupérez la catégorie à partir de l'URL
-            $allProducts = getAllProducts($categories, 12, 0);
+            $allProducts = getAllProducts($categories, 8, 0);
             if (empty($allProducts)) {
                 echo '<h3 class="errorMessage">Aucun produit ne correspond à votre recherche</h3>';
             } else {
@@ -181,7 +181,7 @@
         // Afficher plus de produit
         $(document).ready(function () {
             // Compteur pour suivre le nombre de produits chargés
-            var currentCount = 12;
+            var currentCount = 8;
             var categorie = "<?php echo $categories; ?>";
 
             // Bouton "Load More"
@@ -202,7 +202,7 @@
                         }else {
                                 // Ajoutez les produits supplémentaires à la page
                                 $(".products").append(response);
-                                currentCount += 12; // Mettez à jour le compteur
+                                currentCount += 8; // Mettez à jour le compteur
                         }   
                     },
                 });

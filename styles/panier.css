@@ -66,6 +66,7 @@ th, td {
   text-align: center;
 }
 
+
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -78,11 +79,13 @@ th {
 .product-cell {
   display: flex;
   align-items: center;
+  text-align: left;
 }
 
 .product-image {
-  max-height: 150px;
-  max-width: 300px;
+  width: 25%;
+  max-height: 250px;
+  max-width: 200px;
   margin-right: 10px;
   border : 1px solid black;
 }
@@ -95,16 +98,24 @@ th {
   font-style: italic;
 }
 
+/* quantite boutton */
+.quantity-input {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  align-items: center;
+}
 
 .quantity-btn {
   background-color: #fff;
   color: #000;
   padding: 5px 10px;
-  border: none;
+  border: 1px solid black;
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s ease-out;
+  text-align: center;
 }
 
 .quantity-btn:hover {
@@ -112,8 +123,11 @@ th {
   color: #fff;
 }
 .quantity-input input{
+  grid-column: 2 / span 1;
   padding: 5px;
-  margin: 5px 0;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .viderpanier button {

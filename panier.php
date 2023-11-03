@@ -31,12 +31,11 @@
     $total = 0;
     if (isset($_SESSION['panier'])) {
       $panier = $_SESSION['panier'];
+      echo $panier['selectedQuantity'][0];
 
       foreach ($panier['idDeclinaison'] as $key => $idDeclinaison) {
         $selectedQuantity = $panier['selectedQuantity'][$key];
-        
         $idPrix = $panier['idPrix'][$key];
-        //echo $idPrix;
         $product = getInfoProductByIdeclinaison($idDeclinaison);
         if ($product == 0){
           echo "Erreur";
@@ -50,13 +49,12 @@
             $prixNet = getPriceById($idPrix);
             $prixTotal = $prixNet * $selectedQuantity;
             ?>
-
     <tr>
         <td>
             <div class="product-cell">
                 <img class="product-image" src="<?php echo $photoProduit ?>" alt="Image du Produit">
                 <div>
-                    <div class="product-name"><?php echo $nomProduit; ?></div>
+                    <div class="product-name"><a href="produits.php?idProduit=<?php echo $idProduit; ?>"><?php echo $nomProduit; ?></a></div>
                     <div class="product-color"><?php echo $couleurProduit; ?></div>
                     <div class="product-taille"><?php echo $produitTaille; ?></div>
                 </div>
@@ -65,9 +63,9 @@
         <td>
           <label for="quantity"></label>
           <div class="quantity-input">
-              <button class="quantity-btn minus" id="minusBtn"><span>-</span></button>
+              <div class="quantity-btn minus" id="minusBtn"><span>-</span></div>
                 <input type="number" name="quantity" id="quantity" min="1" max="9" value="<?php echo $selectedQuantity; ?>" onkeyup="onlyNumber();">
-              <button class="quantity-btn plus" id="plusBtn"><span>+</span></button>
+              <div class="quantity-btn plus" id="plusBtn"><span>+</span></div>
           </div>
         </td>
         <td><?php echo $prixTotal; ?> €</td>
@@ -149,7 +147,7 @@
 
     //Gestion quantite
     //----------------------------------------------------------------------------
-    /*
+    
     document.addEventListener('DOMContentLoaded', function() {
           // Sélection des éléments
         const plusBtn = document.getElementById("plusBtn");
@@ -177,7 +175,7 @@
             }
         }
     });
-    */
+    
     //----------------------------------------------------------------------------
   </script>
 </body>

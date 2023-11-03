@@ -52,25 +52,26 @@ FROM (SELECT '35' AS taille
 
 
 -- inserer un produit 
-INSERT INTO produit (nom, description, photoProduit, idCategorie, idType, idFournisseur)
-    VALUES ('Puma Suede', "Plus qu'une chaussure, c'est un message.", './img/imgBDD/chaussure5.jpg', 
+INSERT INTO produit (nom, description, photoProduit, idCategorie, idType, idFournisseur, matiereProduit)
+    VALUES ('Converse All Star', "Chaussure Converse All Star", './img/imgBDD/chaussure13.jpg', 
         (SELECT idCategorie FROM categorie WHERE nom = 'Chaussures'), 
         (SELECT idType FROM typeproduit WHERE nom = 'Sneakers'),
-        (SELECT idFournisseur FROM fournisseur WHERE nom='Puma'));
+        (SELECT idFournisseur FROM fournisseur WHERE nom='Converse'),
+           'Tissue');
 
 
 -- Insérer la déclinaison du produit
-INSERT INTO declinaisonproduit(idProduit, idTaille, idCouleur)
-SELECT td_produit.idproduit, td_taille.idtaille, td_couleur.idcouleur
+INSERT INTO declinaisonproduit(idProduit, idTaille, idCouleur, Stock)
+SELECT td_produit.idproduit, td_taille.idtaille, td_couleur.idcouleur, 1000
 FROM 
-(SELECT idProduit FROM produit WHERE nom = 'Puma Suede') as td_produit
+(SELECT idProduit FROM produit WHERE nom = 'Converse All Star') as td_produit
   CROSS JOIN      (SELECT idTaille FROM tailleproduit WHERE idType = (SELECT idType FROM typeproduit WHERE nom = 'Sneakers')) as td_taille
-  CROSS JOIN     (SELECT idCouleur FROM couleurproduit WHERE nom = 'Blanc' OR nom='Rouge' OR nom='noir' OR nom='Bleu' ) as td_couleur ;
+  CROSS JOIN     (SELECT idCouleur FROM couleurproduit WHERE nom = 'Blanc' or nom = 'Noir') as td_couleur ;
 
 -- Insérer le prix du produit
 INSERT INTO prixproduit (idProduit, dateDebut, prixBrut, prixNet)
-SELECT idProduit , CURRENT_DATE, 120, 120 
+SELECT idProduit , CURRENT_DATE, 119.99, 119.99 
         from declinaisonproduit 
-        WHERE idProduit = (SELECT idProduit FROM produit WHERE nom = 'Puma Suede');
+        WHERE idProduit = (SELECT idProduit FROM produit WHERE nom = 'Converse All Star');
 
 
