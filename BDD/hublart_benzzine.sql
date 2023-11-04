@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 03 nov. 2023 à 22:57
+-- Généré le : sam. 04 nov. 2023 à 11:05
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -74,10 +74,19 @@ INSERT INTO `categorie` (`idCategorie`, `nom`, `photo`) VALUES
 CREATE TABLE `commandes` (
   `idCommande` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `total` int(10) NOT NULL,
-  `modePaiment` varchar(100) NOT NULL DEFAULT 'Carte Bancaire'
+  `dateCommande` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `total` varchar(10) NOT NULL,
+  `modePaiment` varchar(100) NOT NULL DEFAULT 'Carte Bancaire',
+  `Statu` varchar(255) NOT NULL DEFAULT 'En préparation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `commandes`
+--
+
+INSERT INTO `commandes` (`idCommande`, `idUtilisateur`, `dateCommande`, `total`, `modePaiment`, `Statu`) VALUES
+(4, 9, '2023-11-04 11:00:21', '60', 'Carte Bancaire', 'En préparation'),
+(5, 9, '2023-11-04 11:02:48', '620', 'Carte Bancaire', 'En préparation');
 
 -- --------------------------------------------------------
 
@@ -92,6 +101,16 @@ CREATE TABLE `commandeslignes` (
   `idPrix` int(11) NOT NULL,
   `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `commandeslignes`
+--
+
+INSERT INTO `commandeslignes` (`idCommandesLignes`, `idCommande`, `idDeclinaison`, `idPrix`, `quantite`) VALUES
+(1, 4, 53, 97, 1),
+(2, 5, 25, 92, 2),
+(3, 5, 243, 243, 1),
+(4, 5, 91, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -942,13 +961,13 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `commandes`
 --
 ALTER TABLE `commandes`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `commandeslignes`
 --
 ALTER TABLE `commandeslignes`
-  MODIFY `idCommandesLignes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCommandesLignes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `couleurproduit`
@@ -960,7 +979,7 @@ ALTER TABLE `couleurproduit`
 -- AUTO_INCREMENT pour la table `declinaisonproduit`
 --
 ALTER TABLE `declinaisonproduit`
-  MODIFY `idDeclinaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=343;
+  MODIFY `idDeclinaison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 
 --
 -- AUTO_INCREMENT pour la table `fournisseur`
@@ -972,7 +991,7 @@ ALTER TABLE `fournisseur`
 -- AUTO_INCREMENT pour la table `prixproduit`
 --
 ALTER TABLE `prixproduit`
-  MODIFY `idPrix` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
+  MODIFY `idPrix` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
 
 --
 -- AUTO_INCREMENT pour la table `produit`

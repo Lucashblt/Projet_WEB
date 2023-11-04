@@ -41,6 +41,13 @@ body .dribbble img {
   align-items: center;
 }
 
+.successMessage{
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  background-color: green;
+}
 
 .errorMessage{
   width: 100%;

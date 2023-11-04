@@ -58,19 +58,14 @@
     function updateQuantiteProduct($idDeclinaison, $selectedQuantity){
         //Si le panier existe
         if (createCart()) {
-            
             //Si la quantité est positive on modifie sinon on supprime l'article
             if ($selectedQuantity > 0) {
+                
+                $_SESSION['panier']['selectedQuantity'][$idDeclinaison] = $selectedQuantity ;
 
-                //Recharche du produit dans le panier
-                $positionProduit = array_search($idDeclinaison,  $_SESSION['panier']['idDeclinaison']);
-
-                if ($positionProduit !== false){
-
-                    $_SESSION['panier']['selectedQuantity'][$positionProduit] = $selectedQuantity ;
-                }
             }else{
                 deleteProduct($idDeclinaison);
+
             }
         }else{
             echo "Un problème est survenu.";
@@ -79,28 +74,34 @@
 
 
     function deleteProduct($idDeclinaison){
-    //Si le panier existe
+        //Si le panier existe
         if (createCart()){
-            //Nous allons passer par un panier temporaire
-            $tmp=array();
-            $tmp['idDeclinaison'] = array();
-            $tmp['selectedQuantity'] = array();
-            $tmp['idPrix'] = array();
+            if(countProduct() <= 1){
+                deleteCart();
+            }else{
+                //Nous allons passer par un panier temporaire
+                $tmp=array();
+                $tmp['idDeclinaison'] = array();
+                $tmp['selectedQuantity'] = array();
+                $tmp['idPrix'] = array();
 
-            for($i = 0; $i < count($_SESSION['panier']['idDeclinaison']); $i++)
-            {
-                if ($_SESSION['panier']['idDeclinaison'][$i] !== $idDeclinaison)
+                for($i = 0; $i < count($_SESSION['panier']['idDeclinaison']); $i++)
                 {
-                    array_push( $tmp['idDeclinaison'],$_SESSION['panier']['idDeclinaison'][$i]);
-                    array_push( $tmp['selectedQuantity'],$_SESSION['panier']['selectedQuantity'][$i]);
-                    array_push( $tmp['idPrix'],$_SESSION['panier']['idPrix'][$i]);
-                }
 
+                    if ($i != $idDeclinaison)
+                    {
+                        array_push( $tmp['idDeclinaison'],$_SESSION['panier']['idDeclinaison'][$i]);
+                        array_push( $tmp['selectedQuantity'],$_SESSION['panier']['selectedQuantity'][$i]);
+                        array_push( $tmp['idPrix'],$_SESSION['panier']['idPrix'][$i]);
+                    }
+
+                }
+                //On remplace le panier en session par notre panier temporaire à jour
+                $_SESSION['panier'] =  $tmp;
+                //On efface notre panier temporaire
+                unset($tmp);
             }
-            //On remplace le panier en session par notre panier temporaire à jour
-            $_SESSION['panier'] =  $tmp;
-            //On efface notre panier temporaire
-            unset($tmp);
+            
         }else{
             echo "Un problème est survenu .";
         }
@@ -175,13 +176,42 @@
         }
     }
 
-    function total(){
-        $total=0;
-        for($i = 0; $i < count($_SESSION['panier']['idDeclinaison']); $i++){
-            $total += $_SESSION['panier']['selectedQuantity'][$i] * getPriceById($_SESSION['panier']['idPrix'][$i]);
+    function insertCommande($total){
+        global $SQLconn; // Utilisez la connexion SQL
+
+        $query = "INSERT INTO commandes(idUtilisateur, total)
+                VALUES (
+                (SELECT idUtilisateur FROM utilisateur WHERE email = '" . $SQLconn->loginStatus->userEmail . "'),
+                $total)";
+
+        if ($SQLconn->query($query)) {
+            $lastCommandId = $SQLconn->conn->insert_id;
+            insertCommandesLignes($lastCommandId);
+            echo '<h3 class="successMessage">Commande effectuée avec succès</h3>';
+        } else {
+            echo '<h3 class="errorMessage">Erreur lors de l insertion de la commande</h3>';
         }
-        return $total;
     }
+    function insertCommandesLignes($idCommande){
+        global $SQLconn; // Utilisez la connexion SQL
+
+        if (isset($_SESSION['panier'])) {
+            foreach ($_SESSION['panier']['idDeclinaison'] as $key => $idDeclinaison) {
+                $idPrix = $_SESSION['panier']['idPrix'][$key];
+                $quantite = $_SESSION['panier']['selectedQuantity'][$key];
+    
+                $query = "INSERT INTO commandeslignes(idCommande, idDeclinaison, idPrix, quantite)
+                        VALUES ($idCommande, $idDeclinaison, $idPrix, $quantite)";
+    
+                if ($SQLconn->query($query)) {
+                    //echo '<h3 class="successMessage">Ligne de commande ajoutée avec succès</h3>';
+                } else {
+                    //echo '<h3 class="errorMessage">Erreur lors de l\'insertion de la ligne de commande</h3>';
+                }
+            }
+        }
+    }
+
 
     function deleteCart(){
         unset($_SESSION['panier']);
