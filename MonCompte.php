@@ -79,17 +79,70 @@
                             <label for="pays">Pays :</label>
                             <input type="text" id="pays" name="pays" value="<?php echo $user['pays']; ?>" disabled>
                             <button id="save-info-btn" style="display: none;" type="submit" >Enregistrer</button>
-
                         </form>
                         <button id="edit-info-btn">Modifier</button>
                     </div>
                 </div>
             </div>
             <div class="previous-orders" id="orders">
-                <h2>Commandes Précédentes</h2>
-                <button id="show-orders-btn">Afficher les commandes</button>
-                <ul id="orders-list" style="display: none;">
-                    <!-- Les commandes précédentes de l'utilisateur seront affichées ici -->
+                <h3>Commandes Précédentes</h3>
+                <ul id="orders-list">
+                    <?php
+                        $idUtilisateur = $user['idUtilisateur'];
+                        $query="SELECT c.*, cl.* , p.nom AS nomProduit, p.photoProduit AS photoProduit, 
+                            tap.taille AS nomTaille, cp.nom AS nomCouleur, pp.prixNet AS prixNet,
+                            c.status AS statusCommande, c.total AS totalCommande
+                            FROM commandes c
+                            INNER JOIN commandeslignes cl ON c.idCommande = cl.idCommande
+                            INNER JOIN prixproduit pp ON cl.idPrix = pp.idPrix
+                            INNER JOIN declinaisonproduit dp ON cl.idDeclinaison = dp.idDeclinaison
+                            INNER JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
+                            INNER JOIN tailleproduit tap ON dp.idTaille = tap.idTaille
+                            INNER JOIN produit p ON dp.idProduit = p.idProduit
+                            WHERE c.idUtilisateur = $idUtilisateur
+                            ORDER BY c.dateCommande DESC";
+                        
+                        $result = $SQLconn->conn->query($query);
+                        if ($result && $result->num_rows > 0) {
+                            $currentCommandeId = null; // Initialisez une variable pour suivre la commande en cours
+                            while ($row = $result->fetch_assoc()) {
+                                if ($currentCommandeId !== $row['idCommande']) {
+                                    // Nouvelle commande, affichez les détails de la commande
+                                    if ($currentCommandeId !== null) {
+                                        echo '</div></li>';
+                                    }
+
+                                    echo '<li class="order-item">';
+                                    echo '<div class="order-details">';
+                                    echo '<p>Date de commande: ' . $row['dateCommande'] . '</p>';
+                                    echo '<p>Status: ' . $row['statusCommande'] . '</p>';
+                                    echo '<p>Total: ' . $row['totalCommande'] . ' €</p>';
+                                    echo '</div>';
+                                    echo '<div class="products">';
+                                    $currentCommandeId = $row['idCommande'];
+                                }
+
+                                // Affichez les détails du produit
+                                echo '<div class="product">';
+                                echo '<div class="product-image"><img src="' . $row['photoProduit'] . '" alt="Photo du produit"></div>';
+                                echo '<div class="product-info">';
+                                echo '<p>Nom du Produit: ' . $row['nomProduit'] . '</p>';
+                                echo '<p>Couleur: ' . $row['nomCouleur'] . '</p>';
+                                echo '<p>Taille: ' . $row['nomTaille'] . '</p>';
+                                echo '<p>Prix Unitaire : ' . $row['prixNet']. ' €</p>';
+                                echo '<p>Quantité: ' . $row['quantite'] . '</p>';
+                                echo '<p>Prix Total: ' . $row['prixNet'] * $row['quantite'] . ' €</p>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+
+                            // Fermez le dernier groupe de produits
+                            echo '</div></li>';
+                        } else {
+                            echo '<li>Aucune commande précédente trouvée.</li>';
+                        }
+                    ?>
+                        
                 </ul>
             </div>
         </div>

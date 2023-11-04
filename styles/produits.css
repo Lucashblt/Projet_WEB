@@ -8,8 +8,10 @@
 body {
     font-family: Georgia, serif;
     min-height: 100vh;
-    min-width: none;
+    
     background: #f5f5f5;
+    position: relative;
+    padding-bottom: 150px;
 }
 .successMessage{
     text-align: center;
@@ -324,9 +326,9 @@ textarea {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-
+/*
 .footer{
     width: 100%;
     position: absolute;
     bottom: 0;
-  }
+  }*/

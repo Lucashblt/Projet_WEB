@@ -9,6 +9,8 @@
 body {
     min-height: 100vh;
     background: #f5f5f5;
+    position: relative;
+    padding-bottom: 150px;
 }
 h3{
     padding-top: 20px;

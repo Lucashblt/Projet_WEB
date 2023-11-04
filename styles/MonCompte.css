@@ -143,28 +143,57 @@ h3 {
 
 
 /* Style de la section des commandes précédentes */
+
 .previous-orders {
     margin: 20px;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-
     border-radius: 5px;
 }
 
-.previous-orders h2 {
-    font-size: 20px;
+.order-details {
+    text-align: center;
+    margin-bottom: 10px;
+    flex : 1;
 }
 
-.previous-orders button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.product {
+    display: flex;
+    align-items: center;
     margin-top: 10px;
 }
+
+.product-image img {
+    max-width: 150px;
+    max-height: 250px;
+    border: 1px solid black;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex: 1;
+}
+/*
+.previous-orders {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.order-details {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.product-image img {
+    max-width: 150px;
+    margin-right: 20px;
+    max-height: 250px;
+    border : 1px solid black;
+}
+*/
 
 /* Style de la liste des commandes */
 #orders-list {

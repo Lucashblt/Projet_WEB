@@ -6,7 +6,9 @@
     if (isset($_POST["count"])) {
         $count = $_POST["count"];
         $categories = $_GET['categorie'];
-        $moreProducts = getAllProducts($categories, 8, $count);
+        $trieproduit = $_POST['trieproduit'];
+        $typeProduits = $_POST['typeProduits'];
+        $moreProducts = getAllProducts($categories, 8, $count, $trieproduit, $typeProduits);
 
         if (!empty($moreProducts)) {
             foreach ($moreProducts as $productData) {

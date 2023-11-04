@@ -64,6 +64,7 @@
                 $productImage = $productData['productImage'];
                 $productPrice = $productData['productPrice'];
                 $productDescription = $productData['productDescription'];
+                $productMaterial = $productData['productMaterial'];
                 $productSizes = explode(',', $productData['sizes']);
                 $productColors = explode(',', $productData['colors']);
             }?>
@@ -76,13 +77,15 @@
             <div class="products">
                 <div class="card">
                     <div class="poster">
-                        <img src="<?php echo $productImage; ?>" alt="Location Unknown">
+                        <img src="<?php echo $productImage; ?>" alt="Photo produitn">
                     </div>
                     <form action="produits.php?idProduit=<?php echo $idProduit; ?>" method="post">
                         <div class="product-info">
                         
                             <h1><?php echo $productName; ?></h1>
                             <p><?php echo $productDescription; ?></p>
+                            <label for="size">Description :</label>
+                            <p><?php echo $productMaterial; ?></p>
                             <h2><?php echo $productPrice; ?> € </h2>
                             <label for="size">Taille :</label>
                             <select name="taille" id="taille">

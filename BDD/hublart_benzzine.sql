@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 04 nov. 2023 à 11:05
+-- Généré le : sam. 04 nov. 2023 à 18:25
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -77,16 +77,18 @@ CREATE TABLE `commandes` (
   `dateCommande` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `total` varchar(10) NOT NULL,
   `modePaiment` varchar(100) NOT NULL DEFAULT 'Carte Bancaire',
-  `Statu` varchar(255) NOT NULL DEFAULT 'En préparation'
+  `Status` varchar(255) NOT NULL DEFAULT 'En préparation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `commandes`
 --
 
-INSERT INTO `commandes` (`idCommande`, `idUtilisateur`, `dateCommande`, `total`, `modePaiment`, `Statu`) VALUES
-(4, 9, '2023-11-04 11:00:21', '60', 'Carte Bancaire', 'En préparation'),
-(5, 9, '2023-11-04 11:02:48', '620', 'Carte Bancaire', 'En préparation');
+INSERT INTO `commandes` (`idCommande`, `idUtilisateur`, `dateCommande`, `total`, `modePaiment`, `Status`) VALUES
+(4, 9, '2023-11-04 12:07:58', '60', 'Carte Bancaire', 'Expédiée'),
+(5, 9, '2023-11-04 11:02:48', '620', 'Carte Bancaire', 'En préparation'),
+(6, 9, '2023-11-04 14:37:36', '60', 'Carte Bancaire', 'En préparation'),
+(7, 12, '2023-11-04 14:44:45', '20', 'Carte Bancaire', 'En préparation');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,9 @@ INSERT INTO `commandeslignes` (`idCommandesLignes`, `idCommande`, `idDeclinaison
 (1, 4, 53, 97, 1),
 (2, 5, 25, 92, 2),
 (3, 5, 243, 243, 1),
-(4, 5, 91, 100, 1);
+(4, 5, 91, 100, 1),
+(5, 6, 80, 94, 1),
+(6, 7, 154, 152, 1);
 
 -- --------------------------------------------------------
 
@@ -483,187 +487,14 @@ INSERT INTO `prixproduit` (`idPrix`, `idProduit`, `dateDebut`, `dateFin`, `prixB
 (98, 10, '2023-11-02', '2100-01-01', 60, 0, 60),
 (99, 11, '2023-11-02', '2100-01-01', 150, 0, 150),
 (100, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(101, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(102, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(103, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(104, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(105, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(106, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(107, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(108, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(109, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(110, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(111, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(112, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(113, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(114, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(115, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(116, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(117, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(118, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(119, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(120, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(121, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(122, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(123, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(124, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(125, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(126, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(127, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(128, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(129, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(130, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(131, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(132, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(133, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(134, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(135, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(136, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(137, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(138, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(139, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(140, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(141, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(142, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(143, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(144, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(145, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(146, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(147, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(148, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(149, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(150, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
-(151, 12, '2023-11-03', '2100-01-01', 120, 0, 120),
 (152, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(153, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(154, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(155, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(156, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(157, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(158, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(159, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(160, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(161, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(162, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(163, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
-(164, 13, '2023-11-03', '2100-01-01', 20, 0, 20),
 (167, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(168, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(169, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(170, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(171, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(172, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(173, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(174, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(175, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(176, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(177, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(178, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
-(179, 14, '2023-11-03', '2100-01-01', 200, 0, 200),
 (182, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(183, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(184, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(185, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(186, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(187, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(188, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(189, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(190, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(191, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(192, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(193, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(194, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(195, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(196, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(197, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(198, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(199, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(200, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(201, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(202, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(203, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(204, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(205, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(206, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
-(207, 15, '2023-11-03', '2100-01-01', 124.99, 0, 124.99),
 (213, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(214, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(215, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(216, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(217, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(218, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(219, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(220, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(221, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(222, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(223, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(224, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
-(225, 16, '2023-11-03', '2100-01-01', 99.99, 0, 99.99),
 (228, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(229, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(230, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(231, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(232, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(233, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(234, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(235, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(236, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(237, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(238, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(239, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
-(240, 17, '2023-11-03', '2100-01-01', 109.99, 0, 109.99),
 (243, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(244, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(245, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(246, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(247, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(248, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(249, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(250, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(251, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(252, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(253, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(254, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
-(255, 18, '2023-11-03', '2100-01-01', 299.99, 0, 299.99),
 (258, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(259, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(260, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(261, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(262, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(263, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(264, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(265, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(266, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(267, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(268, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(269, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(270, 22, '2023-11-03', '2100-01-01', 79.99, 0, 79.99),
-(273, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(274, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(275, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(276, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(277, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(278, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(279, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(280, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(281, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(282, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(283, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(284, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(285, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(286, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(287, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(288, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(289, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(290, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(291, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(292, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(293, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(294, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(295, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(296, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(297, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99),
-(298, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99);
+(273, 23, '2023-11-03', '2100-01-01', 119.99, 0, 119.99);
 
 -- --------------------------------------------------------
 
@@ -687,24 +518,24 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`idProduit`, `idCategorie`, `idFournisseur`, `idType`, `nom`, `description`, `photoProduit`, `matiereProduit`) VALUES
-(1, 2, 1, 3, 'Nike x Carhartt', 'Pour la première fois, Carhartt WIP et Nike ont uni leurs forces, créant une collection de chaussures qui combine l’esthétique unique des deux marques ', './img/imgBDD/chaussure1.jpg', 'Cuir'),
-(3, 2, 1, 3, 'Nike Air', 'Nike Air est notre innovation emblématique qui utilise l\'air pressurisé dans une membrane souple et résistante pour offrir un amorti en toute légèreté.', './img/imgBDD/chaussure2.jpg', 'Cuir'),
-(4, 2, 9, 9, 'Timberland', 'Inspirées par le style de vie urbain, nos collections Timberland sont parfaites pour n\'importe quelle occasion cet automne et cet hiver. Conçue pour être polyvalente et durable, notre collection de chaussures gardera vos pieds confortables à chaque pas.', './img/imgBDD/chaussure3.jpg', 'Cuir'),
-(5, 3, 10, 6, 'Sac à dos LEVELS', ' Sac à dos 40lt avec compartiment principal et intermédiaires séparés. Grande poche devant avec attaches. Bretelles et panneau arrière rembourrés. Base résistante et imperméable plus une housse de pluie.', './img/imgBDD/accesoire1.jpg', 'Nylon'),
-(7, 1, 5, 2, 'Selfie', 'Pulls Selfie parfait pour l\'automne ', './img/imgBDD/vetement1.jpg', 'Laine'),
-(8, 1, 6, 2, '#Wolf', 'Pulls au design original chaud et doux pour toutes les saisons ', './img/imgBDD/vetement2.jpg', 'Laine'),
-(9, 1, 12, 2, 'The North Face', 'Pulls au design original chaud et doux pour l\'hiver ', './img/imgBDD/vetement3.png', 'Laine'),
-(10, 1, 4, 2, 'Toronto Canada 1994', 'Pulls parfait pour toutes les saisons', './img/imgBDD/vetement4.jpg', 'Laine'),
-(11, 2, 3, 3, 'Adidas Forum low blanc et bleu', 'Plus qu\'une chaussure, c\'est un message. La chaussure adidas Forum a fait son apparition en 1984 et s\'est faite remarquer sur les parquets et dans le monde de la musique. Cette chaussure classique ravive l\'attitude des 80\'s, l\'énergie explosive des parquets et l\'iconique design avec une bride en X à la cheville, dans une version basse conçue pour la rue.', './img/imgBDD/chaussure4.jpg', 'Cuir'),
-(12, 2, 4, 3, 'Puma Suede', 'Plus qu\'une chaussure, c\'est un message.', './img/imgBDD/chaussure5.jpg', 'Cuir'),
-(13, 2, 4, 5, 'Tong Havaianas', 'Plus qu\'une chaussure, c\'est un message.', './img/imgBDD/chaussure6.jpg', 'Caouthouc'),
-(14, 2, 4, 9, 'Escarpin', 'Chaussure en cuir marron très elegantee', './img/imgBDD/chaussure7.jpg', 'Cuir'),
-(15, 2, 1, 3, 'Nike Air Force 1', 'Chaussure nike plein de couleur et de vie', './img/imgBDD/chaussure8.jpg', 'Cuir'),
-(16, 2, 5, 3, 'Converse Heart', 'Chaussure converse de la Saint-Valentin', './img/imgBDD/chaussure9.jpg', 'Tissue'),
-(17, 2, 8, 3, 'New Balance 997', 'Chaussure new balance grise', './img/imgBDD/chaussure10.jpg', 'Tissue'),
-(18, 2, 1, 3, 'Nike Air New Delhi', 'Chaussure nike personnalisé venu d\'Inde et plus précisément New Delhi', './img/imgBDD/chaussure11.jpg', 'Cuir'),
-(22, 2, 8, 3, 'New Balance 327', 'Chaussure new balance', './img/imgBDD/chaussure12.jpg', 'Cuir'),
-(23, 2, 5, 3, 'Converse All Star', 'Chaussure Converse All Star', './img/imgBDD/chaussure13.jpg', 'Tissue');
+(1, 2, 1, 3, 'Nike x Carhartt', 'Pour la première fois, Carhartt WIP et Nike ont uni leurs forces, créant une collection de chaussures qui combine l’esthétique unique des deux marques ', './img/imgBDD/chaussure1.jpg', 'Cuir 100%'),
+(3, 2, 1, 3, 'Nike Air', 'Nike Air est notre innovation emblématique qui utilise l\'air pressurisé dans une membrane souple et résistante pour offrir un amorti en toute légèreté.', './img/imgBDD/chaussure2.jpg', 'Cuir 100%'),
+(4, 2, 9, 9, 'Timberland', 'Inspirées par le style de vie urbain, nos collections Timberland sont parfaites pour n\'importe quelle occasion cet automne et cet hiver. Conçue pour être polyvalente et durable, notre collection de chaussures gardera vos pieds confortables à chaque pas.', './img/imgBDD/chaussure3.jpg', 'Cuir 100%'),
+(5, 3, 10, 6, 'Sac à dos LEVELS', ' Sac à dos 40lt avec compartiment principal et intermédiaires séparés. Grande poche devant avec attaches. Bretelles et panneau arrière rembourrés. Base résistante et imperméable plus une housse de pluie.', './img/imgBDD/accesoire1.jpg', 'Nylon 100%'),
+(7, 1, 5, 2, 'Selfie', 'Pulls Selfie parfait pour l\'automne ', './img/imgBDD/vetement1.jpg', 'Laine 100%'),
+(8, 1, 6, 2, '#Wolf', 'Pulls au design original chaud et doux pour toutes les saisons ', './img/imgBDD/vetement2.jpg', 'Laine 50%\nCoton 50%'),
+(9, 1, 12, 2, 'The North Face', 'Pulls au design original chaud et doux pour l\'hiver ', './img/imgBDD/vetement3.png', 'Laine 100%'),
+(10, 1, 4, 2, 'Toronto Canada 1994', 'Pulls parfait pour toutes les saisons', './img/imgBDD/vetement4.jpg', 'Laine 100%'),
+(11, 2, 3, 3, 'Adidas Forum low blanc et bleu', 'Plus qu\'une chaussure, c\'est un message. La chaussure adidas Forum a fait son apparition en 1984 et s\'est faite remarquer sur les parquets et dans le monde de la musique. Cette chaussure classique ravive l\'attitude des 80\'s, l\'énergie explosive des parquets et l\'iconique design avec une bride en X à la cheville, dans une version basse conçue pour la rue.', './img/imgBDD/chaussure4.jpg', 'Cuir 100%'),
+(12, 2, 4, 3, 'Puma Suede', 'Plus qu\'une chaussure, c\'est un message.', './img/imgBDD/chaussure5.jpg', 'Cuir 100%'),
+(13, 2, 4, 5, 'Tong Havaianas', 'Plus qu\'une chaussure, c\'est un message.', './img/imgBDD/chaussure6.jpg', 'Caoutchouc 100%'),
+(14, 2, 4, 9, 'Escarpin', 'Chaussure en cuir marron très elegantee', './img/imgBDD/chaussure7.jpg', 'Cuir 100%'),
+(15, 2, 1, 3, 'Nike Air Force 1', 'Chaussure nike plein de couleur et de vie', './img/imgBDD/chaussure8.jpg', 'Cuir 100%'),
+(16, 2, 5, 3, 'Converse Heart', 'Chaussure converse de la Saint-Valentin', './img/imgBDD/chaussure9.jpg', 'Tissu 100%'),
+(17, 2, 8, 3, 'New Balance 997', 'Chaussure new balance grise', './img/imgBDD/chaussure10.jpg', 'Tissu 100%'),
+(18, 2, 1, 3, 'Nike Air New Delhi', 'Chaussure nike personnalisé venu d\'Inde et plus précisément New Delhi', './img/imgBDD/chaussure11.jpg', 'Cuir 100%'),
+(22, 2, 8, 3, 'New Balance 327', 'Chaussure new balance', './img/imgBDD/chaussure12.jpg', 'Cuir 100%'),
+(23, 2, 5, 3, 'Converse All Star', 'Chaussure Converse All Star', './img/imgBDD/chaussure13.jpg', 'Tissu 100%');
 
 -- --------------------------------------------------------
 
@@ -847,7 +678,8 @@ CREATE TABLE `utilisateur` (
 INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `pseudo`, `mdp`, `email`, `dateNaissance`, `role`, `adresse`, `codePostal`, `ville`, `pays`) VALUES
 (9, 'Hublart', 'Lucas', 'Nosake', '925fcbb99aa0ce4847aa5abbd49d811c', 'hublartlucas@gmail.com', '2003-01-10', 'Client', '19 avenue wilson', '90001', 'Belfort', 'France'),
 (10, 'Hublart2', 'Agnes', 'maman', '4792cb8c4540464597b0b2363426fb4b', 'ahublart@free.fr', '1977-11-01', 'Client', '4 rue Philibert de Mare', '21560', 'Couternon', 'France'),
-(11, 'Hublart', 'Fred', 'papa2', '99dd74473c34d6953df167fa206a60c5', 'fhublart@free.fr', '1976-07-11', 'Client', '4 rue Philibert de Mare', '21560', 'Couternon', 'France');
+(11, 'Hublart', 'Fred', 'papa2', '99dd74473c34d6953df167fa206a60c5', 'fhublart@free.fr', '1976-07-11', 'Client', '4 rue Philibert de Mare', '21560', 'Couternon', 'France'),
+(12, 'Covez', 'Thomas', 'Thomas_cvz', '925fcbb99aa0ce4847aa5abbd49d811c', 'covezthomas@gmail.com', '2005-12-25', 'Client', '21 rue des fougeres', '95540', 'Mery-Sur-Oise', 'France');
 
 --
 -- Index pour les tables déchargées
@@ -961,13 +793,13 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `commandes`
 --
 ALTER TABLE `commandes`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `commandeslignes`
 --
 ALTER TABLE `commandeslignes`
-  MODIFY `idCommandesLignes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idCommandesLignes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `couleurproduit`
@@ -1015,7 +847,7 @@ ALTER TABLE `typeproduit`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Contraintes pour les tables déchargées

@@ -149,11 +149,11 @@ hr{
     transform: rotate(45deg);
 }
 
-
+/*fenetre connexion*/
 .modal {
     display: none;
     position: absolute;
-    top: 25%;
+    top: 200px;
     left: 35%;
     width: 30%;
     background-color: #fff;
