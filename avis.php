@@ -13,7 +13,10 @@
     
             // Requête SQL avec les valeurs échappées
             $query = "INSERT INTO avis (idUtilisateur, idProduit, note, avis) 
-                      VALUES ((SELECT idUtilisateur FROM utilisateur WHERE email = '" . $SQLconn->loginStatus->userEmail . "'), $idProduit, $avisNote, '$avisCommentaire')";
+                      VALUES ((SELECT idUtilisateur 
+                      FROM utilisateur 
+                      WHERE email = '" . $SQLconn->loginStatus->userEmail . "'),
+                      $idProduit, $avisNote, '$avisCommentaire')";
     
             // Exécutez la requête SQL
             if ($SQLconn->query($query)) {
@@ -35,11 +38,10 @@
 
         // Requête SQL pour récupérer toutes les catégories
         $query = "SELECT a.note AS noteAvis, a.avis AS Avis, p.nom AS nomProduit, 
-                GROUP_CONCAT(DISTINCT u.pseudo ORDER BY u.pseudo ASC) AS nomUtilisateur
+                    u.pseudo  AS nomUtilisateur
                     FROM avis a
                     LEFT JOIN utilisateur u ON a.idUtilisateur = u.idUtilisateur
                     LEFT JOIN produit p ON a.idProduit = p.idProduit
-                    GROUP BY u.pseudo
                     ORDER BY RAND()
                     LIMIT 2";
 
