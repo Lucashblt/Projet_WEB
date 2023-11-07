@@ -139,6 +139,8 @@ class SQLconn{
 
         return $returnArray;
     }
+
+    
     //Proxy qui appelle query sur conn. Juste là pour le confort
 	//--------------------------------------------------------------------------------
 	function query($stringQuery){

@@ -158,7 +158,7 @@
         global $SQLconn; // Utilisez la connexion SQL
 
         $query = "SELECT dp.idProduit AS idProduit, tap.taille AS nomTaille, cp.nom AS nomCouleur, 
-        p.nom AS nomProduit, p.photoProduit AS photoProduit 
+        p.nom AS nomProduit, p.photoProduit AS photoProduit , dp.stock AS stock
             FROM declinaisonproduit dp
             INNER JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
             INNER JOIN tailleproduit tap ON dp.idTaille=tap.idTaille
@@ -202,8 +202,11 @@
     
                 $query = "INSERT INTO commandeslignes(idCommande, idDeclinaison, idPrix, quantite)
                         VALUES ($idCommande, $idDeclinaison, $idPrix, $quantite)";
-    
+
+                $query2 = "UPDATE declinaisonproduit SET stock = stock - $quantite WHERE idDeclinaison = $idDeclinaison";
+
                 if ($SQLconn->query($query)) {
+                    $SQLconn->query($query2);
                     //echo '<h3 class="successMessage">Ligne de commande ajoutée avec succès</h3>';
                 } else {
                     //echo '<h3 class="errorMessage">Erreur lors de l\'insertion de la ligne de commande</h3>';

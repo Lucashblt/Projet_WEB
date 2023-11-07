@@ -22,7 +22,6 @@
         // Gérer le cas où aucune information d'utilisateur n'est trouvée
         echo "Aucune information d'utilisateur trouvée.";
     }
-
     
 ?>
 <!DOCTYPE html>
@@ -67,8 +66,6 @@
                             <input type="text" id="mel" name="mel" value="<?php echo $user['email']; ?>" disabled>
                             <label for="date_naissance">Date de naissance :</label>
                             <input type="date" id="date_naissance" name="date_naissance" value="<?php echo $user['dateNaissance']; ?>" disabled>
-                            <label for="mdp">Mot de passe :</label>
-                            <!--<input type="password" id="mdp" name="mdp" value="<?php echo $user['password']; ?>" disabled> -->
                             <h3>Adresse de livraison</h3>
                             <label for="adresse">Adresse :</label>
                             <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>" disabled>
@@ -153,6 +150,7 @@
     ?>
     <script>
         //----------------------------------------------------------------------------
+        
         // Récupérez tous les liens du menu
         const menuLinks = document.querySelectorAll(".menu a");
 
@@ -213,7 +211,7 @@
             showOrdersButton.style.display = 'none';
         });
         //----------------------------------------------------------------------------
-
+        
         //----------------------------------------------------------------------------
         function checkEmail(email) {
              var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

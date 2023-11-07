@@ -9,8 +9,7 @@
     include("./avis.php");
     include("./functionpanier.php");
     include('./navbar.php');
-    
-    
+       
     
     // Initialise le path du produit
     $idProduit = $_GET['idProduit'];
@@ -38,8 +37,6 @@
 </head>
 <body>
     <?php
-        
-
         if($avis["success"]){
             echo '<h3 class="successMessage">Avis insérer avec succès !</h3>';
         }
@@ -99,12 +96,12 @@
                             <div class="tags">                                
                                 <?php 
                                     foreach ($productColors as $color) { 
-                                        if($color == $productColors[0]){?>
-                                            <input type="radio" name="couleur" value="<?php echo $color; ?>" id="<?php echo $color; ?>" checked />
-                                        <?php }else{?>
-                                            <input type="radio" name="couleur" value="<?php echo $color; ?>" id="<?php echo $color; ?>" />
-                                        <?php } ?>    
-                                        <label for="<?php echo $color; ?>"><?php echo $color; ?></label>
+                                            if($color == $productColors[0]){?>
+                                                <input type="radio" name="couleur" value="<?php echo $color; ?>" id="<?php echo $color; ?>" checked />
+                                            <?php }else{?>
+                                                <input type="radio" name="couleur" value="<?php echo $color; ?>" id="<?php echo $color; ?>" />
+                                            <?php } ?>    
+                                            <label for="<?php echo $color; ?>"><?php echo $color; ?></label>
                                 <?php } ?>
                             </div>
                             <?php if($loggedIn) { ?>

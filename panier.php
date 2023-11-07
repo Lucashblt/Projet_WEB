@@ -35,10 +35,6 @@
   <title>Panier</title>
 </head>
 <body>
-  <?php
-      
-      //var_dump($_SESSION['panier']);
-  ?>
 <table>
   <tr>
       <th>Produit</th>
@@ -64,6 +60,7 @@
             $couleurProduit = $productData['nomCouleur'];
             $nomProduit = $productData['nomProduit'];
             $photoProduit = $productData['photoProduit'];
+            $stock = $productData['stock'];
             $prixNet = getPriceById($idPrix);
             $prixTotal = $prixNet * $selectedQuantity;
             ?>
@@ -87,6 +84,15 @@
             <label for="quantity"></label>
             <div class="quantity-input">
                 <button class="quantity-btn minus" name="moins"><span>-</span></button>
+                  <?php
+                      if($selectedQuantity > $stock){
+                        $selectedQuantity = $stock;
+                        echo '<script>alert("Stock insuffisant")</script>';
+                        ?>
+                        <input type="number" name="quantity" id="quantity" min="0" max="<?php echo $stock; ?>" value="<?php echo $selectedQuantity; ?>" onkeyup="onlyNumber();">
+                        <?php
+                      }
+                  ?>
                   <input type="number" name="quantity" id="quantity" min="0" max="9" value="<?php echo $selectedQuantity; ?>" onkeyup="onlyNumber();">
                 <button class="quantity-btn plus" name="plus"><span>+</span></button>
             </div>
@@ -115,6 +121,8 @@
   </table>
   <form action="panier.php" method="post">
     <div class="container">
+      <input type="hidden" name="idDeclinaison" value="<?php echo $key; ?>">
+      <input type="hidden" name="stock" value="<?php echo $stock; ?>">
       <input type="hidden" name="total" value="<?php echo $total; ?>">
       <button class="order" name="order">
         <span class="default">Validé Panier</span>
@@ -155,6 +163,7 @@
       <td><p>Total du Panier : <?php echo $total; ?> €</p></td>
   </tr>
   </table>
+  <!-- button disabled si le panier est vide -->
   <div class="container">
     <button class="order" disabled>
       <span class="default">Validé Panier</span>
@@ -178,13 +187,6 @@
     <?php
   }
 ?>
-
-
- 
-
-  
-
-
   <div class="footer">
     <?php
         include('footer.html');

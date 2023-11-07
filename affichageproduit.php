@@ -54,19 +54,8 @@
     function getAllProducts($categories, $limit, $offset, $trieproduit, $typeProduits) {
         global $SQLconn; // Utilisez la connexion SQL
 
-        // Requête SQL pour récupérer toutes les informations des produits
-        $query = "SELECT p.idProduit AS idProduit, p.nom AS productName, p.photoProduit AS productImage,
-                GROUP_CONCAT(DISTINCT cp.nom ORDER BY cp.nom ASC) AS colors, pp.prixNet AS productPrice
-                FROM produit p
-                INNER JOIN declinaisonproduit dp ON p.idProduit=dp.idProduit
-                LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
-                LEFT JOIN prixproduit pp ON p.idProduit = pp.idProduit
-                LEFT JOIN categorie c ON p.idCategorie = c.idCategorie
-                LEFT JOIN typeproduit tp ON p.idCategorie = tp.idCategorie
-                WHERE c.nom= '$categories'";
-
         $query ="SELECT p.idProduit AS idProduit, p.nom AS productName, p.photoProduit AS productImage,
-               GROUP_CONCAT(td_couleur.nom order by td_couleur.nom ) as colors, pp.prixNet AS productPrice    
+                GROUP_CONCAT(td_couleur.nom order by td_couleur.nom ) as colors, pp.prixNet AS productPrice    
                 FROM produit p
                 LEFT JOIN typeproduit tp ON p.idType = tp.idType
                 LEFT JOIN categorie c ON tp.idCategorie = c.idCategorie
@@ -143,31 +132,37 @@
     function getProductById($idProduit){
         global $SQLconn; // Utilisez la connexion SQL
         
-        // Requête SQL pour récupérer toutes les informations des produits
-
-        $query = "SELECT  p.nom AS productName,
-            p.photoProduit AS productImage,
-            p.description AS productDescription, 
-            p.matiereProduit AS productMaterial,
-            GROUP_CONCAT( DISTINCT cp.nom)  AS colors, 
-            pp.prixNet AS productPrice,
-            GROUP_CONCAT( DISTINCT tap.taille ) AS sizes
-            FROM produit p
-            INNER JOIN declinaisonproduit dp ON p.idProduit = dp.idProduit
-            LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
-            LEFT JOIN prixproduit pp ON p.idProduit = pp.idProduit
-            LEFT JOIN typeproduit tp ON p.idCategorie = tp.idCategorie
-            INNER JOIN tailleproduit tap ON tp.idType=tap.idType
-            WHERE p.idProduit = $idProduit";
-
-
-        // Exécutez la requête SQL
+        //regarde si le produit existe
+        $query="SELECT nom FROM produit WHERE idProduit = $idProduit";
         $result = $SQLconn->query($query);
-        if ( $result->num_rows != 0 ){
-            $products = $result->fetch_all(MYSQLI_ASSOC);
-            return $products;
-        }else{
+        if ( $result->num_rows == 0 ){
             return 0;
+        }else{
+            // Requête SQL pour récupérer toutes les informations des produits    
+            $query = "SELECT  p.nom AS productName,
+                p.photoProduit AS productImage,
+                p.description AS productDescription, 
+                p.matiereProduit AS productMaterial,
+                GROUP_CONCAT( DISTINCT cp.nom)  AS colors, 
+                pp.prixNet AS productPrice,
+                GROUP_CONCAT( DISTINCT tap.taille ) AS sizes
+                FROM produit p
+                INNER JOIN declinaisonproduit dp ON p.idProduit = dp.idProduit
+                LEFT JOIN couleurproduit cp ON dp.idCouleur = cp.idCouleur
+                LEFT JOIN prixproduit pp ON p.idProduit = pp.idProduit
+                LEFT JOIN typeproduit tp ON p.idCategorie = tp.idCategorie
+                INNER JOIN tailleproduit tap ON tp.idType=tap.idType
+                WHERE p.idProduit = $idProduit";
+
+
+            // Exécutez la requête SQL
+            $result = $SQLconn->query($query);
+            if ( $result->num_rows != 0 ){
+                $products = $result->fetch_all(MYSQLI_ASSOC);
+                return $products;
+            }else{
+                return 0;
+            }
         }
     }
 ?>
