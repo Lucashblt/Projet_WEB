@@ -20,10 +20,11 @@
 
     function createCart(){
         if (!isset($_SESSION['panier'])){
-            $_SESSION['panier']=array();
-            $_SESSION['panier']['idDeclinaison'] = array();
-            $_SESSION['panier']['selectedQuantity'] = array();
-            $_SESSION['panier']['idPrix'] = array();
+            $_SESSION['panier'] = array(
+                'idDeclinaison' => array(),
+                'selectedQuantity' => array(),
+                'idPrix' => array()
+            );
          }
         return true;
     }

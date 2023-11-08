@@ -24,8 +24,6 @@
     deleteCart();
   }
 
-
-  
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -44,9 +42,9 @@
 
   <?php
     $total = 0;
-    if (isset($_SESSION['panier'])) {
+    $nbProduit = countProduct();
+    if (isset($_SESSION['panier']) && $nbProduit > 0) {
       $panier = $_SESSION['panier'];
-
       foreach ($panier['idDeclinaison'] as $key => $idDeclinaison) {
         $selectedQuantity = $panier['selectedQuantity'][$key];
         $idPrix = $panier['idPrix'][$key];
@@ -87,7 +85,9 @@
                   <?php
                       if($selectedQuantity > $stock){
                         $selectedQuantity = $stock;
-                        echo '<script>alert("Stock insuffisant")</script>';
+                        echo '<script>alert("Stock insuffisant, il ne reste que ' . $selectedQuantity . '
+                        exmplaires pour le produit ' . $$nomProduit . ' en taille ' . $produitTaille .' et 
+                        couleur ' . $couleurProduit . '")</script>';
                         ?>
                         <input type="number" name="quantity" id="quantity" min="0" max="<?php echo $stock; ?>" value="<?php echo $selectedQuantity; ?>" onkeyup="onlyNumber();">
                         <?php
@@ -163,27 +163,6 @@
       <td><p>Total du Panier : <?php echo $total; ?> €</p></td>
   </tr>
   </table>
-  <!-- button disabled si le panier est vide -->
-  <div class="container">
-    <button class="order" disabled>
-      <span class="default">Validé Panier</span>
-      <span class="success">Order Placed
-        <svg viewbox="0 0 12 10">
-          <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-        </svg>
-      </span>
-      <div class="box"></div>
-      <div class="truck">
-        <div class="back"></div>
-        <div class="front">
-          <div class="window"></div>
-        </div>
-        <div class="light top"></div>
-        <div class="light bottom"></div>
-      </div>
-        <div class="lines"></div>
-    </button>
-  </div>
     <?php
   }
 ?>
