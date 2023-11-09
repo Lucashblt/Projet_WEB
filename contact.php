@@ -1,6 +1,7 @@
 <?php
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
+    include('navbar.php');
     // FAQ avec les questions et les réponses
     $faq = array(
         "Q1: J’ai trouvé les baskets que je veux, mais je ne peux pas sélectionner ma taille" => "Nous nous excusons pour le désagrément. Si vous ne parvenez pas à sélectionner votre taille, cela peut être dû à une rupture de stock ou à une erreur technique. Veuillez vérifier notre site ultérieurement ou contactez notre service client pour obtenir de l'aide.",
@@ -24,9 +25,6 @@
     <title>Contact</title>
 </head>
 <body>
-    <?php
-        include('navbar.php');
-    ?>
     <div class="container">
         <div class="menu">
             <ul>
@@ -41,14 +39,14 @@
                 <p>Nom de l'entreprise : WOOLIFY</p>
                 <p>Adresse : 123 Rue de l'Entreprise, Ville, Pays</p>
                 <p>Téléphone : +33 123-456-7890</p>
-                <p>Email : info@votreentreprise.com</p>
+                <p>Email : contact@entreprise.com</p>
             </div>
             <div class="customer-service">
                 <h2>Service Client</h2>
                 <ul>
                     <li><strong>Horaires d'ouverture :</strong> Lundi au vendredi, 9h00 - 17h00</li>
                     <li><strong>Assistance par téléphone :</strong> +33 123-456-7890</li>
-                    <li><strong>Assistance par email :</strong> support@votreentreprise.com</li>
+                    <li><strong>Assistance par email :</strong> support@entreprise.com</li>
                 </ul>
             </div>
 
@@ -66,7 +64,7 @@
     </div>
     
     <?php
-            include('footer.html');
+            include('footer.php');
     ?>
 
 </body>

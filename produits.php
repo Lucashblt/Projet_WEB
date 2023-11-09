@@ -51,7 +51,7 @@
             ?>
             <div class="footer">
             <?php
-                include('footer.html');
+                include('footer.php');
             ?>
             </div>
             <?php
@@ -179,12 +179,14 @@
                     </form>
                 </div>
             </div>    
-            <?php
-            include('footer.html');
+        <?php
         } 
     ?>
+    <?php
+        include('footer.php');
+    ?>
+
     <script>
-        
         //Gestion quantite
         //----------------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', function() {
@@ -216,40 +218,6 @@
         });
        
         //----------------------------------------------------------------------------
-        
-        
-        //----------------------------------------------------------------------------
-        // Sélectionnez tous les tags par leur classe
-        const tags = document.querySelectorAll(".tag");
-
-        // Élément pour stocker la couleur sélectionnée
-        let selectedColor = null;
-
-        // Écouteur d'événements pour le clic sur un tag
-        tags.forEach(tag => {
-            tag.addEventListener("click", (event) => {
-                // Récupérez la couleur à partir de l'attribut data-color
-                const clickedColor = event.currentTarget.getAttribute("data-color");
-
-               // event.currentTarget.classList.toggle("selected");
-
-               // Si une couleur est déjà sélectionnée, annulez la sélection en supprimant la classe "selected"
-                if (selectedColor) {
-                    const previouslySelectedTag = document.querySelector(`.tag[data-color="${selectedColor}"]`);
-                    previouslySelectedTag.classList.remove("selected");
-                }
-
-                // Sélectionnez la nouvelle couleur en ajoutant la classe "selected"
-                event.currentTarget.classList.add("selected");
-                selectedColor = clickedColor;
-
-                // Faites ce que vous voulez avec la couleur sélectionnée (par exemple, affichez-la)
-                alert("Vous avez choisi la couleur : " + selectedColor);
-            });
-        });
-        //----------------------------------------------------------------------------
-
-
 
         // Etoiles formulaire avis
         //----------------------------------------------------------------------------

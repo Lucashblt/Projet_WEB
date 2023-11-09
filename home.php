@@ -3,6 +3,7 @@
     include("./initialize.php");
     include("./affichageproduit.php");
     include("./avis.php");
+    include('navbar.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +15,6 @@
         <title>Accueil</title>
     </head>
     <body>
-    <?php
-        include('navbar.php');
-    ?>
         <div class="acceuil">
             <h1> Bienvenue sur Woolify 
                 <?php 
@@ -27,9 +25,7 @@
                         $row = $result->fetch_assoc();
                         $pseudo = $row["pseudo"];
                         echo $pseudo;
-
                     }
-
                     ?>
             </h1>
             <br>
@@ -115,36 +111,10 @@
                     echo '</div>';
                 }
             ?>
-            <!--
-            <div class="avis-item">
-                <div class="avis-header">
-                    <span class="user">Utilisateur 1</span>
-                    <span class="rating">
-                        <span class="stars">★★★☆☆</span>
-                        <span class="note">3.0</span>
-                    </span>
-                </div>
-                <p class="commentaire">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Nulla dapibus felis eu orci blandit.
-                    <br><i>Avis laissé pour le produit XYZ</i></p>
-            </div>
-            <div class="avis-item">
-                <div class="avis-header">
-                    <span class="user">Utilisateur 2</span>
-                    <span class="rating">
-                        <span class="stars">★★★★★</span>
-                        <span class="note">5.0</span>
-                    </span>
-                </div>
-                <p class="commentaire">Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat. Sed aliquam sapien nec nisi vestibulum, etiam cursus nulla eu sapien volutpat.
-                    <br><i>Avis laissé pour le produit XYZ</i></p>
-            </div>
-            -->
         </div>
         <div class="footer">
         <?php
-            include('footer.html');
-
-            $SQLconn->DisconnectDatabase();
+            include('footer.php');
         ?>
         </div>
     </body>

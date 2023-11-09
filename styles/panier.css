@@ -1,11 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  font-family: Georgia, serif;
-}
 html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -41,22 +33,6 @@ body .dribbble img {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.successMessage{
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  color: white;
-  background-color: green;
-}
-
-.errorMessage{
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  color: white;
-  background-color: red;
 }
 
 table {

@@ -2,6 +2,7 @@
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
     include("./affichageproduit.php");
+    include('navbar.php');
 
     // Obtenez toutes les catégories avec images et types
     $allCategoriesWithImagesAndTypes = getAllCategoriesWithImagesAndTypes();
@@ -16,9 +17,6 @@
     <title>Boutique</title>
 </head>
 <body>
-    <?php
-        include('navbar.php');
-    ?>
     <h3>Catalogue</h3>
     <div class="products">
         <?php
@@ -37,11 +35,8 @@
             }
         ?>
     </div>
-    <div class="footer">
     <?php
-            include('footer.html');
+        include('footer.php');
     ?>
-
-    </div>
 </body>
 </html>

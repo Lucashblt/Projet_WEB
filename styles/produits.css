@@ -1,31 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-}
-body {
-    font-family: Georgia, serif;
+body {  
     min-height: 100vh;
-    
     background: #f5f5f5;
     position: relative;
     padding-bottom: 150px;
 }
-.successMessage{
-    text-align: center;
-    padding: 20px;
-    color: white;
-	background-color: green;
-}
 
-.errorMessage{
-    text-align: center;
-    padding: 20px;
-    color: white;
-	background-color: red;
-}
 
 .product-path{
     padding: 10px;
@@ -100,28 +79,12 @@ h2 {
 
 .tags {
     margin: 0;
+    padding-top: 5px;
     font-size: 1em;
     cursor: pointer;
 }
 
-.tag{
-    padding: 0.35em 0.65em;
-    color: #fff;
-    border: 1.5px solid rgba(255 255 255 / 0.4);
-    border-radius: 4px;
-    border-radius: 50px;
-}
-.tag:hover {
-    color: #000;
-    background-color: #fff;
-}
-
-.selected {
-    color: #000;
-    background-color: #fff;
-}
-
-p {
+.product-info p {
     font-family: Georgia, serif;
     font-size: 0.9em;
     margin: 1em 0;
@@ -322,9 +285,3 @@ textarea {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-/*
-.footer{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }*/

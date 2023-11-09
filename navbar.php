@@ -1,7 +1,7 @@
 <?php
     include_once("functionpanier.php");
 
-    // Check if the user is logged in
+    // Si l'utilisateur est log crée un panier vide
     if ($SQLconn->loginStatus->loginSuccessful) {
         $loggedIn = true;
         demarrer_session();
@@ -135,25 +135,6 @@
             loginModal.style.display = "none";
         }
     });
-    // Fermer la fenêtre modale lorsque la souris quitte MonCompte
-    /*
-    MonCompte.addEventListener('mouseleave', () => {
-        if (IsOnLogin === false) {
-            loginModal.style.display = "none";
-        }
-        IsOnLogin = false;
-    });
-    loginModal.addEventListener('mouseenter', () => {
-        IsOnLogin = true;
-    });
-    
-    loginModal.addEventListener('mouseleave', () => {
-        IsOnLogin = false;
-        if (IsOnLogin == false) {
-            loginModal.style.display = "none";
-        }
-    });
-*/
     //----------------------------------------------------------------------------
     //fenetre openmodal pour se connecter
     //----------------------------------------------------------------------------
@@ -167,9 +148,6 @@
     closeModalButton.addEventListener('click', () => {
         modal.style.display = "none"
     })
-    //----------------------------------------------------------------------------
-
-    //----------------------------------------------------------------------------
     //----------------------------------------------------------------------------
 </script>
 </html>

@@ -1,6 +1,7 @@
 <?php
    //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
+    include('navbar.php');
 
     //Sur cette page, on doit lancer la fonction qui s'occupe de gérer la
     //réception d'un formulaire de création de compte
@@ -17,9 +18,6 @@
 </head>
 <body> 
 <?php
-    include('navbar.php');
-    //On utilise le retour de Process_NewAccount_Form(), un tableau associatif, pour afficher 
-    //un message de réussite ou d'erreur, selon le cas.
     if($newAccountStatus["success"]){
         echo '<h3 class="successMessage">Nouveau compte crée avec succès!</h3>';
     }
@@ -52,7 +50,7 @@
     </div>
     <div class="footer">
         <?php 
-            include('footer.html'); 
+            include('footer.php'); 
             //Déconnection de la BDD en fin de page (plus propre)
             $SQLconn->DisconnectDatabase();
         ?>

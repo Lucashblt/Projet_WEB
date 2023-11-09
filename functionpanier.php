@@ -13,7 +13,7 @@
         if( ($_SESSION['time'] + $tempsMaxSession) >= time() ) {   
         // Si l'action sur la session date de moins de $tempsMaxSession
             $_SESSION['time'] = time();            // Session reactialisé
-        }else{                                       // Sinon
+        }else{                                    
             session_destroy();                 // Session detruite
         }
     }

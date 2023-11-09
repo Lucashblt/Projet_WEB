@@ -1,11 +1,4 @@
-*{
-    margin : 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-}
 body{
-    font-family: Georgia, serif;
     background-image: url('../img/background_inscription.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -15,21 +8,6 @@ body{
     position: relative;
     padding-bottom: 150px;
 }
-
-.successMessage{
-    text-align: center;
-    padding: 20px;
-    color: white;
-	background-color: green;
-}
-
-.errorMessage{
-    text-align: center;
-    padding: 20px;
-    color: white;
-	background-color: red;
-}
-
 
 .form-container {
     margin: 0 auto;

@@ -12,7 +12,6 @@
 
         if (!empty($moreProducts)) {
             foreach ($moreProducts as $productData) {
-                // Créez ici les cartes de produits pour les produits supplémentaires
                 $productID = $productData['idProduit'];
                 $productName = $productData['productName'];
                 $productImage = $productData['productImage'];

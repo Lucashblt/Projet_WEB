@@ -1,16 +1,22 @@
 <?php
   include("./initialize.php");
   include('navbar.php');
-
+  /*si l'on vide le panier*/
   if(isset($_POST['delete_cart'])) { 
     deleteCart();
   }
+  /*si l'on modifie la quantité*/
   if (isset($_POST['quantity'])){
     if(isset($_POST['plus'])){
       $idDeclinaison = $_POST['idDeclinaison'];
       $selectedQuantity = $_POST['quantity'];
-      $selectedQuantity++;
-      updateQuantiteProduct($idDeclinaison, $selectedQuantity);
+      if ($selectedQuantity == 9){
+        $selectedQuantity = 9;
+        echo '<script>alert("Vous ne pouvez pas commander plus de 9 exemplaires")</script>';
+      }else{
+        $selectedQuantity++;
+        updateQuantiteProduct($idDeclinaison, $selectedQuantity);
+      }
     }elseif(isset($_POST['moins'])){
       $idDeclinaison = $_POST['idDeclinaison'];
       $selectedQuantity = $_POST['quantity'];
@@ -18,6 +24,7 @@
       updateQuantiteProduct($idDeclinaison, $selectedQuantity);
     }
   }
+  /*si l'on valide le panier*/
   if(isset($_POST['order'])) { 
     $total = $_POST['total'];
     insertCommande($total);
@@ -79,6 +86,7 @@
             <input type="hidden" name="idProduit" value="<?php echo $idProduit; ?>">
             <input type="hidden" name="taille" value="<?php echo $produitTaille; ?>">
             <input type="hidden" name="couleur" value="<?php echo $couleurProduit; ?>">
+            <input type="hidden" name="stock" value="<?php echo $stock; ?>">
             <label for="quantity"></label>
             <div class="quantity-input">
                 <button class="quantity-btn minus" name="moins"><span>-</span></button>
@@ -86,14 +94,17 @@
                       if($selectedQuantity > $stock){
                         $selectedQuantity = $stock;
                         echo '<script>alert("Stock insuffisant, il ne reste que ' . $selectedQuantity . '
-                        exmplaires pour le produit ' . $$nomProduit . ' en taille ' . $produitTaille .' et 
+                        exemplaires pour le produit ' . $$nomProduit . ' en taille ' . $produitTaille .' et 
                         couleur ' . $couleurProduit . '")</script>';
                         ?>
-                        <input type="number" name="quantity" id="quantity" min="0" max="<?php echo $stock; ?>" value="<?php echo $selectedQuantity; ?>" onkeyup="onlyNumber();">
+                        <input type="number" name="quantity" id="quantity" min="0" max="<?php echo $stock; ?>" value="<?php echo $selectedQuantity; ?>" >
+                        <?php
+                      }else{
+                        ?>
+                        <input type="number" name="quantity" id="quantity" min="0" max="9" value="<?php echo $selectedQuantity; ?>" readonly>
                         <?php
                       }
-                  ?>
-                  <input type="number" name="quantity" id="quantity" min="0" max="9" value="<?php echo $selectedQuantity; ?>" onkeyup="onlyNumber();">
+                    ?>
                 <button class="quantity-btn plus" name="plus"><span>+</span></button>
             </div>
           </form>
@@ -151,7 +162,7 @@
       <td>
         <div class="viderpanier">
         <form method="post">
-          <button name="delete_cart" type="submit"><span>Vider panier</span></button>
+          <button name="delete_cart" type="submit" disabled><span>Vider panier</span></button>
         </form>
         </div>
       </td>
@@ -168,7 +179,7 @@
 ?>
   <div class="footer">
     <?php
-        include('footer.html');
+        include('footer.php');
     ?>
   </div>
 

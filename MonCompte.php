@@ -1,6 +1,7 @@
 <?php
     include("./initialize.php");
-    
+    include('navbar.php');
+
     ini_set('display_errors', 1); 
     error_reporting(E_ALL); 
 
@@ -33,7 +34,6 @@
 </head>
 <body>
     <?php
-        include('navbar.php');
         if($update["success"]){
             echo '<h3 class="successMessage">Mise à jour avec succès</h3>';
         }
@@ -146,11 +146,10 @@
     </div>
 
     <?php
-        include('footer.html');
+        include('footer.php');
     ?>
     <script>
         //----------------------------------------------------------------------------
-        
         // Récupérez tous les liens du menu
         const menuLinks = document.querySelectorAll(".menu a");
 
@@ -165,6 +164,7 @@
         });
 
         //----------------------------------------------------------------------------
+
         // bouton modifier/enregistrer
         //----------------------------------------------------------------------------
         // Déplacez ces déclarations en dehors de showContent pour qu'elles soient accessibles globalement
@@ -218,7 +218,6 @@
              return re.test(email);
          }
         function CheckLoginForm(){
-            var password = document.getElementById("mdp").value;
             var birthdate = new Date(document.getElementById("date_naissance").value);
             var today = new Date();
             var age = today.getFullYear() - birthdate.getFullYear();
@@ -229,10 +228,6 @@
                 return false;
             }else if (checkEmail(email) == false) {
                 alert("Veuillez entrer une adresse email valide.");
-                return false;
-            }
-            else if(password.length < 6){
-                alert("Les mots de passe de moins de 6 lettres ne sont pas autorisés!")
                 return false;
             }else{
                 //retour a l'etat initiale du form

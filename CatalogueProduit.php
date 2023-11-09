@@ -3,6 +3,7 @@
     include("./initialize.php");
 
     include("./affichageproduit.php");
+    include('navbar.php');
 
     //recupere la categorie
     $categories = $_GET['categorie'];
@@ -17,10 +18,6 @@
     <title>Catalogue Produit</title>
 </head>
 <body>
-    <?php
-        include('navbar.php');
-    ?>
-    
     <div class="filtres">
         <div class="filter-options">
             <form action="CatalogueProduit.php?categorie=<?php echo $categories; ?>" method="post">
@@ -98,7 +95,7 @@
     ?>
     <div class="footer">
     <?php
-        include('footer.html');
+        include('footer.php');
     ?>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -116,9 +113,9 @@
             $("#load-more-button").click(function () {
                 // Faites un appel AJAX pour récupérer plus de produits
                 $.ajax({
-                    url: "getMoreProducts.php?categorie=" + categorie, // Le fichier PHP pour récupérer les produits supplémentaires
+                    url: "getMoreProducts.php?categorie=" + categorie, 
                     type: "POST",
-                    //envoye le nombre actuel d'article afficher
+                    //envoye le nombre actuel d'article afficher plus les filtres
                     data: { count: currentCount, trieproduit: trieproduit, typeProduits: typeProduits}, 
                     success: function (response) {
                         if (response.trim() === "") {
