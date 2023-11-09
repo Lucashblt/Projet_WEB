@@ -1,5 +1,5 @@
 <?php
-    include_once("functionpanier.php");
+    include_once("function/functionpanier.php");
 
     // Si l'utilisateur est log crée un panier vide
     if ($SQLconn->loginStatus->loginSuccessful) {
@@ -78,7 +78,13 @@
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
                 <input type="text" id="email" name="email" placeholder="E-mail" required>
-                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <label>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <div class="password-icon">
+                        <i data-feather="eye"></i>
+                        <i data-feather="eye-off"></i>
+                    </div>
+                </label>
                 <button type="submit"><span>Connexion</span></button>
                 <hr>
                 <p>Vous n'avez pas de compte ? <a href="inscription.php">Inscrivez-vous</a></p>
@@ -93,7 +99,25 @@
 	}
 ?>
 </body>
+<script src="https://unpkg.com/feather-icons"></script>
 <script>
+    //voir mot de passe
+    feather.replace();
+    const eye = document.querySelector(".feather-eye");
+    const eyeoff = document.querySelector(".feather-eye-off");
+    const passwordField = document.querySelector("input[type=password]");
+
+    eye.addEventListener("click", () => {
+        eye.style.display = "none";
+        eyeoff.style.display = "block";
+        passwordField.type = "password";
+    });
+
+    eyeoff.addEventListener("click", () => {
+        eyeoff.style.display = "none";
+        eye.style.display = "block";
+        passwordField.type = "text";
+    });
     //----------------------------------------------------------------------------
     //menu hamburger
     const menuHamburger = document.querySelector(".menu-hamburger")

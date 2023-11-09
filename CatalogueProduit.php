@@ -1,8 +1,7 @@
 <?php
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
-
-    include("./affichageproduit.php");
+    include("./function/affichageproduit.php");
     include('navbar.php');
 
     //recupere la categorie
@@ -19,42 +18,36 @@
 </head>
 <body>
     <div class="filtres">
-        <div class="filter-options">
-            <form action="CatalogueProduit.php?categorie=<?php echo $categories; ?>" method="post">
-                <div class="filter-group">
-                    <label for="trieproduit">Tier par :</label>
-                    <select name="trieproduit" id="trieproduit">
-                        <option value="nomCroissant">De A à Z</option>
-                        <option value="nomDecroissant">De Z à A</option>
-                        <option value="prixCroissant">Prix : croissant</option>
-                        <option value="prixDecroissant">Prix : decroissant</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="typeProduits">Type de produit :</label>
-                    <select name="typeProduits" id="typeProduits">
-                        <option value="tous">Toutes les produits</option>
-                        <?php
-                            global $SQLconn; // Utilisez la connexion SQL
+        <form action="" method="post">
+                <label for="trieproduit">Tier par :</label>
+                <select name="trieproduit" id="trieproduit">
+                    <option value="nomCroissant">De A à Z</option>
+                    <option value="nomDecroissant">De Z à A</option>
+                    <option value="prixCroissant">Prix : croissant</option>
+                    <option value="prixDecroissant">Prix : decroissant</option>
+                </select>
+                <label for="typeProduits">Type de produit :</label>
+                <select name="typeProduits" id="typeProduits">
+                    <option value="tous">Toutes les produits</option>
+                    <?php
+                        global $SQLconn; // Utilisez la connexion SQL
 
-                            $query = "SELECT tp.nom from typeproduit tp
-                                INNER JOIN categorie c ON tp.idCategorie = c.idCategorie
-                                WHERE c.nom = '".$categories."'";
+                        $query = "SELECT tp.nom from typeproduit tp
+                            INNER JOIN categorie c ON tp.idCategorie = c.idCategorie
+                            WHERE c.nom = '".$categories."'";
 
-                            $result = $SQLconn->conn->query($query);
-                            if ($result && $result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . $row['nom'] . '">' . $row['nom'] . '</option>';
-                                }
+                        $result = $SQLconn->conn->query($query);
+                        if ($result && $result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<option value="' . $row['nom'] . '">' . $row['nom'] . '</option>';
                             }
-                        ?>
-                    </select>
-                </div>
-                <button class="button-submit" type="submit" name="submit"><span>Filtrer & Trier</span></button>
-            </form>
-        </div>
+                        }
+                    ?>
+                </select>
+            <button class="button-submit" type="submit" name="submit"><span>Filtrer & Trier</span></button>
+        </form>
     </div>
-    
+        
     <div class="products">
         <?php
             if(isset($_POST['submit'])){
@@ -113,7 +106,7 @@
             $("#load-more-button").click(function () {
                 // Faites un appel AJAX pour récupérer plus de produits
                 $.ajax({
-                    url: "getMoreProducts.php?categorie=" + categorie, 
+                    url: "function/getMoreProducts.php?categorie=" + categorie, 
                     type: "POST",
                     //envoye le nombre actuel d'article afficher plus les filtres
                     data: { count: currentCount, trieproduit: trieproduit, typeProduits: typeProduits}, 

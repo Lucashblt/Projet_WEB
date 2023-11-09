@@ -1,5 +1,4 @@
 <?php
-    
     function createProductCard($title, $imageSrc, $tags, $price) {
         $cardHtml = '
             <div class="card">

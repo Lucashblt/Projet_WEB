@@ -5,9 +5,9 @@
     }
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php"); 
-    include("./affichageproduit.php");
-    include("./avis.php");
-    include("./functionpanier.php");
+    include("./function/affichageproduit.php");
+    include("./function/avis.php");
+    include("./function/functionpanier.php");
     include('./navbar.php');
        
     

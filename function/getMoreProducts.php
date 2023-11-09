@@ -1,6 +1,6 @@
 <?php
 
-    include("initialize.php");
+    include("../initialize.php");
     include("affichageproduit.php");
 
     if (isset($_POST["count"])) {

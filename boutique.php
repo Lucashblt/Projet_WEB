@@ -1,7 +1,7 @@
 <?php
     //Initialise la constante ROOT et $SQLconn pour la BDD
     include("./initialize.php");
-    include("./affichageproduit.php");
+    include("./function/affichageproduit.php");
     include('navbar.php');
 
     // Obtenez toutes les catégories avec images et types

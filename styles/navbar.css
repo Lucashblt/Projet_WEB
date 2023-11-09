@@ -206,6 +206,29 @@ hr{
     transition: 0.2s ease-out; 
 }
 
+.modal-content label {
+    position: relative;
+}
+
+
+.modal-content label .password-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    transition: all 0.2s;
+}
+
+.modal-content label .password-icon:hover {
+    cursor: pointer;
+}
+
+.modal-content label .password-icon .feather-eye-off {
+display: none;
+}
 
 .navbar .menu-hamburger{
     display: none;
@@ -300,7 +323,7 @@ hr{
         display: none;
         position: absolute;
         z-index: 1001;
-        top: 35%;
+        top: 100px;
         left: 17.5%;
         width: 65%;
         padding: 12px;
@@ -354,7 +377,7 @@ hr{
         display: none;
         position: absolute;
         z-index: 1000;
-        top: 20%;
+        top: 100px;
         left: 17.5%;
         width: 65%;
         padding: 12px;
