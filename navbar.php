@@ -4,6 +4,7 @@
     // Si l'utilisateur est log crée un panier vide
     if ($SQLconn->loginStatus->loginSuccessful) {
         $loggedIn = true;
+        
         demarrer_session();
         actualiser_session();
         createCart();
