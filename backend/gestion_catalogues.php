@@ -1,74 +1,127 @@
 <?php
-    session_start();
-    include 'db.php'; // Assurez-vous que ce chemin est correct
+    include "../initialize.php";
+    include "../backend/functioncatalogue.php";
 
-    // Vérification si l'utilisateur est connecté
-    if (!isset($_SESSION['user_id'])) {
-        // Utilisateur non connecté, redirection vers la page d'index du back-end
-        header('Location: index.php');
-        exit;
-    } elseif ($_SESSION['role'] != 'gerant') {
-        // Utilisateur connecté en tant que client, redirection vers la page d'index du front-end
-        header('Location: ../../home.php');
-        exit;
+
+    $loggedIn = false;
+
+    if ($SQLconn->loginStatus->loginSuccessful) {
+        $loggedIn = true;
+        
+        $query ="SELECT role from utilisateur where email ='" . $SQLconn->loginStatus->userEmail . "'";
+        $result = $SQLconn->conn->query($query);
+
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $role = $row["role"];
+            if ($role == "Client") {  
+                $redirect = "Location:../home.php";
+                header($redirect);
+            } else {
+                $redirect = "Location:../backend/index.php";
+            }
+            
+        }
+    } else {
+        $loggedIn = false;
+    }
+    
+    //suprimer categorie
+    if (isset($_POST["delete"])) {
+        // Récupérez l'idCategorie à partir du formulaire
+        $idCategorie = $_POST["idCategorie"];
+        deleteCategorie($idCategorie);
+
     }
 
-    // Exécution de la requête pour récupérer les catalogues et leur nombre de produits
-    $sql = "SELECT c.nom, COUNT(p.idProduit) as nombreProduits FROM categorie c LEFT JOIN produit p ON c.idCategorie = p.idCategorie GROUP BY c.idCategorie";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $catalogues = $stmt->fetchAll();
+    if (isset($_POST['edit'])) {
+        // Récupérez l'id de la catégorie à partir du formulaire
+        $idCategorie = $_POST['idCategorie'];
+    
+        // Récupérez le nouveau nom de la catégorie à partir du formulaire
+        $nouveauNomCategorie = $_POST['nouveauNomCategorie'];
+        updateNameCategorie($idCategorie, $nouveauNomCategorie);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Gestion des Catalogues</title>
-    <!-- Liens vers CSS et autres ressources -->
+    <link rel="stylesheet" href="../backend/styles/gestioncategorie.css">
 </head>
 <body>
     <h1>Gestion des Catalogues</h1>
+    <div class="lien">
+        <a href="index.php">Page d'Accueil</a>
+        <a href="inventaire_commandes.php">Inventaire Commandes</a>
+        <a href="gestion_produits.php">Gestion des produits</a>
+        <form action="../logout.php" method="POST"> 
+            <input type="hidden" value="logout" name="logout"></input>
+            <button type="submit"><span>Se déconnecter</span></button>
+        </form>
+    </div>     
 
-    <button id="toggle-form-button">Ajouter un catalogue</button>
+    <section class="commandes">
+            <h2>Catégories</h2>
+            <?php
+                $query="SELECT c.idCategorie AS idCategorie, c.nom AS category, c.photo AS imageCategorie, GROUP_CONCAT(t.nom ORDER BY t.nom ASC) AS types
+                        FROM categorie c
+                        LEFT JOIN typeproduit t ON c.idCategorie = t.idCategorie
+                        GROUP BY c.nom";
+                
+                $result = $SQLconn->conn->query($query);
+                if ($result && $result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        // Affichez les détails du produit
+                        echo '<div class="product">';
+                        echo '<div class="product-image"><img src="../' . $row['imageCategorie'] . '" alt="Photo categorie"></div>';
+                        echo '<div class="product-info">';
+                        echo '<p>Nom : ' . $row['category'] . '</p>';
+                        echo '<p>Types : ' . $row['types'] . '</p>';
+                        echo '<form method="post" action="gestion_catalogues.php">';
+                        echo '<input type="hidden" name="idCategorie" value="' . $row['idCategorie'] . '">';
+                        echo '<input type="text" name="nouveauNomCategorie" data-id="' . $row['idCategorie'] . '" id="nouveauNomCategorie" placeholder="Nouveau nom" required style="display: none;">';
+                        echo '<button class="edit-button" type="button" onclick="afficherChampModification(\'' . $row['idCategorie'] . '\')">Renommer</button>';
+                        echo '<button class="edit-button" type="submit" name="edit" data-id="' . $row['idCategorie'] . '" style="display: none;">Enregistrer</button>';
+                        echo '</form>';
+                        echo '<form method="post" action="gestion_catalogues.php">';
+                        echo '<input type="hidden" name="idCategorie" value="' . $row['idCategorie'] . '">';
+                        echo '<button class="delete-button" type="submit" name="delete" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette commande ?\');">Supprimer</button>';
+                        echo '</form>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
 
-    <div class="catalogues">
-        <?php foreach ($catalogues as $catalogue): ?>
-            <div class="catalogue">
-                <div id="display-catalogue-<?php echo $catalogue['idCategorie']; ?>">
-                    <h2><?php echo htmlspecialchars($catalogue['nom']); ?></h2>
-                    <p>Nombre de produits : <?php echo htmlspecialchars($catalogue['nombreProduits']); ?></p>
-                    
-                </div>
-                <div id="edit-catalogue-<?php echo $catalogue['idCategorie']; ?>" style="display: none;">
-                    <!-- Formulaire pour renommer -->
-                    <form onsubmit="updateName(<?php echo $catalogue['idCategorie']; ?>, 'catalogue'); return false;">
-                        <input type="hidden" id="input-catalogue-<?php echo $catalogue['idCategorie']; ?>" value="<?php echo htmlspecialchars($catalogue['nom']); ?>">
-                        <input type="submit" value="Sauvegarder">
-                    </form>
-                </div>
+                    // Fermez le dernier groupe de produits
+                    echo '</div></li>';
+                } else {
+                    echo '<li>Aucune categorie trouvée.</li>';
+                }
+            ?>
+    </section>
+    <script>
+        function afficherChampModification(idCategorie) {
+            // Masquer tous les champs de modification existants
+            var tousLesChamps = document.querySelectorAll('input[name="nouveauNomCategorie"]');
+            tousLesChamps.forEach(function(champ) {
+                champ.style.display = 'none';
+            });
 
-                <!-- Bouton pour basculer en mode édition -->
-                <button onclick="toggleEditMode(<?php echo $catalogue['idCategorie']; ?>, 'catalogue')">Renommer</button>
+            // Afficher le champ de modification spécifique
+            var champSpecifique = document.querySelector('input[name="nouveauNomCategorie"][data-id="' + idCategorie + '"]');
+            champSpecifique.style.display = 'inline-block';
 
-                <!-- Formulaire pour effacer -->
-                <form action="effacer_catalogue.php" method="post">
-                    <input type="hidden" name="idCategorie" value="<?php echo htmlspecialchars($catalogue['idCategorie']); ?>">
-                    <button onclick="confirmDelete(<?php echo $catalogue['idCategorie']; ?>, 'catalogue')">Effacer</button>
-                </form>
-            </div>
-        <?php endforeach; ?>
-    </div>
+            // Masquer tous les boutons "Modifier" existants
+            var tousLesBoutonsModifier = document.querySelectorAll('.edit-button');
+            tousLesBoutonsModifier.forEach(function(bouton) {
+                bouton.style.display = 'none';
+            });
 
-    <!-- Formulaire de création d'un nouveau catalogue -->
-    <form id="create-catalogue-form" style="display: none;" action="creer_catalogue.php" method="post">
-        <label for="nouveauCatalogue">Nom du nouveau catalogue :</label>
-        <input type="text" id="nouveauCatalogue" name="nomCatalogue" placeholder="Nom du catalogue" required>
-        <input type="submit" value="Créer">
-
-        <!-- Message d'erreur (initiallement masqué) -->
-        <p id="error-message" style="color: red; display: none;"></p>
-    </form>
-
-    <script src="assets/js/gestion.js"></script>
+            // Afficher le bouton "Enregistrer" spécifique
+            var boutonEnregistrer = document.querySelector('.edit-button[data-id="' + idCategorie + '"]');
+            boutonEnregistrer.style.display = 'inline-block';
+        }
+</script>
 </body>
 </html>

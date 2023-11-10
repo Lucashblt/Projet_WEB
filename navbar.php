@@ -4,7 +4,18 @@
     // Si l'utilisateur est log crée un panier vide
     if ($SQLconn->loginStatus->loginSuccessful) {
         $loggedIn = true;
-        
+        $query = "SELECT role from utilisateur where email ='" . $SQLconn->loginStatus->userEmail . "'";
+        $result = $SQLconn->conn->query($query);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $role = $row["role"];
+            if ($role != "Client") {
+                $redirect = "Location:./backend/index.php";
+                header($redirect);
+            } else {
+                $redirect = "Location:../home.php";
+            }
+        }
         demarrer_session();
         actualiser_session();
         createCart();

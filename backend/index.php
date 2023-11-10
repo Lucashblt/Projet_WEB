@@ -72,7 +72,7 @@
     </head>
     <body>
         <section class="login-form">
-            <h1>Bienvenue sur la page de gestion</h1>
+            <h1>Bienvenue sur la page admin de WOOLIFY</h1>
             <p>Cette partie du site est réservée aux gérants.</p>
 
             <?php if ($loggedIn == false): ?>
@@ -93,7 +93,7 @@
         <?php else : ?>
             <section class="gerant-info">
                 <a href="inventaire_commandes.php">Voir toutes les commandes</a>
-                <a href="gestion_catalogue.php">Gestion des catalogues</a>
+                <a href="gestion_catalogues.php">Gestion des catalogues</a>
                 <a href="gestion_produits.php">Gestion des produits</a>
                 <div>
                     <h3>Argent encaissé aujourd'hui</h3>

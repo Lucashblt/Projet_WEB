@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: Georgia, serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    color: #333;
+}
+h1{
+    margin-top: 20px;
+}
+
+.lien {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+a:hover {
+    background-color: #45a049;
+}
+
+
+form button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #d32f2f;
+}
+
+h1, h2 {
+    text-align: center;
+}
+.commandes {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.previous-orders {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.order-details {
+    text-align: center;
+    margin-bottom: 10px;
+    flex : 1;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.product-image img {
+    max-width: 150px;
+    max-height: 250px;
+    border: 1px solid black;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+#nouveauNomCategorie {
+    margin-right: 10px;
+}
