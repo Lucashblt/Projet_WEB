@@ -13,15 +13,16 @@
             $role = $row["role"];
             if ($role == "Client") {  
                 $redirect = "Location:../home.php";
+                header($redirect);
             } else {
                 $redirect = "Location:../backend/index.php";
             }
-            header($redirect);
+            
         }
     } else {
         $loggedIn = false;
     }
-
+    
     
     if (isset($_POST["submit"])){
         $email = $_POST["email"];
@@ -55,7 +56,7 @@
     $query = "SELECT total, Status, dateCommande FROM commandes WHERE DATE(dateCommande) = '" . $today . "'";
     $result = $SQLconn->conn->query($query);
     if ($result && $result->num_rows > 0) {
-        $commandes = $result->fetch_assoc();
+        $commandes = $result->fetch_all(MYSQLI_ASSOC);
     }else{
         $commandes = NULL;
     }
@@ -67,7 +68,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Page de Connexion</title>
-        <!-- Vous pouvez ajouter ici votre CSS ou des liens vers des feuilles de style -->
+        <link rel="stylesheet" href="../backend/styles/index.css">
     </head>
     <body>
         <section class="login-form">
@@ -91,6 +92,9 @@
 
         <?php else : ?>
             <section class="gerant-info">
+                <a href="inventaire_commandes.php">Voir toutes les commandes</a>
+                <a href="gestion_catalogue.php">Gestion des catalogues</a>
+                <a href="gestion_produits.php">Gestion des produits</a>
                 <div>
                     <h3>Argent encaissé aujourd'hui</h3>
                     <p><?php echo htmlspecialchars($totalVentes); ?> €</p>
@@ -99,24 +103,27 @@
                 <div>
                     <h3>Commandes d'aujourd'hui</h3>
                     <ul>
-                        <?php 
+                    <?php 
                         if ($commandes == NULL) {
                             echo "<li>Aucune commande aujourd'hui</li>";
                         } else {
-                            foreach ($commandes as $commande): ?>
-                                <li><?php echo htmlspecialchars($commande['dateCommande']);?></li>
-                                <li><?php echo htmlspecialchars($commande['total']);?> € </li>
-                                <li><?php echo htmlspecialchars($commande['Status']);?></li>
+                            foreach ($commandes as $commande){ ?>
+                                <div>
+                                    <li><?php echo $commande['dateCommande']; ?></li>
+                                    <li><?php echo $commande['total']; ?> € </li>
+                                    <li><?php echo $commande['Status']; ?></li>
+                                </div>
                             <?php 
-                            endforeach; 
+                            } 
                             ?>
                         <?php } ?>
                     </ul>
                 </div>
 
-                <a href="inventaire_commandes.php">Voir toutes les commandes</a>
-                <a href="gestion_catalogue.php">Gestion des catalogues</a>
-                <a href="gestion_produits.php">Gestion des produits</a>
+            <form action="../logout.php" method="POST"> 
+                <input type="hidden" value="logout" name="logout"></input>
+                <button type="submit"><span>Se déconnecter</span></button>
+            </form>
             </section>
         <?php endif; ?>
     </body>
