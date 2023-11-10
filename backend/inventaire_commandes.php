@@ -74,7 +74,7 @@
         <div class="lien">
             <a href="index.php">Page d'Accueil</a>
             <a href="gestion_catalogues.php">Gestion des catalogues</a>
-            <a href="gestion_produits.php">Gestion des produits</a>
+            <a href="gestion_produit.php">Gestion des produits</a>
             <form action="../logout.php" method="POST"> 
                 <input type="hidden" value="logout" name="logout"></input>
                 <button type="submit"><span>Se déconnecter</span></button>

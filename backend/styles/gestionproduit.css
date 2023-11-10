@@ -1,0 +1,256 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: Georgia, serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    color: #333;
+}
+h1{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.lien {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+a:hover {
+    background-color: #45a049;
+}
+
+/* boutton deconnection et supprimer*/
+form button {
+    width: 150px;
+    background-color: #f44336;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #d32f2f;
+}
+/* boutton edit */ 
+.rename-input {
+    display: none;
+    width: 150px;
+    padding: 10px;
+}
+
+.rename-button {
+    width: 150px;
+    background-color: #4CAF50;
+    margin-bottom: 10px;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.rename-button:hover {
+    background-color: #45a049;
+}
+
+
+.container {
+    display: flex;
+    background: rgba(255, 255, 255, 0.45);
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+    background: rgba(17, 17, 17, 0.95);
+    color: #fff;
+    flex: 1;
+    padding: 20px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(17, 17, 17, 0.95); 
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; 
+    display: block;
+    text-align: center;
+}
+
+.menu a.active {
+    background: #000; 
+}
+
+.menu a:hover {
+    background: #575757; 
+}
+
+.content {
+    flex: 4;
+}
+
+.previous-orders, .modifproduit {
+    display: none;
+}
+
+h3 {
+    font-size: 1.2em;
+    padding: 8px;
+    text-align: center;
+}
+
+.modal2{
+    background-color: #fff;
+    padding: 20px 20px 0 20px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.modal-content2 {
+    padding: 20px;
+    border-radius: 6px;
+}
+/* affichage produit */
+.product {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.product-image img {
+    max-width: 150px;
+    max-height: 250px;
+    border: 1px solid black;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+/* Style de la pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #333;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+.pagination .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.ajouter form {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ajouter label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.ajouter input, .ajouter select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.ajouter textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    resize: vertical; /* Permet le redimensionnement vertical */
+}
+
+.ajouter select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23444" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 16px;
+}
+
+.ajouter input[type="file"] {
+    cursor: pointer;
+}
+
+.ajouter input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ajouter input[type="submit"]:hover {
+    background-color: #45a049;
+}

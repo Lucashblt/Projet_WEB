@@ -95,7 +95,7 @@
             <section class="gerant-info">
                 <a href="inventaire_commandes.php">Voir toutes les commandes</a>
                 <a href="gestion_catalogues.php">Gestion des catalogues</a>
-                <a href="gestion_produits.php">Gestion des produits</a>
+                <a href="gestion_produit.php">Gestion des produits</a>
                 <div>
                     <h3>Argent encaissé aujourd'hui</h3>
                     <p><?php echo htmlspecialchars($totalVentes); ?> €</p>

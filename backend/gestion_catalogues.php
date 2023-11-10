@@ -37,7 +37,6 @@
     if (isset($_POST['edit'])) {
         // Récupérez l'id de la catégorie à partir du formulaire
         $idCategorie = $_POST['idCategorie'];
-    
         // Récupérez le nouveau nom de la catégorie à partir du formulaire
         $nouveauNomCategorie = $_POST['nouveauNomCategorie'];
         updateNameCategorie($idCategorie, $nouveauNomCategorie);
@@ -66,7 +65,7 @@
         <div class="lien">
             <a href="index.php">Page d'Accueil</a>
             <a href="inventaire_commandes.php">Inventaire Commandes</a>
-            <a href="gestion_produits.php">Gestion des produits</a>
+            <a href="gestion_produit.php">Gestion des produits</a>
             <form action="../logout.php" method="POST"> 
                 <input type="hidden" value="logout" name="logout"></input>
                 <button type="submit"><span>Se déconnecter</span></button>
@@ -116,7 +115,7 @@
 
                                         echo '<form method="post" action="gestion_catalogues.php">';
                                         echo '<input type="hidden" name="idCategorie" value="' . $row['idCategorie'] . '">';
-                                        echo '<button class="delete-button" type="submit" name="delete" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette commande ?\');">Supprimer</button>';
+                                        echo '<button class="delete-button" type="submit" name="delete" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette catégorie ?\');">Supprimer</button>';
                                         echo '</form>';
                                         echo '</div>';
                                         echo '</div>';
