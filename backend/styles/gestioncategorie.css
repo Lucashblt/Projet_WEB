@@ -38,6 +38,82 @@ a:hover {
     background-color: #45a049;
 }
 
+.container {
+    display: flex;
+    background: rgba(255, 255, 255, 0.45);
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.menu{
+    background-color: rgba(17, 17, 17, 0.95);
+    color: #fff;
+    padding: 20px;
+    width: 200px;
+
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(17, 17, 17, 0.95); 
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; 
+    display: block;
+    text-align: center;
+}
+
+.menu a.active {
+    background: #000; 
+}
+
+.menu a:hover {
+    background: #575757; 
+}
+
+.content {
+    flex: 1; 
+    overflow: auto; 
+}
+
+.AjoutCategorie {
+    display: none;
+}
+.test{
+    margin: 0;
+}
+
+.catalogue, .AjoutCategorie {
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow: auto;
+}
+
+h3 {
+    font-size: 1.2em;
+    padding: 8px;
+    text-align: center;
+}
+
 
 form button {
     background-color: #f44336;
@@ -54,26 +130,6 @@ form button:hover {
 
 h1, h2 {
     text-align: center;
-}
-.commandes {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.previous-orders {
-    margin: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.order-details {
-    text-align: center;
-    margin-bottom: 10px;
-    flex : 1;
 }
 
 .product {
@@ -110,6 +166,7 @@ h1, h2 {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 .edit-button:hover {
     background-color: #45a049;
@@ -117,4 +174,37 @@ h1, h2 {
 
 #nouveauNomCategorie {
     margin-right: 10px;
+}
+
+
+
+.Add form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.Add label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.Add input[type="text"],
+.Add input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.Add button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add button:hover {
+    background-color: #45a049;
 }

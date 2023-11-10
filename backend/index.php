@@ -74,8 +74,9 @@
         <section class="login-form">
             <h1>Bienvenue sur la page admin de WOOLIFY</h1>
             <p>Cette partie du site est réservée aux gérants.</p>
-
-            <?php if ($loggedIn == false): ?>
+            
+            <?php 
+            if ($loggedIn == false): ?>
                 <form action="index.php" method="post">
                     <label for="email">Email :</label>
                     <input type="text" id="email" name="email" required>

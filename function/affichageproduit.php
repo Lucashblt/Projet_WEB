@@ -10,7 +10,6 @@
         foreach ($tags as $tag) {
             $cardHtml .= '<span class="tag">' . $tag . '</span>';
         }
-
         // affiche le prix pour les produits et  rien pour les categories
         if ($price == NULL) {
             $prix = '<h2></h2>';
@@ -19,7 +18,6 @@
         }
         $cardHtml .= '
                     </div>
-
                     <h2>' . $prix . '</h2>
                 </div>
             </div>';
