@@ -37,7 +37,6 @@
 
     function insertProduit($nom, $description, $matiere, $idType, $prix, $couleurs, $stock, $imagePath, $idFournisseur){
         global $SQLconn; // Utilisez la connexion SQL
-
         
         $query = "SELECT c.idCategorie FROM categorie c 
                 INNER JOIN typeproduit tp ON c.idCategorie = tp.idCategorie
@@ -58,11 +57,21 @@
             $result = $SQLconn->conn->query($query);
 
             if ($result) {
+                $query = "SELECT idProduit FROM produit WHERE nom = '$nom'";
+                $result = $SQLconn->conn->query($query);
+                $row = $result->fetch_assoc();
+                $idProduit = $row['idProduit'];
+
                 foreach($couleurs as $color){
-                    $query = "INSERT INTO declinaisonproduit (idProduit, idTaille, idCouleur, Stock) 
-                        VALUES ((SELECT idProduit FROM produit WHERE nom = '$nom'),
-                        CROSS JOIN (SELECT idTaille FROM tailleproduit WHERE idType = '$idType',
-                        CROSS JOIN (SELECT idCouleur FROM couleurproduit WHERE nom = '$color'), '$stock')";
+                    $query = "SELECT idCouleur FROM couleurproduit WHERE nom = '$color'";
+                    $result = $SQLconn->conn->query($query);
+                    $row = $result->fetch_assoc();
+                    $idCouleur = $row['idCouleur'];
+
+                    $query = "INSERT INTO declinaisonproduit (idProduit, idCouleur, Stock, idTaille)
+                                SELECT '$idProduit', '$idCouleur', '$stock',
+                                idTaille FROM tailleproduit WHERE idType = '$idType'";
+
                     $result = $SQLconn->conn->query($query);                
                 }
                 echo "Le produit a été ajouté avec succès.";
